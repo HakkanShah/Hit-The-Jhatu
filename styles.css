@@ -1,0 +1,123 @@
+/* Restoring all the browser effects */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Dancing Script', cursive;
+  cursor: none;
+}
+
+/* Setting up the bg-color, text-color 
+and alignment to all body elements */
+body {
+  background-color: rgb(73, 206, 254);
+  color: white;
+  justify-content: center;
+}
+
+.heading {
+  font-size: 2em;
+  margin: 1em 0;
+  text-align: center;
+}
+
+.score {
+  font-size: 1.3em;
+  margin: 1em;
+  text-align: center;
+}
+
+.holes {
+  width: 600px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.hole {
+  flex: 1 0 33.33%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Use of pseudo classes */
+.hole:after {
+  display: block;
+  background: url(
+'https://media.geeksforgeeks.org/wp-content/uploads/20210302112038/hole2.png')
+      bottom center no-repeat;
+  background-size: contain;
+  content: '';
+  width: 100%;
+  height: 70px;
+  position: absolute;
+  z-index: 20;
+  bottom: -30px;
+}
+
+.rat {
+  position: absolute;
+  z-index: 10;
+  height: 10vh;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: move 0.5s linear;
+}
+
+.buttons {
+  margin: 3em 0 0 0;
+  text-align: center;
+}
+
+.button {
+  background-color: inherit;
+  padding: 15px 45px;
+  border: #fff 2px solid;
+  border-radius: 4px;
+  color: rgb(21, 14, 235);
+  font-size: 0.8em;
+  font-weight: 900;
+  outline: none;
+}
+
+/* It is used because we want to 
+display single button at a time
+on the screen */
+
+/* This functionally is moreover 
+controlled by JS */
+.stop {
+  display: none;
+}
+
+.hammer img {
+  position: absolute;
+  height: 125px;
+  z-index: 40;
+  transform: translate(-20px, -50px);
+  pointer-events: none;
+  animation: marne_wale_effects 0.1s ease;
+}
+
+/* Giving animation to our rat */
+@keyframes move {
+  from {
+      bottom: -60px;
+  }
+  to {
+      bottom: 0;
+  }
+}
+
+/* Giving effects to hammer when 
+we hit on the rat */
+@keyframes marne_wale_effects {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(-40deg);
+  }
+}
