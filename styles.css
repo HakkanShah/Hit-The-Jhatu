@@ -1,4 +1,4 @@
-/* Restoring all the browser effects */
+/* Reset all browser effects */
 * {
   margin: 0;
   padding: 0;
@@ -7,46 +7,51 @@
   cursor: none;
 }
 
-/* Setting up the bg-color, text-color 
-and alignment to all body elements */
+/* Body styles */
 body {
   background-color: rgb(73, 206, 254);
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  height: 100vh;
+  text-align: center;
 }
 
+/* Heading & Score */
 .heading {
-  font-size: 2em;
+  font-size: 2.5em;
   margin: 1em 0;
-  text-align: center;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .score {
-  font-size: 1.3em;
-  margin: 1em;
-  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 1em;
 }
 
+/* Game Area */
 .holes {
   width: 600px;
   height: 400px;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
+  position: relative;
 }
 
 .hole {
   flex: 1 0 33.33%;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 }
 
-/* Use of pseudo classes */
+/* Hole design */
 .hole:after {
   display: block;
-  background: url(
-'https://media.geeksforgeeks.org/wp-content/uploads/20210302112038/hole2.png')
-      bottom center no-repeat;
+  background: url('https://media.geeksforgeeks.org/wp-content/uploads/20210302112038/hole2.png') 
+    bottom center no-repeat;
   background-size: contain;
   content: '';
   width: 100%;
@@ -56,6 +61,7 @@ body {
   bottom: -30px;
 }
 
+/* Rat appearance */
 .rat {
   position: absolute;
   z-index: 10;
@@ -66,58 +72,76 @@ body {
   animation: move 0.5s linear;
 }
 
+/* Button Container */
 .buttons {
-  margin: 3em 0 0 0;
-  text-align: center;
+  margin-top: 3em;
 }
 
+/* Stylish Buttons */
 .button {
-  background-color: inherit;
-  padding: 15px 45px;
-  border: #fff 2px solid;
-  border-radius: 4px;
-  color: rgb(21, 14, 235);
-  font-size: 0.8em;
-  font-weight: 900;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  padding: 18px 50px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 15px rgba(255, 117, 140, 0.3);
   outline: none;
+  position: relative;
+  overflow: hidden;
 }
 
-/* It is used because we want to 
-display single button at a time
-on the screen */
+/* Hover Effect */
+.button:hover {
+  background: linear-gradient(135deg, #ff5c91, #ff2851);
+  box-shadow: 0 6px 20px rgba(255, 40, 81, 0.5);
+  transform: translateY(-3px);
+}
 
-/* This functionally is moreover 
-controlled by JS */
+/* Click Effect */
+.button:active {
+  transform: scale(0.95);
+}
+
+/* Glow Animation */
+@keyframes glow {
+  0% { box-shadow: 0 0 10px rgba(255, 117, 140, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(255, 117, 140, 0.6); }
+  100% { box-shadow: 0 0 10px rgba(255, 117, 140, 0.3); }
+}
+
+.button.glow {
+  animation: glow 1.5s infinite alternate;
+}
+
+/* Hide Stop Button Initially */
 .stop {
   display: none;
 }
 
+/* Hammer Animation */
 .hammer img {
   position: absolute;
   height: 125px;
   z-index: 40;
   transform: translate(-20px, -50px);
   pointer-events: none;
-  animation: marne_wale_effects 0.1s ease;
+  animation: hitEffect 0.1s ease;
 }
 
-/* Giving animation to our rat */
+/* Rat Animation */
 @keyframes move {
-  from {
-      bottom: -60px;
-  }
-  to {
-      bottom: 0;
-  }
+  from { bottom: -60px; }
+  to { bottom: 0; }
 }
 
-/* Giving effects to hammer when 
-we hit on the rat */
-@keyframes marne_wale_effects {
-  from {
-      transform: rotate(0deg);
-  }
-  to {
-      transform: rotate(-40deg);
-  }
+/* Hammer Hit Effect */
+@keyframes hitEffect {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-40deg); }
 }
