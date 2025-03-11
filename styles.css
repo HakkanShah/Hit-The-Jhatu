@@ -1,15 +1,14 @@
-/* Reset all browser effects */
+/* Reset all styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Press Start 2P', cursive;
   cursor: none;
 }
 
-/* Body styles */
 body {
-  background-color: rgb(73, 206, 254);
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
   color: white;
   display: flex;
   flex-direction: column;
@@ -17,131 +16,129 @@ body {
   justify-content: center;
   height: 100vh;
   text-align: center;
+  overflow: hidden;
 }
 
-/* Heading & Score */
+.game-container {
+  width: 90%;
+  max-width: 600px;
+}
+
 .heading {
-  font-size: 2.5em;
-  margin: 1em 0;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  font-size: 2em;
+  margin-bottom: 0.5em;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .score {
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin-bottom: 1em;
 }
 
-/* Game Area */
 .holes {
-  width: 600px;
-  height: 400px;
+  width: 100%;
+  height: 350px;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
+  justify-content: center;
   position: relative;
 }
 
 .hole {
-  flex: 1 0 33.33%;
+  flex: 1 0 30%;
   position: relative;
   overflow: hidden;
+  margin: 5px;
 }
 
-/* Hole design */
 .hole:after {
   display: block;
-  background: url('https://media.geeksforgeeks.org/wp-content/uploads/20210302112038/hole2.png') 
-    bottom center no-repeat;
+  background: url('https://media.geeksforgeeks.org/wp-content/uploads/20210302112038/hole2.png') bottom center no-repeat;
   background-size: contain;
   content: '';
   width: 100%;
-  height: 70px;
+  height: 60px;
   position: absolute;
   z-index: 20;
-  bottom: -30px;
+  bottom: -25px;
 }
 
-/* Rat appearance */
 .rat {
   position: absolute;
   z-index: 10;
-  height: 10vh;
+  height: 12vh;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   animation: move 0.5s linear;
 }
 
-/* Button Container */
 .buttons {
-  margin-top: 3em;
+  margin-top: 2em;
 }
 
-/* Stylish Buttons */
 .button {
-  background: linear-gradient(135deg, #ff7eb3, #ff758c);
-  padding: 18px 50px;
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  padding: 14px 40px;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   color: white;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 1px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 4px 15px rgba(255, 117, 140, 0.3);
-  outline: none;
-  position: relative;
-  overflow: hidden;
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
 }
 
-/* Hover Effect */
 .button:hover {
-  background: linear-gradient(135deg, #ff5c91, #ff2851);
-  box-shadow: 0 6px 20px rgba(255, 40, 81, 0.5);
+  background: linear-gradient(135deg, #ff5722, #e64a19);
   transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(255, 87, 34, 0.5);
 }
 
-/* Click Effect */
 .button:active {
   transform: scale(0.95);
 }
 
-/* Glow Animation */
-@keyframes glow {
-  0% { box-shadow: 0 0 10px rgba(255, 117, 140, 0.3); }
-  50% { box-shadow: 0 0 20px rgba(255, 117, 140, 0.6); }
-  100% { box-shadow: 0 0 10px rgba(255, 117, 140, 0.3); }
-}
-
-.button.glow {
-  animation: glow 1.5s infinite alternate;
-}
-
-/* Hide Stop Button Initially */
-.stop {
-  display: none;
-}
-
-/* Hammer Animation */
-.hammer img {
-  position: absolute;
-  height: 125px;
-  z-index: 40;
-  transform: translate(-20px, -50px);
-  pointer-events: none;
-  animation: hitEffect 0.1s ease;
-}
-
-/* Rat Animation */
 @keyframes move {
   from { bottom: -60px; }
   to { bottom: 0; }
 }
 
-/* Hammer Hit Effect */
 @keyframes hitEffect {
   from { transform: rotate(0deg); }
   to { transform: rotate(-40deg); }
+}
+
+.hammer img {
+  position: absolute;
+  height: 100px;
+  z-index: 40;
+  transform: translate(-20px, -50px);
+  pointer-events: none;
+}
+
+@media screen and (max-width: 600px) {
+  .holes {
+    height: 250px;
+  }
+
+  .hole:after {
+    height: 50px;
+    bottom: -20px;
+  }
+
+  .rat {
+    height: 10vh;
+  }
+
+  .button {
+    padding: 12px 30px;
+    font-size: 0.9em;
+  }
+
+  .hammer img {
+    height: 80px;
+  }
 }
