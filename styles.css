@@ -138,7 +138,18 @@ body {
     font-size: 0.9em;
   }
 
-  .hammer img {
-    height: 80px;
-  }
+/* Make hammer follow smoothly */
+.hammer img {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 50;
+    pointer-events: none;
+    transform: rotate(-20deg);
+    transition: transform 0.1s ease-in-out;
+}
+
+/* Hammer hitting effect */
+.hammer img.hit {
+    transform: rotate(-40deg);
 }
