@@ -28,4 +28,4 @@ A fun and lighthearted browser-based **clicker game** created as a prank! Test y
 Feel free to fork the repository and suggest improvements!  
 
 ## 📜 License  
-This game is created just for fun and is open-source. Enjoy and share with friends! 🎉
+This game is created just for fun and is open-source. Enjoy and share with friends! 
