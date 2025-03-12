@@ -1,4 +1,5 @@
 # Hit The Jhatu 🎯  
+(**Jhatu**, is my beloved friend 🌝)
 
 A fun and lighthearted browser-based **clicker game** created as a prank! Test your reflexes and see how fast you can hit the target.  
 
