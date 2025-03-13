@@ -1,111 +1,50 @@
-// Selecting elements
-const score = document.querySelector('.score span');
-const holes = document.querySelectorAll('.hole');
-const start_btn = document.querySelector('.buttons .start');
-const stop_btn = document.querySelector('.buttons .stop');
-const hammer = document.querySelector('.hammer img');
+document.addEventListener("DOMContentLoaded", function () {
+    const hammer = document.getElementById("hammer");
+    const target = document.getElementById("target");
+    const scoreDisplay = document.getElementById("score");
+    const startButton = document.getElementById("start-game");
 
-let gameInterval;
-let gameTimer;
-let points = 0;
-let gameActive = false;
+    let score = 0;
+    let gameActive = false;
 
-// Sound Effects
-const hitSound = new Audio('hit.mp3');  // Add hit sound
-const missSound = new Audio('miss.mp3'); // Add miss sound
+    // Start Game
+    startButton.addEventListener("click", function () {
+        if (!gameActive) {
+            gameActive = true;
+            score = 0;
+            scoreDisplay.textContent = score;
+            moveTarget();
+        }
+    });
 
-// Hammer follows cursor (Desktop)
-window.addEventListener('mousemove', (e) => {
-    hammer.style.transform = `translate(${e.pageX - 50}px, ${e.pageY - 50}px)`;
-});
+    // Move Target Randomly
+    function moveTarget() {
+        if (!gameActive) return;
+        
+        const gameContainer = document.getElementById("game-container");
+        const maxX = gameContainer.clientWidth - target.clientWidth;
+        const maxY = gameContainer.clientHeight - target.clientHeight;
 
-// Hammer follows touch (Mobile)
-window.addEventListener('touchmove', (e) => {
-    let touch = e.touches[0];
-    hammer.style.transform = `translate(${touch.pageX - 50}px, ${touch.pageY - 50}px)`;
-});
+        target.style.left = Math.random() * maxX + "px";
+        target.style.top = Math.random() * maxY + "px";
 
-// Hammer hit animation
-function hammerHit() {
-    hammer.classList.add('hit');
-    setTimeout(() => {
-        hammer.classList.remove('hit');
-    }, 100);
-}
-
-window.addEventListener('mousedown', hammerHit);
-window.addEventListener('mouseup', () => hammer.classList.remove('hit'));
-window.addEventListener('touchstart', hammerHit);
-window.addEventListener('touchend', () => hammer.classList.remove('hit'));
-
-// Start Game Logic
-start_btn.addEventListener('click', startGame);
-
-function startGame() {
-    if (gameActive) return;
-    gameActive = true;
-
-    start_btn.style.display = 'none';
-    stop_btn.style.display = 'inline-block';
-    points = 0;
-    score.innerText = points;
-
-    gameTimer = setTimeout(stopGame, 30000); // Stop game after 30 seconds
-
-    gameInterval = setInterval(() => {
-        let randomHole = holes[Math.floor(Math.random() * holes.length)];
-
-        // Prevent multiple targets in the same hole
-        if (randomHole.querySelector('.rat')) return;
-
-        let target = document.createElement('img');
-        target.setAttribute('src', 'Jhatu.png');
-        target.setAttribute('class', 'rat');
-        target.style.width = '80px';
-        target.style.height = '130px';
-        target.style.position = 'absolute';
-        target.style.bottom = '0px'; // Ensure target appears at the hole position
-
-        randomHole.appendChild(target);
-
-        // Animate target appearance
-        target.animate([{ transform: 'translateY(20px)' }, { transform: 'translateY(0px)' }], {
-            duration: 200,
-            easing: 'ease-out'
-        });
-
-        // Remove target after a random duration (600ms - 1200ms)
-        let disappearTime = Math.random() * (1200 - 600) + 600;
-        setTimeout(() => {
-            if (randomHole.contains(target)) {
-                target.remove();
-            }
-        }, disappearTime);
-    }, 1000);
-}
-
-// Click or tap to hit target
-function handleHit(e) {
-    if (e.target.classList.contains('rat')) {
-        e.target.remove();
-        score.innerText = ++points;
-        hitSound.play();
-    } else {
-        missSound.play();
+        setTimeout(moveTarget, 1000); // Move every second
     }
-}
 
-window.addEventListener('click', handleHit);
-window.addEventListener('touchstart', handleHit);
+    // Click Event (Hit Jhatu)
+    target.addEventListener("click", function () {
+        if (gameActive) {
+            score++;
+            scoreDisplay.textContent = score;
+            hammerAnimation();
+        }
+    });
 
-// Stop Game
-stop_btn.addEventListener('click', stopGame);
-
-function stopGame() {
-    clearInterval(gameInterval);
-    clearTimeout(gameTimer);
-    gameActive = false;
-
-    stop_btn.style.display = 'none';
-    start_btn.style.display = 'inline-block';
-}
+    // Hammer Animation on Hit
+    function hammerAnimation() {
+        hammer.style.transform = "rotate(-30deg)";
+        setTimeout(() => {
+            hammer.style.transform = "rotate(0deg)";
+        }, 100);
+    }
+});
