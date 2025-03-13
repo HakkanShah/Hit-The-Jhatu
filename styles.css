@@ -1,153 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Press Start 2P', cursive;
-  cursor: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
 }
 
 body {
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  text-align: center;
-  overflow: hidden;
+    background: radial-gradient(circle at center, #0f0c29, #302b63, #24243e);
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .game-container {
-  width: 90%;
-  max-width: 600px;
+    width: 600px;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 3px solid #00ffea;
+    box-shadow: 0 0 20px #00ffea;
+    text-align: center;
+    position: relative;
+    padding-top: 20px;
 }
 
-.heading {
-  font-size: 2em;
-  margin-bottom: 0.5em;
-  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+.heading h1 {
+    font-size: 22px;
+    text-shadow: 0 0 8px #ff00ff, 0 0 15px #00ffff;
+    letter-spacing: 2px;
 }
 
 .score {
-  font-size: 1.2em;
-  margin-bottom: 1em;
+    font-size: 16px;
+    margin: 15px 0;
 }
 
 .holes {
-  width: 100%;
-  height: 350px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    height: 250px;
 }
 
 .hole {
-  flex: 1 0 30%;
-  position: relative;
-  overflow: hidden;
-  margin: 5px;
+    width: 100px;
+    height: 120px;
+    background: #000;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid #ff00ff;
+    box-shadow: 0 0 10px #ff00ff;
 }
 
-.hole:after {
-  display: block;
-  background: url('https://media.geeksforgeeks.org/wp-content/uploads/20210302112038/hole2.png') bottom center no-repeat;
-  background-size: contain;
-  content: '';
-  width: 100%;
-  height: 60px;
-  position: absolute;
-  z-index: 20;
-  bottom: -25px;
-}
-
-.rat {
-  position: absolute;
-  z-index: 10;
-  height: 12vh;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: move 0.5s linear;
+.hole .rat {
+    position: absolute;
+    bottom: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: bottom 0.3s ease-in-out;
 }
 
 .buttons {
-  margin-top: 2em;
+    margin-top: 20px;
 }
 
 .button {
-  background: linear-gradient(135deg, #ff9800, #ff5722);
-  padding: 14px 40px;
-  border: none;
-  border-radius: 12px;
-  color: white;
-  font-size: 1em;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+    background: linear-gradient(45deg, #ff00ff, #00ffff);
+    border: none;
+    color: #000;
+    font-size: 14px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #00ffff, 0 0 15px #ff00ff;
 }
 
 .button:hover {
-  background: linear-gradient(135deg, #ff5722, #e64a19);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(255, 87, 34, 0.5);
+    box-shadow: 0 0 20px #ff00ff, 0 0 25px #00ffff;
 }
 
-.button:active {
-  transform: scale(0.95);
-}
-
-@keyframes move {
-  from { bottom: -60px; }
-  to { bottom: 0; }
-}
-
-@keyframes hitEffect {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-40deg); }
-}
-
-.hammer img {
-  position: absolute;
-  height: 100px;
-  z-index: 40;
-  transform: translate(-20px, -50px);
-  pointer-events: none;
-}
-
-@media screen and (max-width: 600px) {
-  .holes {
-    height: 250px;
-  }
-
-  .hole:after {
-    height: 50px;
-    bottom: -20px;
-  }
-
-  .rat {
-    height: 10vh;
-  }
-
-  .button {
-    padding: 12px 30px;
-    font-size: 0.9em;
-  }
-
-.hammer img {
+.hammer {
     position: absolute;
-    width: 100px;
-    height: 100px;
-    z-index: 50;
+    width: 80px;
+    height: 80px;
     pointer-events: none;
-    transform: rotate(-20deg);
-    transition: transform 0.1s ease-in-out;
+    transition: transform 0.05s ease-in-out;
 }
 
-.hammer img.hit {
-    transform: rotate(-40deg);
+.hammer img {
+    width: 100%;
+    height: 100%;
+}
+
+.hammer.hit {
+    transform: rotate(-30deg);
 }
