@@ -1,42 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Hit-The-Jhatu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hit The Jhatu</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
-
 <body>
-    <div class="game-container">
-        <div class="heading">
-            <h1>Hit the Jhatu</h1>
+    <header>
+        <h1>Hit The Jhatu 🎯</h1>
+    </header>
+
+    <main>
+        <div id="game-container">
+            <img id="hammer" src="Hammer.png" alt="Hammer">
+            <img id="target" src="Jhatu.png" alt="Jhatu">
         </div>
 
-        <div class="score">
-            <h3>Points: <span>0</span></h3>
+        <div id="scoreboard">
+            <p>Score: <span id="score">0</span></p>
         </div>
 
-        <div class="holes">
-            <div class="hole hole1"></div>
-            <div class="hole hole2"></div>
-            <div class="hole hole3"></div>
-            <div class="hole hole4"></div>
-            <div class="hole hole5"></div>
-        </div>
-
-        <div class="buttons">
-            <button class="button start">START</button>
-            <button class="button stop">STOP</button>
-        </div>
-    </div>
-
-    <div class="hammer">
-        <img src='Hammer.png' alt="Hammer">
-    </div>
+        <button id="start-game">Start Game</button>
+    </main>
 
     <script src="scripts.js"></script>
 </body>
-
 </html>
