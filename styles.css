@@ -3,6 +3,7 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f4f4f4;
+    cursor: url('Hammer.png'), auto;
 }
 
 header {
@@ -13,28 +14,38 @@ header {
 
 /* Game Container */
 #game-container {
-    position: relative;
-    width: 300px;
-    height: 300px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 350px;
     margin: 20px auto;
-    border: 3px solid #222;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
 }
 
-/* Hammer Styling */
+/* Hole */
+.hole {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: url('Hole.png') no-repeat center center;
+    background-size: cover;
+}
+
+/* Jhatu (Mole) */
+.jhatu {
+    position: absolute;
+    width: 80px;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hammer */
 #hammer {
     position: absolute;
     width: 80px;
     transition: transform 0.1s ease-in-out;
-}
-
-/* Target (Jhatu) Styling */
-#target {
-    position: absolute;
-    width: 120px;
-    cursor: pointer;
+    pointer-events: none;
 }
 
 /* Scoreboard */

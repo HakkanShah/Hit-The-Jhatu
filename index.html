@@ -3,25 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hit The Jhatu</title>
+    <title>Whack The Jhatu</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Hit The Jhatu 🎯</h1>
+        <h1>Whack The Jhatu 🎯</h1>
     </header>
 
     <main>
         <div id="game-container">
-            <img id="hammer" src="Hammer.png" alt="Hammer">
-            <img id="target" src="Jhatu.png" alt="Jhatu">
+            <!-- 6 Holes in Grid -->
+            <div class="hole" id="hole-1"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
+            <div class="hole" id="hole-2"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
+            <div class="hole" id="hole-3"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
+            <div class="hole" id="hole-4"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
+            <div class="hole" id="hole-5"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
+            <div class="hole" id="hole-6"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
         </div>
 
+        <!-- Scoreboard -->
         <div id="scoreboard">
             <p>Score: <span id="score">0</span></p>
         </div>
 
         <button id="start-game">Start Game</button>
+
+        <img id="hammer" src="Hammer.png" alt="Hammer">
     </main>
 
     <script src="scripts.js"></script>

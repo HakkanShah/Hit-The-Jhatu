@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const hammer = document.getElementById("hammer");
-    const target = document.getElementById("target");
+    const holes = document.querySelectorAll(".hole");
+    const jhatus = document.querySelectorAll(".jhatu");
     const scoreDisplay = document.getElementById("score");
     const startButton = document.getElementById("start-game");
 
@@ -13,31 +14,42 @@ document.addEventListener("DOMContentLoaded", function () {
             gameActive = true;
             score = 0;
             scoreDisplay.textContent = score;
-            moveTarget();
+            startRound();
         }
     });
 
-    // Move Target Randomly
-    function moveTarget() {
+    // Function to Show Jhatu in a Random Hole
+    function startRound() {
         if (!gameActive) return;
-        
-        const gameContainer = document.getElementById("game-container");
-        const maxX = gameContainer.clientWidth - target.clientWidth;
-        const maxY = gameContainer.clientHeight - target.clientHeight;
 
-        target.style.left = Math.random() * maxX + "px";
-        target.style.top = Math.random() * maxY + "px";
+        const randomHoleIndex = Math.floor(Math.random() * holes.length);
+        const jhatu = jhatus[randomHoleIndex];
 
-        setTimeout(moveTarget, 1000); // Move every second
+        jhatu.style.transform = "translateX(-50%) scale(1)"; // Jhatu appears
+
+        setTimeout(() => {
+            jhatu.style.transform = "translateX(-50%) scale(0)"; // Hide after time
+        }, 1000);
+
+        setTimeout(startRound, 1500); // Show next Jhatu
     }
 
+    // Hammer follows Mouse
+    document.addEventListener("mousemove", function (event) {
+        hammer.style.left = event.clientX - 40 + "px";
+        hammer.style.top = event.clientY - 40 + "px";
+    });
+
     // Click Event (Hit Jhatu)
-    target.addEventListener("click", function () {
-        if (gameActive) {
-            score++;
-            scoreDisplay.textContent = score;
-            hammerAnimation();
-        }
+    jhatus.forEach(jhatu => {
+        jhatu.addEventListener("click", function () {
+            if (gameActive) {
+                score++;
+                scoreDisplay.textContent = score;
+                hammerAnimation();
+                jhatu.style.transform = "translateX(-50%) scale(0)"; // Hide Jhatu after hit
+            }
+        });
     });
 
     // Hammer Animation on Hit
