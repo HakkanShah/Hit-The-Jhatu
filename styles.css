@@ -6,10 +6,21 @@ body {
     cursor: url('Hammer.png'), auto;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 header {
     margin: 20px 0;
-    font-size: 24px;
-    color: #000000;
+    font-size: 18px;
+    color: #ffffff;
+    font-family: 'Press Start 2P', cursive; 
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0px #ff0000, 8px 8px 0px #000000; 
+    background: linear-gradient(90deg, #ffcc00, #ef17bd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
 }
 
 
@@ -50,6 +61,7 @@ header {
 
 
 #scoreboard {
+    color: chartreuse;
     font-size: 20px;
     margin-top: 20px;
 }
