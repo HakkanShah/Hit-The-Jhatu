@@ -1,4 +1,4 @@
-/* General Styles */
+
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -12,7 +12,7 @@ header {
     color: #000000;
 }
 
-/* Game Container */
+
 #game-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -21,7 +21,6 @@ header {
     margin: 20px auto;
 }
 
-/* Hole */
 .hole {
     position: relative;
     
@@ -31,7 +30,7 @@ header {
     background-size: cover;
 }
 
-/* Jhatu (Mole) */
+
 .jhatu {
     position:absolute;
     width: 80px;
@@ -41,7 +40,7 @@ header {
     transition: transform 0.3s ease-in-out;
 }
 
-/* Hammer */
+
 #hammer {
     position: absolute;
     width: 80px;
@@ -49,13 +48,13 @@ header {
     pointer-events: none;
 }
 
-/* Scoreboard */
+
 #scoreboard {
     font-size: 20px;
     margin-top: 20px;
 }
 
-/* Start Button */
+
 #start-game {
     padding: 10px 20px;
     font-size: 18px;

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let score = 0;
     let gameActive = false;
 
-    // Start Game
+    
     startButton.addEventListener("click", function () {
         if (!gameActive) {
             gameActive = true;
@@ -18,41 +18,41 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Function to Show Jhatu in a Random Hole
+    
     function startRound() {
         if (!gameActive) return;
 
         const randomHoleIndex = Math.floor(Math.random() * holes.length);
         const jhatu = jhatus[randomHoleIndex];
 
-        jhatu.style.transform = "translateX(-50%) scale(1)"; // Jhatu appears
+        jhatu.style.transform = "translateX(-50%) scale(1)"; 
 
         setTimeout(() => {
-            jhatu.style.transform = "translateX(-50%) scale(0)"; // Hide after time
+            jhatu.style.transform = "translateX(-50%) scale(0)"; 
         }, 1000);
 
-        setTimeout(startRound, 1500); // Show next Jhatu
+        setTimeout(startRound, 1500); 
     }
 
-    // Hammer follows Mouse
+    
     document.addEventListener("mousemove", function (event) {
         hammer.style.left = event.clientX - 40 + "px";
         hammer.style.top = event.clientY - 40 + "px";
     });
 
-    // Click Event (Hit Jhatu)
+    
     jhatus.forEach(jhatu => {
         jhatu.addEventListener("click", function () {
             if (gameActive) {
                 score++;
                 scoreDisplay.textContent = score;
                 hammerAnimation();
-                jhatu.style.transform = "translateX(-50%) scale(0)"; // Hide Jhatu after hit
+                jhatu.style.transform = "translateX(-50%) scale(0)"; 
             }
         });
     });
 
-    // Hammer Animation on Hit
+    
     function hammerAnimation() {
         hammer.style.transform = "rotate(-30deg)";
         setTimeout(() => {
