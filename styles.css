@@ -16,8 +16,8 @@ header {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
-    text-shadow: 4px 4px 0px #ff0000, 8px 8px 0px #000000; 
-    background: linear-gradient(90deg, #ffcc00, #ef17bd);
+    text-shadow: 4px 4px 0px #ffffff, 8px 8px 0px #000000; 
+    background: linear-gradient(90deg, #f6ff00, #eb9b10);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     
