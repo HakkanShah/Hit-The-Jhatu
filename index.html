@@ -13,7 +13,6 @@
 
     <main>
         <div id="game-container">
-            
             <div class="hole" id="hole-1"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
             <div class="hole" id="hole-2"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
             <div class="hole" id="hole-3"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
@@ -22,7 +21,6 @@
             <div class="hole" id="hole-6"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
         </div>
 
-        
         <div id="scoreboard">
             <p>Score: <span id="score">0</span></p>
         </div>
@@ -30,6 +28,11 @@
         <button id="start-game">Start Game</button>
 
         <img id="hammer" src="Hammer.png" alt="Hammer">
+
+        <!-- Audio for hammer hit -->
+        <audio id="hit-sound">
+            <source src="sound.mp3" type="audio/mpeg">
+        </audio>
     </main>
 
     <script src="scripts.js"></script>
