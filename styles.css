@@ -2,7 +2,7 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #ffffff;
+    background-color: #000000;
     cursor: url('Hammer.png'), auto;
 }
 
@@ -14,10 +14,10 @@ header {
 
 
 #game-container {
-    display: grid;
+    display:grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 60px;
-    width: 350px;
+    width: 300px;
     margin: 20px auto;
 }
 
@@ -34,7 +34,7 @@ header {
 .jhatu {
     position:absolute;
     width: 80px;
-    bottom: -20px;
+    bottom: -30px;
     left: 50%;
     transform: translateX(-50%) scale(0);
     transition: transform 0.3s ease-in-out;
@@ -59,7 +59,7 @@ header {
     padding: 10px 20px;
     font-size: 18px;
     margin-top: 20px;
-    background: #28a745;
+    background: #192cf8;
     color: white;
     border: none;
     cursor: pointer;
@@ -67,5 +67,5 @@ header {
 }
 
 #start-game:hover {
-    background: #218838;
+    background: #b709ec;
 }

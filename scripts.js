@@ -7,52 +7,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let score = 0;
     let gameActive = false;
+    let gameInterval;
 
-    
+    // Toggle Start/Stop Game
     startButton.addEventListener("click", function () {
-        if (!gameActive) {
+        if (gameActive) {
+            gameActive = false;
+            startButton.textContent = "Start Game";
+            clearTimeout(gameInterval); 
+        } else {
             gameActive = true;
             score = 0;
             scoreDisplay.textContent = score;
+            startButton.textContent = "Stop Game";
             startRound();
         }
     });
 
-    
     function startRound() {
         if (!gameActive) return;
 
         const randomHoleIndex = Math.floor(Math.random() * holes.length);
         const jhatu = jhatus[randomHoleIndex];
 
-        jhatu.style.transform = "translateX(-50%) scale(1)"; 
+        jhatu.style.transform = "translateX(-50%) scale(1)";
 
         setTimeout(() => {
-            jhatu.style.transform = "translateX(-50%) scale(0)"; 
+            jhatu.style.transform = "translateX(-50%) scale(0)";
         }, 1000);
 
-        setTimeout(startRound, 1500); 
+        gameInterval = setTimeout(startRound, 1500);
     }
 
-    
     document.addEventListener("mousemove", function (event) {
         hammer.style.left = event.clientX - 40 + "px";
         hammer.style.top = event.clientY - 40 + "px";
     });
 
-    
     jhatus.forEach(jhatu => {
         jhatu.addEventListener("click", function () {
             if (gameActive) {
                 score++;
                 scoreDisplay.textContent = score;
                 hammerAnimation();
-                jhatu.style.transform = "translateX(-50%) scale(0)"; 
+                jhatu.style.transform = "translateX(-50%) scale(0)";
             }
         });
     });
 
-    
     function hammerAnimation() {
         hammer.style.transform = "rotate(-30deg)";
         setTimeout(() => {
