@@ -2,21 +2,21 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
     cursor: url('Hammer.png'), auto;
 }
 
 header {
     margin: 20px 0;
     font-size: 24px;
-    color: #333;
+    color: #000000;
 }
 
 /* Game Container */
 #game-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
     width: 350px;
     margin: 20px auto;
 }
@@ -24,6 +24,7 @@ header {
 /* Hole */
 .hole {
     position: relative;
+    
     width: 100px;
     height: 100px;
     background: url('Hole.png') no-repeat center center;
@@ -32,9 +33,9 @@ header {
 
 /* Jhatu (Mole) */
 .jhatu {
-    position: absolute;
+    position:absolute;
     width: 80px;
-    bottom: -40px;
+    bottom: -20px;
     left: 50%;
     transform: translateX(-50%) scale(0);
     transition: transform 0.3s ease-in-out;
