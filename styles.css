@@ -1,10 +1,33 @@
 
+@keyframes neonBorder {
+    0% { border-color: rgb(255, 0, 0); }   /* Red */
+    25% { border-color: rgb(0, 255, 0); }  /* Green */
+    50% { border-color: rgb(0, 0, 255); }  /* Blue */
+    75% { border-color: rgb(255, 0, 255); } /* Magenta */
+    100% { border-color: rgb(255, 0, 0); } /* Back to Red */
+}
+
+@keyframes neonGlow {
+    0% { box-shadow: 0 0 10px red; }
+    25% { box-shadow: 0 0 10px lime; }
+    50% { box-shadow: 0 0 10px blue; }
+    75% { box-shadow: 0 0 10px magenta; }
+    100% { box-shadow: 0 0 10px red; }
+}
+
 body {
+    border: solid 4px ;
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #000000;
     cursor: url('Hammer.png'), auto;
+
+    /* Adding Neon Border Animation */
+    animation: neonBorder 2s infinite linear, neonGlow 2s infinite linear;
+    border-radius: 10px; /* Optional for rounded edges */
+    padding: 20px; /* Prevents content from sticking to the border */
 }
+
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
