@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (gameActive && jhatu === activeJhatu) {
                 score++;
                 scoreDisplay.textContent = score;
-                playHitSound();
+                playRandomHitSound();
                 showHitEffect(jhatu);
                 hideJhatu();
             }
@@ -85,7 +85,12 @@ document.addEventListener("DOMContentLoaded", function () {
         jhatu.addEventListener("touchstart", hitJhatu, { passive: false });
     });
 
-    function playHitSound() {
+    function playRandomHitSound() {
+        const sources = hitSound.getElementsByTagName('source');
+        const randomIndex = Math.floor(Math.random() * sources.length);
+        const selectedSource = sources[randomIndex].src;
+
+        hitSound.src = selectedSource;
         hitSound.currentTime = 0;
         hitSound.play();
     }
