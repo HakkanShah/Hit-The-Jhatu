@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const scoreDisplay = document.getElementById("score");
     const startButton = document.getElementById("start-game");
     const hitSound = document.getElementById("hit-sound");
+    const clickSound = document.getElementById("click-sound"); // Click sound added
 
     let score = 0;
     let gameActive = false;
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Toggle Start/Stop Game
     startButton.addEventListener("click", function () {
+        playClickSound(); // Play click sound on button press
         if (gameActive) {
             gameActive = false;
             startButton.textContent = "Start Game";
@@ -40,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         gameInterval = setTimeout(startRound, 1500);
     }
-
+    
     // Make hammer follow the mouse
     document.addEventListener("mousemove", function (event) {
         hammer.style.left = event.clientX - 40 + "px";
@@ -72,5 +74,11 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
             hammer.style.transform = "rotate(0deg)";
         }, 100);
+    }
+
+    // Play click sound function
+    function playClickSound() {
+        clickSound.currentTime = 0; // Reset audio to start for quick replay
+        clickSound.play();
     }
 });
