@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const hammer = document.getElementById("hammer");
     const holes = document.querySelectorAll(".hole");
     const jhatus = document.querySelectorAll(".jhatu");
     const scoreDisplay = document.getElementById("score");
@@ -9,80 +8,76 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let score = 0;
     let gameActive = false;
+    let activeJhatu = null;
     let gameInterval;
-    let activeJhatu = null; // Track the active Jhatu
 
-    // Toggle Start/Stop Game (Prevents double trigger)
+    // Explosion Emojis (Random Effect)
+    const explosionEmojis = ["😂","🤣","🤯","😵‍💫","💥", "🔥", "💣", "💨"];
+
     function toggleGame(event) {
-        event.preventDefault(); // Stops multiple triggers on mobile
+        event.preventDefault();
         playClickSound();
 
         if (gameActive) {
-            gameActive = false;
-            startButton.textContent = "Start Game";
-            clearTimeout(gameInterval);
+            stopGame();
         } else {
-            gameActive = true;
-            score = 0;
-            scoreDisplay.textContent = score;
-            startButton.textContent = "Stop Game";
-            startRound();
+            startGame();
         }
     }
 
-    // Add event listeners for both click and touch (prevents duplicate events)
+    function startGame() {
+        gameActive = true;
+        score = 0;
+        scoreDisplay.textContent = score;
+        startButton.textContent = "Stop Game";
+        startRound();
+    }
+
+    function stopGame() {
+        gameActive = false;
+        startButton.textContent = "Start Game";
+        clearTimeout(gameInterval);
+        hideJhatu();
+    }
+
     startButton.addEventListener("click", toggleGame);
     startButton.addEventListener("touchstart", toggleGame, { passive: false });
 
-    // Start showing Jhatus randomly
     function startRound() {
         if (!gameActive) return;
 
-        if (activeJhatu) {
-            activeJhatu.style.transform = "translateX(-50%) scale(0)"; // Hide previous Jhatu
-        }
+        hideJhatu();
 
         const randomHoleIndex = Math.floor(Math.random() * holes.length);
         activeJhatu = jhatus[randomHoleIndex];
 
-        activeJhatu.style.transform = "translateX(-50%) scale(1)"; // Show Jhatu
+        activeJhatu.style.transform = "translateX(-50%) scale(1)";
 
         setTimeout(() => {
-            if (activeJhatu) {
-                activeJhatu.style.transform = "translateX(-50%) scale(0)"; // Hide after 1 sec
-                activeJhatu = null;
-            }
+            hideJhatu();
         }, 1000);
 
         gameInterval = setTimeout(startRound, 1500);
     }
 
-    // Make hammer follow the mouse and touch
-    function moveHammer(event) {
-        const x = event.clientX || (event.touches && event.touches[0].clientX);
-        const y = event.clientY || (event.touches && event.touches[0].clientY);
-
-        if (x && y) {
-            hammer.style.left = x - 40 + "px";
-            hammer.style.top = y - 40 + "px";
+    function hideJhatu() {
+        if (activeJhatu) {
+            activeJhatu.style.transform = "translateX(-50%) scale(0)";
+            activeJhatu = null;
         }
     }
 
-    document.addEventListener("mousemove", moveHammer);
-    document.addEventListener("touchmove", moveHammer, { passive: false });
-
-    // When Jhatu is tapped/clicked, increase score, play sound, and animate hammer
+    // Handle Jhatu hit
     jhatus.forEach(jhatu => {
         function hitJhatu(event) {
-            event.preventDefault(); // Prevent double click/tap issue
+            event.preventDefault();
 
             if (gameActive && jhatu === activeJhatu) {
                 score++;
                 scoreDisplay.textContent = score;
                 playHitSound();
-                hammerAnimation();
-                jhatu.style.transform = "translateX(-50%) scale(0)"; // Hide Jhatu
-                activeJhatu = null; // Prevent multiple hits on the same Jhatu
+                showHitEffect(jhatu);
+                hideJhatu();
             }
         }
 
@@ -90,23 +85,25 @@ document.addEventListener("DOMContentLoaded", function () {
         jhatu.addEventListener("touchstart", hitJhatu, { passive: false });
     });
 
-    // Play hit sound
     function playHitSound() {
-        hitSound.currentTime = 0; // Reset sound for consecutive hits
+        hitSound.currentTime = 0;
         hitSound.play();
     }
 
-    // Hammer animation effect
-    function hammerAnimation() {
-        hammer.style.transform = "rotate(-30deg)";
-        setTimeout(() => {
-            hammer.style.transform = "rotate(0deg)";
-        }, 100);
+    function playClickSound() {
+        clickSound.currentTime = 0;
+        clickSound.play();
     }
 
-    // Play click sound function
-    function playClickSound() {
-        clickSound.currentTime = 0; // Reset audio to start for quick replay
-        clickSound.play();
+    function showHitEffect(jhatu) {
+        const explosion = document.createElement("span");
+        explosion.textContent = explosionEmojis[Math.floor(Math.random() * explosionEmojis.length)];
+        explosion.classList.add("explosion-effect");
+
+        jhatu.parentElement.appendChild(explosion);
+
+        setTimeout(() => {
+            explosion.remove();
+        }, 700);
     }
 });

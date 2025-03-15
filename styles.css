@@ -75,14 +75,6 @@ header {
 }
 
 
-#hammer {
-    position: absolute;
-    width: 80px;
-    transition: transform 0.1s ease-in-out;
-    pointer-events: none;
-}
-
-
 #scoreboard {
     color: rgb(255, 242, 0);
     font-size: 20px;
@@ -107,3 +99,19 @@ header {
     color: #000000;
     background: hsl(53, 100%, 53%);
 }
+.explosion-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    font-size: 3rem;
+    animation: explodeEffect 0.7s ease-out;
+}
+
+@keyframes explodeEffect {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5) rotate(0deg); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.5) rotate(10deg); }
+    70% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.3) rotate(-10deg); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(2) rotate(0deg); }
+}
+
