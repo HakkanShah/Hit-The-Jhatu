@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let gameActive = false;
     let gameInterval;
 
-    // Toggle Start/Stop Game
-    startButton.addEventListener("click", function () {
+    // Toggle Start/Stop Game (Now works on tap)
+    function toggleGame() {
         playClickSound(); // Play click sound on button press
         if (gameActive) {
             gameActive = false;
@@ -25,7 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
             startButton.textContent = "Stop Game";
             startRound();
         }
-    });
+    }
+
+    // Add event listeners for both click and touch
+    startButton.addEventListener("click", toggleGame);
+    startButton.addEventListener("touchstart", toggleGame); 
 
     // Start showing Jhatus randomly
     function startRound() {
@@ -43,15 +47,20 @@ document.addEventListener("DOMContentLoaded", function () {
         gameInterval = setTimeout(startRound, 1500);
     }
     
-    // Make hammer follow the mouse
-    document.addEventListener("mousemove", function (event) {
-        hammer.style.left = event.clientX - 40 + "px";
-        hammer.style.top = event.clientY - 40 + "px";
-    });
+    // Make hammer follow the mouse and touch
+    document.addEventListener("mousemove", moveHammer);
+    document.addEventListener("touchmove", moveHammer); 
 
-    // When Jhatu is clicked, increase score, play sound, and animate hammer
+    function moveHammer(event) {
+        const x = event.clientX || event.touches[0].clientX;
+        const y = event.clientY || event.touches[0].clientY;
+        hammer.style.left = x - 40 + "px";
+        hammer.style.top = y - 40 + "px";
+    }
+
+    // When Jhatu is tapped/clicked, increase score, play sound, and animate hammer
     jhatus.forEach(jhatu => {
-        jhatu.addEventListener("click", function () {
+        function hitJhatu() {
             if (gameActive) {
                 score++;
                 scoreDisplay.textContent = score;
@@ -59,7 +68,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 hammerAnimation();
                 jhatu.style.transform = "translateX(-50%) scale(0)"; // Hide Jhatu
             }
-        });
+        }
+
+        jhatu.addEventListener("click", hitJhatu);
+        jhatu.addEventListener("touchstart", hitJhatu); 
     });
 
     // Play hit sound
