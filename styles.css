@@ -16,8 +16,8 @@ header {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
-    text-shadow: 4px 4px 0px #ffffff, 8px 8px 0px #000000; 
-    background: linear-gradient(90deg, #f6ff00, #eb9b10);
+    text-shadow: 4px 4px 0px #ff0f0f, 8px 8px 0px #000000; 
+    background: linear-gradient(90deg, #ffffff, #ffffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     
@@ -61,7 +61,7 @@ header {
 
 
 #scoreboard {
-    color: chartreuse;
+    color: rgb(255, 242, 0);
     font-size: 20px;
     margin-top: 20px;
 }
@@ -71,7 +71,7 @@ header {
     padding: 10px 20px;
     font-size: 18px;
     margin-top: 20px;
-    background: #192cf8;
+    background: #f81919;
     color: white;
     border: none;
     cursor: pointer;
@@ -79,5 +79,5 @@ header {
 }
 
 #start-game:hover {
-    background: #b709ec;
+    background: hsl(53, 100%, 53%);
 }
