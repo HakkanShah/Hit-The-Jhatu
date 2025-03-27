@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000">
     <title>Hit The Jhatu</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -40,8 +41,10 @@
         </audio>
 
         <!-- 🔹 Audio for button click -->
-        <audio id="click-sound">
+        <audio id="click-sound" preload="auto">
             <source src="click.mp3" type="audio/mpeg">
+            <source src="click.ogg" type="audio/ogg">
+            <source src="click.wav" type="audio/wav">
         </audio>
     </main>
 

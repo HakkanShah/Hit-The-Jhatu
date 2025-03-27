@@ -8,6 +8,7 @@
     --accent-color: rgb(255, 242, 0);
     --background-color: #000000;
     --footer-bg: rgba(0, 0, 0, 0.5);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* Animations */
@@ -39,6 +40,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    height: -webkit-fill-available;
 }
 
 body {
@@ -48,75 +54,89 @@ body {
     background-color: var(--background-color);
     cursor: url('Hammer.png'), auto;
     min-height: 100vh;
+    min-height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
     animation: neonBorder 2s infinite linear, neonGlow 2s infinite linear;
     border-radius: 10px;
     padding: 20px;
     position: relative;
+    overflow-x: hidden;
+    touch-action: manipulation;
 }
 
 /* Header Styles */
 header {
-    margin: 20px 0;
-    font-size: clamp(16px, 4vw, 24px);
+    margin: 10px 0;
+    font-size: clamp(14px, 3vw, 20px);
     color: var(--secondary-color);
     font-family: 'Press Start 2P', cursive;
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 4px 4px 0px #ff0f0f, 8px 8px 0px #000000;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0px #ff0f0f, 4px 4px 0px #000000;
     background: linear-gradient(90deg, var(--secondary-color), var(--secondary-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    padding: 0 10px;
 }
 
 /* Game Container */
 #game-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: clamp(20px, 5vw, 60px);
-    width: min(90%, 600px);
-    margin: 20px auto;
-    padding: 0 10px;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: clamp(10px, 3vw, 30px);
+    width: min(95%, 500px);
+    margin: 10px auto;
+    padding: 0 5px;
 }
 
 .hole {
     position: relative;
-    width: clamp(80px, 15vw, 120px);
-    height: clamp(80px, 15vw, 120px);
+    width: clamp(70px, 12vw, 100px);
+    height: clamp(70px, 12vw, 100px);
     background: url('Hole.png') no-repeat center center;
     background-size: cover;
+    touch-action: manipulation;
 }
 
 .jhatu {
     position: absolute;
-    width: 80%;
-    bottom: -30px;
+    width: 85%;
+    bottom: -25px;
     left: 50%;
     transform: translateX(-50%) scale(0);
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.15s ease-in-out;
+    touch-action: manipulation;
 }
 
 /* Scoreboard */
 #scoreboard {
     color: var(--accent-color);
-    font-size: clamp(16px, 4vw, 24px);
-    margin: 20px 0;
+    font-size: clamp(14px, 3vw, 20px);
+    margin: 15px 0;
+    padding: 0 10px;
 }
 
 /* Start Button */
 #start-game {
-    padding: clamp(8px, 2vw, 12px) clamp(16px, 4vw, 24px);
+    padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 30px);
     font-size: clamp(14px, 3vw, 18px);
     font-weight: bold;
-    margin: 20px 0;
+    margin: 15px 0;
     background: var(--primary-color);
     color: var(--secondary-color);
     border: none;
     cursor: pointer;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
+}
+
+#start-game:active {
+    transform: scale(0.98);
 }
 
 #start-game:hover {
@@ -143,63 +163,108 @@ footer {
     width: 100%;
     background-color: var(--footer-bg);
     padding: clamp(8px, 2vw, 12px);
+    padding-bottom: calc(clamp(8px, 2vw, 12px) + var(--safe-area-inset-bottom));
     text-align: center;
     z-index: 100;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .github-link {
     color: var(--secondary-color);
     text-decoration: none;
     font-family: 'Press Start 2P', cursive;
-    font-size: clamp(10px, 2vw, 14px);
+    font-size: clamp(8px, 1.5vw, 12px);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    transition: all 0.3s ease;
+    gap: 6px;
+    transition: all 0.2s ease;
+    padding: 5px;
 }
 
 .github-logo {
-    width: clamp(16px, 3vw, 24px);
-    height: clamp(16px, 3vw, 24px);
+    width: clamp(14px, 2.5vw, 20px);
+    height: clamp(14px, 2.5vw, 20px);
     filter: invert(1);
-}
-
-.github-link:hover {
-    color: var(--primary-color);
-    text-shadow: 0 0 5px var(--primary-color);
 }
 
 /* Media Queries */
 @media (max-width: 480px) {
     body {
         padding: 10px;
+        border-width: 2px;
     }
 
     #game-container {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 15px;
     }
 
     .hole {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
     }
 
     .jhatu {
-        width: 70%;
+        width: 75%;
+        bottom: -20px;
+    }
+
+    #start-game {
+        width: 80%;
+        max-width: 200px;
     }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
     #game-container {
         grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
     }
 }
 
 @media (min-width: 769px) {
     #game-container {
         grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+}
+
+/* Landscape Mode */
+@media (max-height: 500px) and (orientation: landscape) {
+    header {
+        margin: 5px 0;
+        font-size: clamp(12px, 2vw, 16px);
+    }
+
+    #game-container {
+        gap: 10px;
+        margin: 5px auto;
+    }
+
+    .hole {
+        width: clamp(60px, 10vw, 80px);
+        height: clamp(60px, 10vw, 80px);
+    }
+
+    .jhatu {
+        width: 80%;
+        bottom: -20px;
+    }
+
+    #scoreboard {
+        margin: 10px 0;
+        font-size: clamp(12px, 2vw, 16px);
+    }
+
+    #start-game {
+        margin: 10px 0;
+        padding: 8px 16px;
+    }
+
+    footer {
+        padding: 5px;
     }
 }
 
