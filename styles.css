@@ -164,72 +164,77 @@ h1 {
     flex: 1;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 25px;
     margin: 0 auto;
     width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
-    border: 1px solid var(--accent-color);
+    max-width: 450px;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
 }
 
 .hole {
     position: relative;
     width: 100%;
     padding-bottom: 100%;
-    background: url('Hole.png') no-repeat center center;
+    background: url('ClosedHole.png') no-repeat center center;
     background-size: cover;
     border-radius: 50%;
-    overflow: hidden;
+    overflow: visible;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: all 0.3s ease;
     touch-action: manipulation;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
 }
 
-.hole:active {
-    transform: scale(0.95);
-}
-
-.hole-inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 30% 30%, rgba(0, 0, 0, 0.5), transparent);
-    border-radius: 50%;
-    box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.5);
+.hole.active {
+    background-image: url('OpenHole.png');
 }
 
 .jhatu {
     position: absolute;
-    width: 85%;
-    bottom: -25px;
+    width: 75%;
+    bottom: -100%;
     left: 50%;
     transform: translateX(-50%) scale(0);
-    transition: transform 0.15s ease-in-out;
-    filter: drop-shadow(0 0 5px var(--glow-color));
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: drop-shadow(0 0 8px var(--glow-color));
     z-index: 2;
 }
 
-/* Add hover effect for holes */
+.hole.active .jhatu {
+    transform: translateX(-50%) scale(1);
+    bottom: -15%;
+}
+
+/* Hole Effects */
 .hole:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
 }
 
-/* Add active state for holes */
 .hole:active {
-    transform: scale(0.95);
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+    transform: scale(0.95) rotate(-5deg);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
 }
 
-/* Add glow effect when jhatu is active */
-.hole.active .hole-inner {
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-    animation: pulse 1s infinite;
+.hole.active {
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+    animation: pulse 1.5s infinite;
+}
+
+/* Explosion Effect */
+.explosion-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    pointer-events: none;
+    animation: explodeEffect 0.7s ease-out forwards;
+    z-index: 3;
 }
 
 /* Controls */
@@ -323,8 +328,9 @@ footer {
 
     #game-board {
         grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        padding: 5px;
+        gap: 20px;
+        padding: 20px;
+        max-width: 600px;
     }
 
     .game-button {
@@ -334,6 +340,11 @@ footer {
 
     .hole {
         box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+    }
+
+    .jhatu {
+        width: 80%;
+        bottom: 0;
     }
 }
 
