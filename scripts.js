@@ -63,15 +63,19 @@ document.addEventListener("DOMContentLoaded", function () {
         activeJhatu = activeHole.querySelector('.jhatu');
 
         // Add active class to hole
-        activeHole.classList.add('active');
-        activeJhatu.style.transform = "translateX(-50%) scale(1)";
+        requestAnimationFrame(() => {
+            activeHole.classList.add('active');
+            activeJhatu.style.transform = "translateX(-50%) scale(1)";
+        });
 
         // Calculate time based on difficulty
         const baseTime = 1500;
         const randomTime = (baseTime - (difficulty * 100)) * (0.8 + Math.random() * 0.4);
         
         setTimeout(() => {
-            hideJhatu();
+            if (gameActive) {
+                hideJhatu();
+            }
         }, randomTime);
 
         gameInterval = setTimeout(startRound, randomTime + 500);
@@ -80,9 +84,11 @@ document.addEventListener("DOMContentLoaded", function () {
     function hideJhatu() {
         if (activeHole) {
             activeHole.classList.remove('active');
-            activeJhatu.style.transform = "translateX(-50%) scale(0)";
-            activeHole = null;
-            activeJhatu = null;
+            requestAnimationFrame(() => {
+                activeJhatu.style.transform = "translateX(-50%) scale(0)";
+                activeHole = null;
+                activeJhatu = null;
+            });
         }
     }
 

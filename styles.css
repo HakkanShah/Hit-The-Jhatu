@@ -44,6 +44,24 @@
     100% { opacity: 0; transform: translate(-50%, -50%) scale(2) rotate(0deg); }
 }
 
+@keyframes jhatuPulse {
+    0% {
+        transform: translateX(-50%) scale(0.95);
+        bottom: -30%;
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateX(-50%) scale(1.05);
+        bottom: -20%;
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) scale(0.95);
+        bottom: -30%;
+        opacity: 0.8;
+    }
+}
+
 /* Base Styles */
 * {
     margin: 0;
@@ -83,15 +101,38 @@ body {
 
 .game-container {
     flex: 1;
-    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+    background: linear-gradient(45deg, #000000, #1a1a1a);
     border-radius: 20px;
     padding: 15px;
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.2),
+                inset 0 0 20px rgba(0, 255, 0, 0.1);
     border: 2px solid var(--primary-color);
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    animation: neonBorder 4s infinite;
+}
+
+.game-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(45deg, transparent 48%, rgba(0, 255, 0, 0.1) 50%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(0, 255, 0, 0.1) 50%, transparent 52%);
+    background-size: 30px 30px;
+    animation: gridMove 20s linear infinite;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+@keyframes gridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 30px 30px; }
 }
 
 /* Header Styles */
@@ -134,29 +175,56 @@ h1 {
 .score-container {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 .score-box, .high-score-box {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 8px 15px;
-    border-radius: 8px;
-    border: 1px solid var(--primary-color);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 2px solid var(--primary-color);
     text-align: center;
-    min-width: 100px;
+    min-width: 80px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2),
+                inset 0 0 5px rgba(0, 255, 0, 0.1);
+    animation: neonGlow 4s infinite;
+    position: relative;
+    z-index: 1;
+}
+
+.score-box::before, .high-score-box::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--neon-red), var(--neon-green), var(--neon-blue));
+    border-radius: 8px;
+    z-index: -1;
+    animation: borderGlow 3s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes borderGlow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
 }
 
 .score-label {
-    font-size: 10px;
+    font-size: 8px;
     color: var(--accent-color);
     display: block;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .score-value {
-    font-size: 20px;
+    font-size: 16px;
     color: var(--primary-color);
     font-weight: bold;
+    text-shadow: 0 0 5px var(--glow-color);
 }
 
 /* Game Board */
@@ -164,33 +232,50 @@ h1 {
     flex: 1;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    gap: 15px;
     margin: 0 auto;
     width: 100%;
     max-width: 450px;
-    padding: 25px;
-    background: rgba(0, 0, 0, 0.4);
+    padding: 15px;
+    background: transparent;
     border-radius: 20px;
-    border: 2px solid var(--accent-color);
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
+    border: none;
+    box-shadow: none;
 }
 
 .hole {
     position: relative;
-    width: 100%;
-    padding-bottom: 100%;
+    width: 120%;
+    padding-bottom: 120%;
     background: url('ClosedHole.png') no-repeat center center;
-    background-size: cover;
+    background-size: contain;
     border-radius: 50%;
     overflow: visible;
     cursor: pointer;
     transition: all 0.3s ease;
     touch-action: manipulation;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+    box-shadow: none;
+    margin: -10%;
+    transform-origin: center bottom;
 }
 
 .hole.active {
     background-image: url('OpenHole.png');
+    background-size: contain;
+    transform: scale(1);
+    animation: holeOpen 0.3s ease-out;
+}
+
+@keyframes holeOpen {
+    0% {
+        transform: scale(0.95);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .jhatu {
@@ -198,30 +283,33 @@ h1 {
     width: 75%;
     bottom: -100%;
     left: 50%;
-    transform: translateX(-50%) scale(0);
-    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: translateX(-50%) scale(0.1);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     filter: drop-shadow(0 0 8px var(--glow-color));
     z-index: 2;
+    will-change: transform, bottom;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    opacity: 0;
 }
 
 .hole.active .jhatu {
     transform: translateX(-50%) scale(1);
-    bottom: -15%;
+    bottom: -25%;
+    opacity: 1;
+    animation: jhatuPulse 1.5s infinite;
 }
 
 /* Hole Effects */
 .hole:hover {
     transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
 }
 
 .hole:active {
     transform: scale(0.95) rotate(-5deg);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
 }
 
 .hole.active {
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
     animation: pulse 1.5s infinite;
 }
 
@@ -246,24 +334,42 @@ h1 {
 }
 
 .game-button {
-    background: var(--button-bg);
+    background: linear-gradient(45deg, #000000, #1a1a1a);
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
-    padding: 12px 30px;
-    font-size: 16px;
+    padding: 10px 25px;
+    font-size: 14px;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 25px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
     transition: all 0.3s;
     font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     width: 100%;
-    max-width: 200px;
-    min-height: 44px;
+    max-width: 180px;
+    min-height: 40px;
     touch-action: manipulation;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2),
+                inset 0 0 10px rgba(0, 255, 0, 0.1);
+    animation: neonGlow 4s infinite;
+    z-index: 1;
+}
+
+.game-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--neon-red), var(--neon-green), var(--neon-blue));
+    border-radius: 27px;
+    z-index: -1;
+    animation: borderGlow 3s linear infinite;
+    opacity: 0.5;
 }
 
 .button-glow {
@@ -274,14 +380,27 @@ h1 {
     height: 100%;
     background: linear-gradient(90deg, transparent, var(--glow-color), transparent);
     transition: 0.5s;
+    opacity: 0.5;
 }
 
 .game-button:active {
-    transform: scale(0.98);
+    transform: scale(0.95);
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.1);
+}
+
+.game-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
 }
 
 .game-button:hover .button-glow {
     left: 100%;
+}
+
+.button-text {
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 5px var(--glow-color);
 }
 
 /* Footer */
