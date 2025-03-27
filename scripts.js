@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let activeJhatu = null;
     let gameInterval;
 
-    // Explosion Emojis (Random Effect)
     const explosionEmojis = ["😂","🤣","🤯","😵‍💫","💥", "🔥", "💣", "💨"];
 
     function toggleGame(event) {
@@ -67,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Handle Jhatu hit
     jhatus.forEach(jhatu => {
         function hitJhatu(event) {
             event.preventDefault();
