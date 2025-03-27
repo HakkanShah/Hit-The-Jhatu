@@ -6,53 +6,91 @@
     <meta name="theme-color" content="#000000">
     <title>Hit The Jhatu</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Hit The Jhatu</h1>
-    </header>
+    <div class="game-wrapper">
+        <div class="game-container">
+            <header>
+                <div class="title-container">
+                    <h1>Hit The Jhatu</h1>
+                    <div class="title-glow"></div>
+                </div>
+                <div class="score-container">
+                    <div class="score-box">
+                        <span class="score-label">SCORE</span>
+                        <span id="score" class="score-value">0</span>
+                    </div>
+                    <div class="high-score-box">
+                        <span class="score-label">HIGH</span>
+                        <span id="high-score" class="score-value">0</span>
+                    </div>
+                </div>
+            </header>
 
-    <main>
-        <div id="game-container">
-            <div class="hole" id="hole-1"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
-            <div class="hole" id="hole-2"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
-            <div class="hole" id="hole-3"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
-            <div class="hole" id="hole-4"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
-            <div class="hole" id="hole-5"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
-            <div class="hole" id="hole-6"><img class="jhatu" src="Jhatu.png" alt="Jhatu"></div>
+            <main>
+                <div id="game-board">
+                    <div class="hole" id="hole-1">
+                        <div class="hole-inner"></div>
+                        <img class="jhatu" src="Jhatu.png" alt="Jhatu">
+                    </div>
+                    <div class="hole" id="hole-2">
+                        <div class="hole-inner"></div>
+                        <img class="jhatu" src="Jhatu.png" alt="Jhatu">
+                    </div>
+                    <div class="hole" id="hole-3">
+                        <div class="hole-inner"></div>
+                        <img class="jhatu" src="Jhatu.png" alt="Jhatu">
+                    </div>
+                    <div class="hole" id="hole-4">
+                        <div class="hole-inner"></div>
+                        <img class="jhatu" src="Jhatu.png" alt="Jhatu">
+                    </div>
+                    <div class="hole" id="hole-5">
+                        <div class="hole-inner"></div>
+                        <img class="jhatu" src="Jhatu.png" alt="Jhatu">
+                    </div>
+                    <div class="hole" id="hole-6">
+                        <div class="hole-inner"></div>
+                        <img class="jhatu" src="Jhatu.png" alt="Jhatu">
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="start-game" class="game-button">
+                        <span class="button-text">START GAME</span>
+                        <div class="button-glow"></div>
+                    </button>
+                </div>
+            </main>
+
+            <footer>
+                <a href="https://www.github.com/HakkanShah" target="_blank" class="github-link">
+                    <span class="made-by">Made with fun by</span>
+                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" class="github-logo">
+                    <span class="author">Hakkan</span>
+                </a>
+            </footer>
         </div>
+    </div>
 
-        <div id="scoreboard">
-            <p>Score: <span id="score">0</span></p>
-        </div>
+    <audio id="hit-sound" preload="auto">
+        <source src="sound1.mp3" type="audio/mpeg">
+        <source src="Sound2.mp3" type="audio/mpeg">
+        <source src="sound3.mp3" type="audio/mpeg">
+        <source src="sound4.mp3" type="audio/mpeg">
+        <source src="sound5.mp3" type="audio/mpeg">
+        <source src="sound6.mp3" type="audio/mpeg">
+        <source src="sound7.mp3" type="audio/mpeg">
+        <source src="sound8.mp3" type="audio/mpeg">
+        <source src="sound9.mp3" type="audio/mpeg">
+    </audio>
 
-        <button id="start-game">Click here to Start</button>
-
-        <audio id="hit-sound">
-            <source src="sound1.mp3" type="audio/mpeg">
-            <source src="Sound2.mp3" type="audio/mpeg">
-            <source src="sound3.mp3" type="audio/mpeg">
-            <source src="sound4.mp3" type="audio/mpeg">
-            <source src="sound5.mp3" type="audio/mpeg">
-            <source src="sound6.mp3" type="audio/mpeg">
-            <source src="sound7.mp3" type="audio/mpeg">
-            <source src="sound8.mp3" type="audio/mpeg">
-            <source src="sound9.mp3" type="audio/mpeg">
-        </audio>
-
-        <!-- 🔹 Audio for button click -->
-        <audio id="click-sound" preload="auto">
-            <source src="click.mp3" type="audio/mpeg">
-            <source src="click.ogg" type="audio/ogg">
-            <source src="click.wav" type="audio/wav">
-        </audio>
-    </main>
-
-    <footer>
-        <a href="https://www.github.com/HakkanShah" target="_blank" class="github-link">
-            Made with fun by <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" class="github-logo"> Hakkan
-        </a>
-    </footer>
+    <audio id="click-sound" preload="auto">
+        <source src="click.mp3" type="audio/mpeg">
+        <source src="click.ogg" type="audio/ogg">
+        <source src="click.wav" type="audio/wav">
+    </audio>
 
     <script src="scripts.js"></script>
 </body>
