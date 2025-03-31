@@ -46,18 +46,18 @@
 
 @keyframes jhatuPulse {
     0% {
-        transform: translateX(-50%) scale(0.95);
-        bottom: -30%;
+        transform: translateX(-50%) scale(0.85);
+        bottom: -15%;
         opacity: 0.8;
     }
     50% {
-        transform: translateX(-50%) scale(1.05);
-        bottom: -20%;
+        transform: translateX(-50%) scale(0.95);
+        bottom: -10%;
         opacity: 1;
     }
     100% {
-        transform: translateX(-50%) scale(0.95);
-        bottom: -30%;
+        transform: translateX(-50%) scale(0.85);
+        bottom: -20%;
         opacity: 0.8;
     }
 }
@@ -232,7 +232,7 @@ h1 {
     flex: 1;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 25px;
     margin: 0 auto;
     width: 100%;
     max-width: 450px;
@@ -256,7 +256,7 @@ h1 {
     touch-action: manipulation;
     box-shadow: none;
     margin: -10%;
-    transform-origin: center bottom;
+    transform-origin: center center;
 }
 
 .hole.active {
@@ -280,7 +280,7 @@ h1 {
 
 .jhatu {
     position: absolute;
-    width: 75%;
+    width: 60%;
     bottom: -100%;
     left: 50%;
     transform: translateX(-50%) scale(0.1);
@@ -294,8 +294,8 @@ h1 {
 }
 
 .hole.active .jhatu {
-    transform: translateX(-50%) scale(1);
-    bottom: -25%;
+    transform: translateX(-50%) scale(0.9);
+    bottom: -15%;
     opacity: 1;
     animation: jhatuPulse 1.5s infinite;
 }
@@ -467,7 +467,7 @@ footer {
     }
 
     .jhatu {
-        width: 80%;
+        width: 65%;
         bottom: 0;
     }
 }
