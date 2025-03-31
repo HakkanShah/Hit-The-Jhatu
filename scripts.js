@@ -1,21 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
     const holes = document.querySelectorAll(".hole");
     const jhatus = document.querySelectorAll(".jhatu");
+    const gandus = document.querySelectorAll(".gandu");
     const scoreDisplay = document.getElementById("score");
     const highScoreDisplay = document.getElementById("high-score");
     const startButton = document.getElementById("start-game");
     const hitSound = document.getElementById("hit-sound");
     const clickSound = document.getElementById("click-sound");
+    const gameOverModal = document.getElementById("game-over-modal");
+    const finalScoreDisplay = document.getElementById("final-score");
+    const restartButton = document.getElementById("restart-game");
 
     let score = 0;
     let highScore = localStorage.getItem("highScore") || 0;
     let gameActive = false;
     let activeHole = null;
     let activeJhatu = null;
+    let activeGandu = null;
     let gameInterval;
     let lastHitTime = 0;
-    let hitCooldown = 300; // Cooldown in milliseconds
-    let difficulty = 1; // Game difficulty multiplier
+    let hitCooldown = 300;
+    let difficulty = 1;
+    let ganduChance = 0.1; // 10% chance for Gandu to appear
 
     const explosionEmojis = ["😂","🤣","🤯","😵‍💫","💥", "🔥", "💣", "💨"];
 
@@ -37,8 +43,10 @@ document.addEventListener("DOMContentLoaded", function () {
         gameActive = true;
         score = 0;
         difficulty = 1;
+        ganduChance = 0.1;
         scoreDisplay.textContent = score;
         startButton.textContent = "STOP GAME";
+        gameOverModal.style.display = "none";
         startRound();
     }
 
@@ -47,26 +55,57 @@ document.addEventListener("DOMContentLoaded", function () {
         startButton.textContent = "START GAME";
         clearTimeout(gameInterval);
         hideJhatu();
+        hideGandu();
         updateHighScore();
+    }
+
+    function gameOver() {
+        gameActive = false;
+        startButton.textContent = "START GAME";
+        clearTimeout(gameInterval);
+        hideJhatu();
+        hideGandu();
+        updateHighScore();
+        finalScoreDisplay.textContent = score;
+        gameOverModal.style.display = "flex";
     }
 
     startButton.addEventListener("click", toggleGame);
     startButton.addEventListener("touchstart", toggleGame, { passive: false });
+    restartButton.addEventListener("click", startGame);
+    restartButton.addEventListener("touchstart", startGame, { passive: false });
 
     function startRound() {
         if (!gameActive) return;
 
         hideJhatu();
+        hideGandu();
 
         const randomHoleIndex = Math.floor(Math.random() * holes.length);
         activeHole = holes[randomHoleIndex];
-        activeJhatu = activeHole.querySelector('.jhatu');
-
-        // Add active class to hole
-        requestAnimationFrame(() => {
-            activeHole.classList.add('active');
-            activeJhatu.style.transform = "translateX(-50%) scale(1)";
-        });
+        
+        // Hide both characters first
+        const jhatu = activeHole.querySelector('.jhatu');
+        const gandu = activeHole.querySelector('.gandu');
+        if (jhatu) jhatu.style.display = "none";
+        if (gandu) gandu.style.display = "none";
+        
+        // Decide if Gandu should appear as surprise
+        if (Math.random() < ganduChance) {
+            activeGandu = gandu;
+            requestAnimationFrame(() => {
+                activeHole.classList.add('active');
+                activeGandu.style.display = "block";
+                activeGandu.style.transform = "translate(-50%, 50%) scale(0.9)";
+            });
+        } else {
+            activeJhatu = jhatu;
+            requestAnimationFrame(() => {
+                activeHole.classList.add('active');
+                activeJhatu.style.display = "block";
+                activeJhatu.style.transform = "translate(-50%, 50%) scale(0.9)";
+            });
+        }
 
         // Calculate time based on difficulty
         const baseTime = 1500;
@@ -75,6 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
             if (gameActive) {
                 hideJhatu();
+                hideGandu();
             }
         }, randomTime);
 
@@ -82,12 +122,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function hideJhatu() {
-        if (activeHole) {
+        if (activeHole && activeJhatu) {
             activeHole.classList.remove('active');
             requestAnimationFrame(() => {
-                activeJhatu.style.transform = "translateX(-50%) scale(0)";
-                activeHole = null;
+                activeJhatu.style.transform = "translate(-50%, 50%) scale(0.1)";
                 activeJhatu = null;
+            });
+        }
+    }
+
+    function hideGandu() {
+        if (activeHole && activeGandu) {
+            activeHole.classList.remove('active');
+            requestAnimationFrame(() => {
+                activeGandu.style.transform = "translate(-50%, 50%) scale(0.1)";
+                activeGandu.style.display = "none";
+                activeGandu = null;
             });
         }
     }
@@ -97,11 +147,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const currentTime = Date.now();
 
         if (currentTime - lastHitTime < hitCooldown) {
-            return; // Ignore hits during cooldown
+            return;
         }
 
         const hole = event.currentTarget;
-        if (gameActive && hole === activeHole) {
+        if (gameActive && hole === activeHole && activeJhatu) {
             score++;
             scoreDisplay.textContent = score;
             playRandomHitSound();
@@ -109,16 +159,36 @@ document.addEventListener("DOMContentLoaded", function () {
             hideJhatu();
             lastHitTime = currentTime;
 
-            // Increase difficulty every 5 points
+            // Increase difficulty and Gandu chance every 5 points
             if (score % 5 === 0) {
                 difficulty += 0.5;
+                ganduChance += 0.02; // Increase Gandu chance by 2%
             }
+        }
+    }
+
+    function hitGandu(event) {
+        event.preventDefault();
+        const currentTime = Date.now();
+
+        if (currentTime - lastHitTime < hitCooldown) {
+            return;
+        }
+
+        const hole = event.currentTarget;
+        if (gameActive && hole === activeHole && activeGandu) {
+            showHitEffect(activeGandu);
+            hideGandu();
+            lastHitTime = currentTime;
+            gameOver();
         }
     }
 
     holes.forEach(hole => {
         hole.addEventListener("click", hitJhatu);
         hole.addEventListener("touchstart", hitJhatu, { passive: false });
+        hole.addEventListener("click", hitGandu);
+        hole.addEventListener("touchstart", hitGandu, { passive: false });
     });
 
     function playRandomHitSound() {
@@ -140,12 +210,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    function showHitEffect(jhatu) {
+    function showHitEffect(element) {
         const explosion = document.createElement("span");
         explosion.textContent = explosionEmojis[Math.floor(Math.random() * explosionEmojis.length)];
         explosion.classList.add("explosion-effect");
 
-        jhatu.parentElement.appendChild(explosion);
+        element.parentElement.appendChild(explosion);
 
         setTimeout(() => {
             explosion.remove();

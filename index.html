@@ -32,21 +32,27 @@
                 <div id="game-board">
                     <div class="hole" id="hole-1">
                         <img class="jhatu" src="Jhatu.png" alt="Jhatu">
+                        <img class="gandu" src="Gandu.png" alt="Gandu">
                     </div>
                     <div class="hole" id="hole-2">
                         <img class="jhatu" src="Jhatu.png" alt="Jhatu">
+                        <img class="gandu" src="Gandu.png" alt="Gandu">
                     </div>
                     <div class="hole" id="hole-3">
                         <img class="jhatu" src="Jhatu.png" alt="Jhatu">
+                        <img class="gandu" src="Gandu.png" alt="Gandu">
                     </div>
                     <div class="hole" id="hole-4">
                         <img class="jhatu" src="Jhatu.png" alt="Jhatu">
+                        <img class="gandu" src="Gandu.png" alt="Gandu">
                     </div>
                     <div class="hole" id="hole-5">
                         <img class="jhatu" src="Jhatu.png" alt="Jhatu">
+                        <img class="gandu" src="Gandu.png" alt="Gandu">
                     </div>
                     <div class="hole" id="hole-6">
                         <img class="jhatu" src="Jhatu.png" alt="Jhatu">
+                        <img class="gandu" src="Gandu.png" alt="Gandu">
                     </div>
                 </div>
 
@@ -85,6 +91,18 @@
         <source src="click.ogg" type="audio/ogg">
         <source src="click.wav" type="audio/wav">
     </audio>
+
+    <!-- Game Over Modal -->
+    <div id="game-over-modal" class="modal">
+        <div class="modal-content">
+            <h2>Bro, you hit the Gandu! Game Over!</h2>
+            <p>Your Score: <span id="final-score">0</span></p>
+            <button id="restart-game" class="game-button">
+                <span class="button-text">PLAY AGAIN</span>
+                <div class="button-glow"></div>
+            </button>
+        </div>
+    </div>
 
     <script src="scripts.js"></script>
 </body>
