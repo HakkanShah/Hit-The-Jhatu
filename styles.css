@@ -555,7 +555,7 @@ footer {
 
 .modal-content {
     background: linear-gradient(45deg, #000000, #1a1a1a);
-    padding: 30px;
+    padding: 20px;
     border-radius: 20px;
     text-align: center;
     border: 2px solid var(--primary-color);

@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const startButton = document.getElementById("start-game");
     const hitSound = document.getElementById("hit-sound");
     const clickSound = document.getElementById("click-sound");
+    const gameOverSound = document.getElementById("game-over-sound");
     const gameOverModal = document.getElementById("game-over-modal");
     const finalScoreDisplay = document.getElementById("final-score");
     const restartButton = document.getElementById("restart-game");
@@ -180,6 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
             showHitEffect(activeGandu);
             hideGandu();
             lastHitTime = currentTime;
+            playGameOverSound();
             gameOver();
         }
     }
@@ -207,6 +209,13 @@ document.addEventListener("DOMContentLoaded", function () {
         clickSound.currentTime = 0;
         clickSound.play().catch(error => {
             console.log("Audio play failed:", error);
+        });
+    }
+
+    function playGameOverSound() {
+        gameOverSound.currentTime = 0;
+        gameOverSound.play().catch(error => {
+            console.log("Game over sound failed:", error);
         });
     }
 
