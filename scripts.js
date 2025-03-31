@@ -22,7 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let lastHitTime = 0;
     let hitCooldown = 300;
     let difficulty = 1;
-    let ganduChance = 0.1; // 10% chance for Gandu to appear
+    let ganduChance = 0.1; // Initial 10% chance for Gandu
+    let baseTime = 1500; // Initial base time
+    let minTime = 800; // Minimum time limit
+    let maxGanduChance = 0.3; // Maximum 30% chance for Gandu
 
     const explosionEmojis = ["😂","🤣","🤯","😵‍💫","💥", "🔥", "💣", "💨"];
 
@@ -41,6 +44,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function startGame() {
+        // Stop game over sound when starting new game
+        gameOverSound.pause();
+        gameOverSound.currentTime = 0;
+        
         gameActive = true;
         score = 0;
         difficulty = 1;
@@ -108,9 +115,9 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
 
-        // Calculate time based on difficulty
-        const baseTime = 1500;
-        const randomTime = (baseTime - (difficulty * 100)) * (0.8 + Math.random() * 0.4);
+        // Calculate time based on difficulty and score
+        const timeReduction = Math.min(score * 20, baseTime - minTime); // Reduce time as score increases
+        const randomTime = (baseTime - timeReduction - (difficulty * 100)) * (0.8 + Math.random() * 0.4);
         
         setTimeout(() => {
             if (gameActive) {
@@ -160,10 +167,11 @@ document.addEventListener("DOMContentLoaded", function () {
             hideJhatu();
             lastHitTime = currentTime;
 
-            // Increase difficulty and Gandu chance every 5 points
-            if (score % 5 === 0) {
-                difficulty += 0.5;
-                ganduChance += 0.02; // Increase Gandu chance by 2%
+            // Increase difficulty and Gandu chance based on score
+            if (score % 3 === 0) { // Every 3 points
+                difficulty += 0.3;
+                // Increase Gandu chance gradually up to maxGanduChance
+                ganduChance = Math.min(ganduChance + 0.02, maxGanduChance);
             }
         }
     }
