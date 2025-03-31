@@ -423,16 +423,40 @@ footer {
     border-radius: 15px;
     background: rgba(0, 0, 0, 0.3);
     transition: all 0.3s;
+    cursor: pointer;
+}
+
+.github-link:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .github-link:active {
     transform: scale(0.95);
 }
 
+.made-by, .author {
+    color: #ffffff;
+    text-shadow: 0 0 5px var(--glow-color);
+    transition: all 0.3s;
+}
+
+.github-link:hover .made-by,
+.github-link:hover .author {
+    color: #ffffff;
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
 .github-logo {
     width: 16px;
     height: 16px;
     filter: invert(1);
+    transition: all 0.3s;
+}
+
+.github-link:hover .github-logo {
+    transform: scale(1.2);
 }
 
 /* Landscape Mode */
