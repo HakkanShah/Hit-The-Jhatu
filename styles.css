@@ -301,9 +301,6 @@ h1 {
 }
 
 /* Hole Effects */
-.hole:hover {
-    transform: scale(1.1) rotate(5deg);
-}
 
 .hole:active {
     transform: scale(0.95) rotate(-5deg);

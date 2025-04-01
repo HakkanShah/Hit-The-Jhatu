@@ -20,12 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let activeGandu = null;
     let gameInterval;
     let lastHitTime = 0;
-    let hitCooldown = 300;
+    let hitCooldown = 150;
     let difficulty = 1;
-    let ganduChance = 0.2; // Initial 20% chance for Gandu
-    let baseTime = 1500; // Initial base time
-    let minTime = 1000; // Minimum time limit
-    let maxGanduChance = 0.4; // Maximum 40% chance for Gandu
+    let ganduChance = 0.2;
+    let baseTime = 1500;
+    let minTime = 1000;
+    let maxGanduChance = 0.4;
 
     // Progress messages with their trigger scores
     const progressMessages = [
@@ -118,8 +118,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     startButton.addEventListener("click", toggleGame);
     startButton.addEventListener("touchstart", toggleGame, { passive: false });
-    restartButton.addEventListener("click", startGame);
-    restartButton.addEventListener("touchstart", startGame, { passive: false });
+    restartButton.addEventListener("click", function(event) {
+        playClickSound();
+        startGame();
+    });
+    restartButton.addEventListener("touchstart", function(event) {
+        playClickSound();
+        startGame();
+    }, { passive: false });
 
     function startRound() {
         if (!gameActive) return;
@@ -192,7 +198,9 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         const currentTime = Date.now();
 
-        if (currentTime - lastHitTime < hitCooldown) {
+        // Reduced cooldown based on difficulty
+        const currentCooldown = Math.max(50, hitCooldown - (difficulty * 10));
+        if (currentTime - lastHitTime < currentCooldown) {
             return;
         }
 
@@ -209,10 +217,9 @@ document.addEventListener("DOMContentLoaded", function () {
             checkProgressMessages(score);
 
             // Increase difficulty and Gandu chance based on score
-            if (score % 3 === 0) { // Every 3 points
-                difficulty += 0.5; // Increased from 0.3 to 0.5
-                // Increase Gandu chance gradually up to maxGanduChance
-                ganduChance = Math.min(ganduChance + 0.03, maxGanduChance); // Increased from 0.02 to 0.03
+            if (score % 3 === 0) {
+                difficulty += 0.5;
+                ganduChance = Math.min(ganduChance + 0.03, maxGanduChance);
             }
         }
     }
@@ -221,7 +228,9 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         const currentTime = Date.now();
 
-        if (currentTime - lastHitTime < hitCooldown) {
+        // Reduced cooldown based on difficulty
+        const currentCooldown = Math.max(50, hitCooldown - (difficulty * 10));
+        if (currentTime - lastHitTime < currentCooldown) {
             return;
         }
 
