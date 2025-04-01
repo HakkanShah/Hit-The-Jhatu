@@ -29,14 +29,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Progress messages with their trigger scores
     const progressMessages = [
-        { score: 5, message: "Arey yaar, kya baat hai!", emoji: "🔥" },
-        { score: 10, message: "Sigma male spotted!", emoji: "💪" },
-        { score: 15, message: "Bhai tu toh pro nikla!", emoji: "🚀" },
-        { score: 20, message: "Gigachad energy!", emoji: "💯" },
-        { score: 25, message: "Bhai tu toh legend hai!", emoji: "👑" },
-        { score: 30, message: "God mode activated!", emoji: "⚡" },
-        { score: 40, message: "Bhai tu toh beast hai!", emoji: "🦁" },
-        { score: 50, message: "Hacker hai bhai Hacker!", emoji: "🗿" }
+        { score: 5, messages: [
+            { message: "Arey yaar, kya baat hai!", emoji: "🔥" },
+            { message: "Bhai tu toh mast hai!", emoji: "💪" },
+            { message: "Kya baat hai bhai!", emoji: "🚀" }
+        ]},
+        { score: 10, messages: [
+            { message: "Sigma male spotted!", emoji: "💪" },
+            { message: "Bhai tu toh pro nikla!", emoji: "🚀" },
+            { message: "Kya baat hai bhai!", emoji: "💯" }
+        ]},
+        { score: 15, messages: [
+            { message: "Bhai tu toh pro nikla!", emoji: "🚀" },
+            { message: "Gigachad energy!", emoji: "💯" },
+            { message: "Kya baat hai bhai!", emoji: "👑" }
+        ]},
+        { score: 20, messages: [
+            { message: "Gigachad energy!", emoji: "💯" },
+            { message: "Bhai tu toh legend hai!", emoji: "👑" },
+            { message: "Kya baat hai bhai!", emoji: "⚡" }
+        ]},
+        { score: 25, messages: [
+            { message: "Bhai tu toh legend hai!", emoji: "👑" },
+            { message: "God mode activated!", emoji: "⚡" },
+            { message: "Kya baat hai bhai!", emoji: "🦁" }
+        ]},
+        { score: 30, messages: [
+            { message: "God mode activated!", emoji: "⚡" },
+            { message: "Bhai tu toh beast hai!", emoji: "🦁" },
+            { message: "Kya baat hai bhai!", emoji: "🗿" }
+        ]},
+        { score: 40, messages: [
+            { message: "Bhai tu toh beast hai!", emoji: "🦁" },
+            { message: "Hacker hai bhai Hacker!", emoji: "🗿" },
+            { message: "Kya baat hai bhai!", emoji: "👑" }
+        ]},
+        { score: 50, messages: [
+            { message: "Hacker hai bhai Hacker!", emoji: "🗿" },
+            { message: "Bhai tu toh god hai!", emoji: "👑" },
+            { message: "Kya baat hai bhai!", emoji: "⚡" }
+        ]}
     ];
 
     const explosionEmojis = ["😂","🤣","🤯","😵‍💫","💥", "🔥", "😭", "💨"];
@@ -65,7 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function checkProgressMessages(newScore) {
         progressMessages.forEach(msg => {
             if (newScore === msg.score) {
-                showProgressMessage(msg.message, msg.emoji);
+                const randomMessage = msg.messages[Math.floor(Math.random() * msg.messages.length)];
+                showProgressMessage(randomMessage.message, randomMessage.emoji);
             }
         });
     }
