@@ -402,7 +402,7 @@ h1 {
 
 /* Footer */
 footer {
-    margin-top: 15px;
+    margin-top: 40px;
     text-align: center;
     padding: 10px;
     background: rgba(0, 0, 0, 0.3);
@@ -412,7 +412,7 @@ footer {
 .github-link {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 5px;
     color: var(--text-color);
     text-decoration: none;
     font-size: 12px;
@@ -542,8 +542,8 @@ footer {
     display: none;
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 100;
+    width: 90%;
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
     z-index: 1000;
@@ -693,7 +693,7 @@ footer {
 
 .instruction-text {
     margin-bottom: 30px;
-    text-align: left;
+    text-align: center;
 }
 
 .instruction-text p {
@@ -715,11 +715,11 @@ footer {
 }
 
 .character-card {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 15px;
+    background: rgba(4, 4, 4, 0.827);
+    padding: 10px;
     border-radius: 15px;
     border: 2px solid var(--primary-color);
-    width: 120px;
+    width: 160px;
     text-align: center;
     transition: transform 0.3s;
 }
@@ -729,17 +729,27 @@ footer {
 }
 
 .character-card img {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     object-fit: contain;
     margin-bottom: 10px;
 }
 
-.character-card p {
-    color: var(--text-color);
+.character-card p:first-child {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+.character-card p:last-child {
+    margin-top: 15px;
     font-size: 14px;
-    margin: 0;
-    font-family: Arial, sans-serif;
+    line-height: 1.4;
 }
 
 .jhatu-card {
@@ -747,8 +757,20 @@ footer {
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
 }
 
+.jhatu-card p:first-child {
+    color: #00ff00;
+    background: rgba(0, 255, 0, 0.1);
+    border: 2px solid #00ff00;
+}
+
 .gandu-card {
     border-color: #ff0000;
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+}
+
+.gandu-card p:first-child {
+    color: #ff0000;
+    background: rgba(255, 0, 0, 0.1);
+    border: 2px solid #ff0000;
 }
 
