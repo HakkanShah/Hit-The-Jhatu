@@ -580,62 +580,80 @@ footer {
 /* Progress Message Styles */
 .progress-message {
     position: fixed;
-    top: 25%;
+    top: 30%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    background: linear-gradient(45deg, #000000, #1a1a1a);
-    padding: 10px 10px;
-    border-radius: 20px;
-    color: var(--primary-color);
-    font-size: 20px;
+    transform: translate(-50%, -100px);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 20, 0.95));
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 16px;
     text-align: center;
     z-index: 1000;
     opacity: 0;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    border: 3px solid var(--primary-color);
-    box-shadow: 0 0 30px rgb(221, 240, 42),
-                inset 0 0 20px rgb(147, 239, 11);
-    text-shadow: 0 0 10px var(--glow-color);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid #00ff00;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2),
+                inset 0 0 10px rgba(0, 255, 0, 0.1);
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
     pointer-events: none;
-    font-family: 'Press Start 2P', cursive;
-    animation: messagePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes messagePop {
-    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
-    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .progress-message.show {
     opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+.progress-message.hide {
+    opacity: 0;
+    transform: translate(-50%, -100px);
 }
 
 .progress-message .emoji {
-    font-size: 32px;
-    margin-bottom: 10px;
-    display: block;
-    animation: emojiBounce 1s infinite;
+    font-size: 24px;
+    animation: emojiBounce 1.2s infinite;
+    flex-shrink: 0;
 }
 
 @keyframes emojiBounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    0%, 100% { 
+        transform: translateY(0) scale(1);
+        filter: brightness(1);
+    }
+    50% { 
+        transform: translateY(-3px) scale(1.1);
+        filter: brightness(1.2);
+    }
 }
 
 .progress-message::before {
     content: '';
     position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff00ff);
-    border-radius: 22px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        rgba(0, 255, 0, 0.1) 0%,
+        rgba(0, 255, 0, 0.05) 50%,
+        transparent 100%);
+    border-radius: 8px;
     z-index: -1;
-    animation: borderGlow 3s linear infinite;
-    opacity: 0.5;
-    filter: blur(5px);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
 
 .progress-message::after {
@@ -645,8 +663,14 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-    border-radius: 17px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 0, 0.3);
     z-index: -1;
+    animation: borderPulse 2s infinite;
+}
+
+@keyframes borderPulse {
+    0%, 100% { border-color: rgba(0, 255, 0, 0.3); }
+    50% { border-color: rgba(0, 255, 0, 0.6); }
 }
 

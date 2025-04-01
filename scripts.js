@@ -51,14 +51,14 @@ document.addEventListener("DOMContentLoaded", function () {
         messageElement.innerHTML = `<span class="emoji">${emoji}</span>${message}`;
         document.body.appendChild(messageElement);
 
-        // Show message
-        setTimeout(() => messageElement.classList.add('show'), 100);
+        // Show message immediately
+        messageElement.classList.add('show');
 
-        // Hide and remove message after 2 seconds
+        // Hide and remove message after 2.5 seconds
         setTimeout(() => {
-            messageElement.classList.remove('show');
-            setTimeout(() => messageElement.remove(), 500);
-        }, 2000);
+            messageElement.classList.add('hide');
+            setTimeout(() => messageElement.remove(), 400);
+        }, 2500);
     }
 
     // Check for progress messages
