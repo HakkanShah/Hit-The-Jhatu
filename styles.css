@@ -688,6 +688,7 @@ footer {
     font-size: 24px;
     margin-bottom: 20px;
     text-shadow: 0 0 10px var(--glow-color);
+    font-family: Arial, sans-serif;
 }
 
 .instruction-text {
@@ -701,7 +702,9 @@ footer {
     color: var(--text-color);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
+    font-family: Arial, sans-serif;
 }
 
 .character-showcase {
@@ -736,6 +739,7 @@ footer {
     color: var(--text-color);
     font-size: 14px;
     margin: 0;
+    font-family: Arial, sans-serif;
 }
 
 .jhatu-card {

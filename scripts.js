@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let baseTime = 1500;
     let minTime = 1000;
     let maxGanduChance = 0.4;
+    let audioContext = null;
+    let clickBuffer = null;
 
     // Progress messages with their trigger scores
     const progressMessages = [
@@ -317,12 +319,46 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    function playClickSound() {
-        clickSound.currentTime = 0;
-        clickSound.play().catch(error => {
-            console.log("Audio play failed:", error);
-        });
+    // Initialize audio context on first user interaction
+    function initAudio() {
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            fetch('Click.mp3')
+                .then(response => response.arrayBuffer())
+                .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+                .then(audioBuffer => {
+                    clickBuffer = audioBuffer;
+                })
+                .catch(error => console.log("Audio loading failed:", error));
+        }
     }
+
+    function playClickSound() {
+        // Initialize audio on first interaction
+        initAudio();
+
+        if (audioContext && clickBuffer) {
+            const source = audioContext.createBufferSource();
+            source.buffer = clickBuffer;
+            source.connect(audioContext.destination);
+            source.start(0);
+        } else {
+            // Fallback to regular audio element
+            const sources = clickSound.getElementsByTagName('source');
+            const selectedSource = sources[0].src;
+            
+            clickSound.src = selectedSource;
+            clickSound.currentTime = 0;
+            clickSound.volume = 1;
+            clickSound.play().catch(error => {
+                console.log("Click sound failed:", error);
+            });
+        }
+    }
+
+    // Add click/touch listeners to initialize audio
+    document.addEventListener('click', initAudio, { once: true });
+    document.addEventListener('touchstart', initAudio, { once: true });
 
     function playGameOverSound() {
         gameOverSound.currentTime = 0;
