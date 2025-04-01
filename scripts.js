@@ -22,24 +22,24 @@ document.addEventListener("DOMContentLoaded", function () {
     let lastHitTime = 0;
     let hitCooldown = 300;
     let difficulty = 1;
-    let ganduChance = 0.1; // Initial 10% chance for Gandu
+    let ganduChance = 0.2; // Initial 20% chance for Gandu
     let baseTime = 1500; // Initial base time
-    let minTime = 800; // Minimum time limit
-    let maxGanduChance = 0.3; // Maximum 30% chance for Gandu
+    let minTime = 1000; // Minimum time limit
+    let maxGanduChance = 0.4; // Maximum 40% chance for Gandu
 
     // Progress messages with their trigger scores
     const progressMessages = [
-        { score: 5, message: "Bohut badhiya bhai! 🔥", emoji: "🔥" },
-        { score: 10, message: "Hacker hai bhai hacker hai! 💻", emoji: "💻" },
-        { score: 15, message: "Speed 1000! 🚀", emoji: "🚀" },
-        { score: 20, message: "Pro player! 🏆", emoji: "🏆" },
-        { score: 25, message: "Legend! 👑", emoji: "👑" },
-        { score: 30, message: "God mode activated! ⚡", emoji: "⚡" },
-        { score: 40, message: "Unstoppable! 💪", emoji: "💪" },
-        { score: 50, message: "You're on fire! 🔥", emoji: "🔥" }
+        { score: 5, message: "Arey yaar, kya baat hai!", emoji: "🔥" },
+        { score: 10, message: "Sigma male spotted!", emoji: "💪" },
+        { score: 15, message: "Bhai tu toh pro nikla!", emoji: "🚀" },
+        { score: 20, message: "Gigachad energy!", emoji: "💯" },
+        { score: 25, message: "Bhai tu toh legend hai!", emoji: "👑" },
+        { score: 30, message: "God mode activated!", emoji: "⚡" },
+        { score: 40, message: "Bhai tu toh beast hai!", emoji: "🦁" },
+        { score: 50, message: "Hacker hai bhai Hacker!", emoji: "🗿" }
     ];
 
-    const explosionEmojis = ["😂","🤣","🤯","😵‍💫","💥", "🔥", "💣", "💨"];
+    const explosionEmojis = ["😂","🤣","🤯","😵‍💫","💥", "🔥", "😭", "💨"];
 
     // Initialize high score
     highScoreDisplay.textContent = highScore;
