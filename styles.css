@@ -580,3 +580,34 @@ footer {
     margin-top: 20px;
 }
 
+/* Progress Message Styles */
+.progress-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 25px;
+    border-radius: 15px;
+    color: var(--primary-color);
+    font-size: 18px;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    text-shadow: 0 0 10px var(--glow-color);
+    pointer-events: none;
+}
+
+.progress-message.show {
+    opacity: 1;
+}
+
+.progress-message .emoji {
+    font-size: 24px;
+    margin-bottom: 5px;
+    display: block;
+}
+

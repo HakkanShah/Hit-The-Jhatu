@@ -27,10 +27,48 @@ document.addEventListener("DOMContentLoaded", function () {
     let minTime = 800; // Minimum time limit
     let maxGanduChance = 0.3; // Maximum 30% chance for Gandu
 
+    // Progress messages with their trigger scores
+    const progressMessages = [
+        { score: 5, message: "Bohut badhiya bhai! 🔥", emoji: "🔥" },
+        { score: 10, message: "Hacker hai bhai hacker hai! 💻", emoji: "💻" },
+        { score: 15, message: "Speed 1000! 🚀", emoji: "🚀" },
+        { score: 20, message: "Pro player! 🏆", emoji: "🏆" },
+        { score: 25, message: "Legend! 👑", emoji: "👑" },
+        { score: 30, message: "God mode activated! ⚡", emoji: "⚡" },
+        { score: 40, message: "Unstoppable! 💪", emoji: "💪" },
+        { score: 50, message: "You're on fire! 🔥", emoji: "🔥" }
+    ];
+
     const explosionEmojis = ["😂","🤣","🤯","😵‍💫","💥", "🔥", "💣", "💨"];
 
     // Initialize high score
     highScoreDisplay.textContent = highScore;
+
+    // Function to show progress message
+    function showProgressMessage(message, emoji) {
+        const messageElement = document.createElement('div');
+        messageElement.className = 'progress-message';
+        messageElement.innerHTML = `<span class="emoji">${emoji}</span>${message}`;
+        document.body.appendChild(messageElement);
+
+        // Show message
+        setTimeout(() => messageElement.classList.add('show'), 100);
+
+        // Hide and remove message after 2 seconds
+        setTimeout(() => {
+            messageElement.classList.remove('show');
+            setTimeout(() => messageElement.remove(), 500);
+        }, 2000);
+    }
+
+    // Check for progress messages
+    function checkProgressMessages(newScore) {
+        progressMessages.forEach(msg => {
+            if (newScore === msg.score) {
+                showProgressMessage(msg.message, msg.emoji);
+            }
+        });
+    }
 
     function toggleGame(event) {
         event.preventDefault();
@@ -116,8 +154,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Calculate time based on difficulty and score
-        const timeReduction = Math.min(score * 20, baseTime - minTime); // Reduce time as score increases
-        const randomTime = (baseTime - timeReduction - (difficulty * 100)) * (0.8 + Math.random() * 0.4);
+        const timeReduction = Math.min(score * 25, baseTime - minTime); // Increased from 20 to 25
+        const randomTime = (baseTime - timeReduction - (difficulty * 150)) * (0.8 + Math.random() * 0.4); // Increased from 100 to 150
         
         setTimeout(() => {
             if (gameActive) {
@@ -167,11 +205,14 @@ document.addEventListener("DOMContentLoaded", function () {
             hideJhatu();
             lastHitTime = currentTime;
 
+            // Check for progress messages
+            checkProgressMessages(score);
+
             // Increase difficulty and Gandu chance based on score
             if (score % 3 === 0) { // Every 3 points
-                difficulty += 0.3;
+                difficulty += 0.5; // Increased from 0.3 to 0.5
                 // Increase Gandu chance gradually up to maxGanduChance
-                ganduChance = Math.min(ganduChance + 0.02, maxGanduChance);
+                ganduChance = Math.min(ganduChance + 0.03, maxGanduChance); // Increased from 0.02 to 0.03
             }
         }
     }
