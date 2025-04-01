@@ -11,6 +11,32 @@
 <body>
     <div class="game-wrapper">
         <div class="game-container">
+            <!-- Instruction Modal -->
+            <div id="instruction-modal" class="modal">
+                <div class="modal-content instruction-content">
+                    <h2>Welcome To This Jhatu Game</h2>
+                    <div class="instruction-text">
+                        <p>🎯Hit the Jhatu to score points</p>
+                        <p>💥Avoid hitting the Gandu!</p>
+                        <p>⚡Game gets faster as you score more</p>
+                    </div>
+                    <div class="character-showcase">
+                        <div class="character-card jhatu-card">
+                            <img src="Jhatu.png" alt="Jhatu">
+                            <p>Hit Me!</p>
+                        </div>
+                        <div class="character-card gandu-card">
+                            <img src="Gandu.png" alt="Gandu">
+                            <p>Don't Hit!</p>
+                        </div>
+                    </div>
+                    <button id="instruction-start-game" class="game-button">
+                        <span class="button-text">PLAY NOW</span>
+                        <div class="button-glow"></div>
+                    </button>
+                </div>
+            </div>
+
             <header>
                 <div class="title-container">
                     <h1>Hit The Jhatu</h1>
@@ -57,7 +83,7 @@
                 </div>
 
                 <div class="controls">
-                    <button id="start-game" class="game-button">
+                    <button id="game-control-button" class="game-button">
                         <span class="button-text">START GAME</span>
                         <div class="button-glow"></div>
                     </button>

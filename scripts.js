@@ -4,13 +4,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const gandus = document.querySelectorAll(".gandu");
     const scoreDisplay = document.getElementById("score");
     const highScoreDisplay = document.getElementById("high-score");
-    const startButton = document.getElementById("start-game");
+    const instructionStartButton = document.getElementById("instruction-start-game");
+    const gameControlButton = document.getElementById("game-control-button");
     const hitSound = document.getElementById("hit-sound");
     const clickSound = document.getElementById("click-sound");
     const gameOverSound = document.getElementById("game-over-sound");
     const gameOverModal = document.getElementById("game-over-modal");
+    const instructionModal = document.getElementById("instruction-modal");
     const finalScoreDisplay = document.getElementById("final-score");
     const restartButton = document.getElementById("restart-game");
+
+    // Show instruction modal on page load
+    instructionModal.style.display = "flex";
 
     let score = 0;
     let highScore = localStorage.getItem("highScore") || 0;
@@ -108,13 +113,16 @@ document.addEventListener("DOMContentLoaded", function () {
         playClickSound();
 
         if (gameActive) {
-            stopGame();
+            pauseGame();
         } else {
-            startGame();
+            resumeGame();
         }
     }
 
     function startGame() {
+        // Hide instruction modal
+        instructionModal.style.display = "none";
+        
         // Stop game over sound when starting new game
         gameOverSound.pause();
         gameOverSound.currentTime = 0;
@@ -124,23 +132,28 @@ document.addEventListener("DOMContentLoaded", function () {
         difficulty = 1;
         ganduChance = 0.1;
         scoreDisplay.textContent = score;
-        startButton.textContent = "STOP GAME";
+        gameControlButton.textContent = "PAUSE";
         gameOverModal.style.display = "none";
         startRound();
     }
 
-    function stopGame() {
+    function pauseGame() {
         gameActive = false;
-        startButton.textContent = "START GAME";
+        gameControlButton.textContent = "RESUME";
         clearTimeout(gameInterval);
         hideJhatu();
         hideGandu();
-        updateHighScore();
+    }
+
+    function resumeGame() {
+        gameActive = true;
+        gameControlButton.textContent = "PAUSE";
+        startRound();
     }
 
     function gameOver() {
         gameActive = false;
-        startButton.textContent = "START GAME";
+        gameControlButton.textContent = "START GAME";
         clearTimeout(gameInterval);
         hideJhatu();
         hideGandu();
@@ -149,8 +162,16 @@ document.addEventListener("DOMContentLoaded", function () {
         gameOverModal.style.display = "flex";
     }
 
-    startButton.addEventListener("click", toggleGame);
-    startButton.addEventListener("touchstart", toggleGame, { passive: false });
+    instructionStartButton.addEventListener("click", function(event) {
+        playClickSound();
+        startGame();
+    });
+    instructionStartButton.addEventListener("touchstart", function(event) {
+        playClickSound();
+        startGame();
+    }, { passive: false });
+    gameControlButton.addEventListener("click", toggleGame);
+    gameControlButton.addEventListener("touchstart", toggleGame, { passive: false });
     restartButton.addEventListener("click", function(event) {
         playClickSound();
         startGame();
