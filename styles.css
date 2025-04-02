@@ -326,7 +326,7 @@ h1 {
 .controls {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 40px;
     padding: 0 10px;
 }
 
@@ -405,43 +405,48 @@ footer {
     margin-top: 40px;
     text-align: center;
     padding: 10px;
-    background: rgba(0, 0, 0, 0.3);
+    background: transparent;
     border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+footer:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
+footer:active {
+    transform: scale(0.98);
 }
 
 .github-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    color: var(--text-color);
+    display: block;
+    width: 100%;
+    height: 100%;
     text-decoration: none;
-    font-size: 12px;
-    padding: 8px 15px;
-    border-radius: 15px;
-    background: rgba(0, 0, 0, 0.3);
-    transition: all 0.3s;
-    cursor: pointer;
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
 }
 
 .github-link:hover {
-    background: rgba(0, 0, 0, 0.5);
-    transform: translateY(-2px);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.github-link:active {
-    transform: scale(0.95);
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--glow-color);
 }
 
 .made-by, .author {
-    color: #ffffff;
+    color: var(--text-color);
     text-shadow: 0 0 5px var(--glow-color);
     transition: all 0.3s;
+    display: inline-block;
 }
 
 .github-link:hover .made-by,
 .github-link:hover .author {
-    color: #ffffff;
+    color: var(--primary-color);
     text-shadow: 0 0 10px var(--glow-color);
 }
 
@@ -450,10 +455,13 @@ footer {
     height: 16px;
     filter: invert(1);
     transition: all 0.3s;
+    vertical-align: middle;
+    margin-right: 5px;
 }
 
 .github-link:hover .github-logo {
-    transform: scale(1.2);
+    transform: scale(1.2) rotate(360deg);
+    filter: invert(1) brightness(1.5);
 }
 
 /* Landscape Mode */
@@ -590,7 +598,7 @@ footer {
     align-items: center;
     background: linear-gradient(45deg, #000000, #1a1a1a);
     position: relative;
-    border: 2px solid transparent;
+    border: 5px solid transparent;
     animation: rgbBorder 4s linear infinite;
     overflow-y: auto;
 }

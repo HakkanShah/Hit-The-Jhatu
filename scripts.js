@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { score: 15, messages: [
             { message: "Bhai tu toh pro nikla!", emoji: "🚀" },
             { message: "Gigachad energy!", emoji: "💯" },
-            { message: "Kya baat hai bhai!", emoji: "👑" }
+           
         ]},
         { score: 20, messages: [
             { message: "Gigachad energy!", emoji: "💯" },
