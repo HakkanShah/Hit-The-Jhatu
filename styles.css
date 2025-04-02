@@ -542,10 +542,10 @@ footer {
     display: none;
     position: fixed;
     top: 0;
-    left: 100;
-    width: 90%;
+    left: 0;
+    width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.95);
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -576,6 +576,152 @@ footer {
 
 .modal-content .game-button {
     margin-top: 20px;
+}
+
+.instruction-content {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    position: relative;
+    border: 2px solid transparent;
+    animation: rgbBorder 4s linear infinite;
+}
+
+@keyframes rgbBorder {
+    0% { border-color: #ff0000; }
+    25% { border-color: #00ff00; }
+    50% { border-color: #0000ff; }
+    75% { border-color: #ff00ff; }
+    100% { border-color: #ff0000; }
+}
+
+.instruction-content::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff00ff);
+    z-index: -1;
+    filter: blur(10px);
+    animation: rgbGlow 4s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes rgbGlow {
+    0% { filter: blur(10px) hue-rotate(0deg); }
+    100% { filter: blur(10px) hue-rotate(360deg); }
+}
+
+.instruction-content h2 {
+    color: var(--primary-color);
+    font-size: clamp(20px, 5vw, 28px);
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px var(--glow-color);
+    font-family: Arial, sans-serif;
+}
+
+.instruction-text {
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.instruction-text p {
+    margin: 15px 0;
+    font-size: clamp(14px, 4vw, 18px);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.character-showcase {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 500px;
+}
+
+.character-card {
+    background: rgba(4, 4, 4, 0.827);
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid var(--primary-color);
+    width: 160px;
+    text-align: center;
+    transition: transform 0.3s;
+    margin: 10px;
+}
+
+.character-card:hover {
+    transform: translateY(-5px);
+}
+
+.character-card img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.character-card p:first-child {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+.character-card p:last-child {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.jhatu-card {
+    border-color: #00ff00;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
+.jhatu-card p:first-child {
+    color: #00ff00;
+    background: rgba(0, 255, 0, 0.1);
+    border: 2px solid #00ff00;
+}
+
+.gandu-card {
+    border-color: #ff0000;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+}
+
+.gandu-card p:first-child {
+    color: #ff0000;
+    background: rgba(255, 0, 0, 0.1);
+    border: 2px solid #ff0000;
+}
+
+.instruction-content .game-button {
+    margin-top: 30px;
+    max-width: 200px;
+    width: 100%;
 }
 
 /* Progress Message Styles */
@@ -673,105 +819,5 @@ footer {
 @keyframes borderPulse {
     0%, 100% { border-color: rgba(0, 255, 0, 0.3); }
     50% { border-color: rgba(0, 255, 0, 0.6); }
-}
-
-/* Instruction Modal Styles */
-.instruction-content {
-    max-width: 100%;
-    margin: auto;
-    width: 500px;
-    padding: 30px;
-    text-align: center;
-}
-
-.instruction-content h2 {
-    color: var(--primary-color);
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px var(--glow-color);
-    font-family: Arial, sans-serif;
-}
-
-.instruction-text {
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-.instruction-text p {
-    margin: 10px 0;
-    font-size: 16px;
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-family: Arial, sans-serif;
-}
-
-.character-showcase {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 30px 0;
-}
-
-.character-card {
-    background: rgba(4, 4, 4, 0.827);
-    padding: 10px;
-    border-radius: 15px;
-    border: 2px solid var(--primary-color);
-    width: 160px;
-    text-align: center;
-    transition: transform 0.3s;
-}
-
-.character-card:hover {
-    transform: translateY(-5px);
-}
-
-.character-card img {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
-    margin-bottom: 10px;
-}
-
-.character-card p:first-child {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    padding: 5px 10px;
-    border-radius: 8px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px var(--glow-color);
-}
-
-.character-card p:last-child {
-    margin-top: 15px;
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-.jhatu-card {
-    border-color: #00ff00;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
-}
-
-.jhatu-card p:first-child {
-    color: #00ff00;
-    background: rgba(0, 255, 0, 0.1);
-    border: 2px solid #00ff00;
-}
-
-.gandu-card {
-    border-color: #ff0000;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
-}
-
-.gandu-card p:first-child {
-    color: #ff0000;
-    background: rgba(255, 0, 0, 0.1);
-    border: 2px solid #ff0000;
 }
 
