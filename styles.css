@@ -659,13 +659,13 @@ footer {
 
 .character-card {
     background: rgba(4, 4, 4, 0.827);
-    padding: 15px;
+    padding: 10px;
     border-radius: 15px;
     border: 2px solid var(--primary-color);
-    width: 160px;
+    width: 140px;
     text-align: center;
     transition: transform 0.3s;
-    margin: 10px;
+    margin: 5px;
 }
 
 .character-card:hover {
@@ -676,7 +676,7 @@ footer {
     width: 90px;
     height: 90px;
     object-fit: contain;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .character-card p:first-child {
@@ -692,6 +692,7 @@ footer {
 
 .character-card p:last-child {
     margin-top: 15px;
+    font-family: sans-serif;
     font-size: 14px;
     line-height: 1.4;
 }
