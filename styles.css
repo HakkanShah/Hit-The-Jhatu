@@ -728,7 +728,7 @@ footer {
 /* Progress Message Styles */
 .progress-message {
     position: fixed;
-    top: 30%;
+    top: 13%;
     left: 50%;
     transform: translate(-50%, -100px);
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 20, 0.95));
