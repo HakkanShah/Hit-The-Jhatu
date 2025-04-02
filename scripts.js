@@ -136,7 +136,11 @@ document.addEventListener("DOMContentLoaded", function () {
         scoreDisplay.textContent = score;
         gameControlButton.textContent = "PAUSE";
         gameOverModal.style.display = "none";
-        startRound();
+        
+        // Only start the round if we're not already in a game
+        if (!gameInterval) {
+            startRound();
+        }
     }
 
     function pauseGame() {
@@ -165,10 +169,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     instructionStartButton.addEventListener("click", function(event) {
+        event.stopPropagation();
         playClickSound();
         startGame();
     });
     instructionStartButton.addEventListener("touchstart", function(event) {
+        event.stopPropagation();
         playClickSound();
         startGame();
     }, { passive: false });
@@ -323,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function initAudio() {
         if (!audioContext) {
             audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            fetch('Click.mp3')
+            fetch('sounds/Click.mp3')
                 .then(response => response.arrayBuffer())
                 .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
                 .then(audioBuffer => {

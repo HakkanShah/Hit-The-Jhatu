@@ -247,7 +247,7 @@ h1 {
     position: relative;
     width: 100%;
     padding-bottom: 100%;
-    background: url('ClosedHole.png') no-repeat center center;
+    background: url('images/ClosedHole.webp') no-repeat center center;
     background-size: contain;
     border-radius: 50%;
     overflow: visible;
@@ -260,7 +260,7 @@ h1 {
 }
 
 .hole.active {
-    background-image: url('OpenHole.png');
+    background-image: url('images/OpenHole.webp');
     background-size: contain;
     transform: scale(1);
     animation: holeOpen 0.3s ease-out;
@@ -347,10 +347,10 @@ h1 {
     letter-spacing: 2px;
     width: 100%;
     max-width: 180px;
-    min-height: 40px;
+    min-height: 50px;
     touch-action: manipulation;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2),
-                inset 0 0 10px rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 15px rgb(234, 246, 6),
+                inset 0 0 10px rgb(216, 234, 13);
     animation: neonGlow 4s infinite;
     z-index: 1;
 }
@@ -382,12 +382,14 @@ h1 {
 
 .game-button:active {
     transform: scale(0.95);
-    box-shadow: 0 0 5px rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 5px rgb(234, 246, 6),
+                inset 0 0 10px rgb(216, 234, 13);
 }
 
 .game-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 0 20px rgb(234, 246, 6),
+                inset 0 0 10px rgb(216, 234, 13);
 }
 
 .game-button:hover .button-glow {
@@ -404,6 +406,7 @@ h1 {
 footer {
     margin-top: 40px;
     text-align: center;
+    font-family: sans-serif;
     padding: 10px;
     background: transparent;
     border-radius: 10px;
@@ -456,7 +459,7 @@ footer:active {
     filter: invert(1);
     transition: all 0.3s;
     vertical-align: middle;
-    margin-right: 5px;
+    margin-right: 1px;
 }
 
 .github-link:hover .github-logo {
@@ -632,7 +635,7 @@ footer:active {
 
 .instruction-content h2 {
     color: var(--primary-color);
-    font-size: clamp(18px, 4vw, 24px);
+    font-size: larger;
     margin-bottom: 15px;
     text-shadow: 0 0 10px var(--glow-color);
     font-family: Arial, sans-serif;
@@ -708,11 +711,11 @@ footer:active {
 
 .instruction-text p {
     margin: 10px 0;
-    font-size: clamp(12px, 3vw, 16px);
+    font-size:larger;
     color: var(--text-color);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content:center;
     gap: 8px;
     font-family: Arial, sans-serif;
 }
@@ -929,5 +932,9 @@ footer:active {
 @keyframes borderPulse {
     0%, 100% { border-color: rgba(0, 255, 0, 0.3); }
     50% { border-color: rgba(0, 255, 0, 0.6); }
+}
+
+.instruction-content .game-button {
+    margin-top: 40px;
 }
 
