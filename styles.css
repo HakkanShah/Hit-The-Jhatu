@@ -175,7 +175,7 @@ h1 {
 .score-container {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .score-box, .high-score-box {

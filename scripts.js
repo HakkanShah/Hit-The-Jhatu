@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let audioContext = null;
     let clickBuffer = null;
     let isMuted = false;
+    let lastMuteClickTime = 0;
+    const muteClickDelay = 300; // 300ms delay between mute clicks
 
     // Progress messages with their trigger scores
     const progressMessages = [
@@ -86,6 +88,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Mute/Unmute functionality
     function toggleMute() {
+        const currentTime = Date.now();
+        if (currentTime - lastMuteClickTime < muteClickDelay) {
+            return;
+        }
+        lastMuteClickTime = currentTime;
+
         isMuted = !isMuted;
         muteButton.querySelector('.button-text').textContent = isMuted ? '🔇' : '🔊';
         
@@ -296,19 +304,6 @@ document.addEventListener("DOMContentLoaded", function () {
         playClickSound();
         startGame();
     }, { passive: false });
-
-    // Add click sound to all buttons
-    const allButtons = document.querySelectorAll('button');
-    allButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.stopPropagation();
-            playClickSound();
-        });
-        button.addEventListener('touchstart', function(event) {
-            event.stopPropagation();
-            playClickSound();
-        }, { passive: false });
-    });
 
     function startRound() {
         if (!gameActive) return;
