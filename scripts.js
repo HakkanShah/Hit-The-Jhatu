@@ -147,18 +147,22 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add event listeners for new buttons
     muteButton.addEventListener("click", function(event) {
         event.stopPropagation();
+        playClickSound();
         toggleMute();
     });
     muteButton.addEventListener("touchstart", function(event) {
         event.stopPropagation();
+        playClickSound();
         toggleMute();
     }, { passive: false });
     shareButton.addEventListener("click", function(event) {
         event.stopPropagation();
+        playClickSound();
         shareGame();
     });
     shareButton.addEventListener("touchstart", function(event) {
         event.stopPropagation();
+        playClickSound();
         shareGame();
     }, { passive: false });
 

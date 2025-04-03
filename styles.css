@@ -327,9 +327,9 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 60px;
     margin: 30px 0;
-    padding: 15px;
+    padding: 8px;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 15px;
     backdrop-filter: blur(5px);
@@ -498,26 +498,51 @@ h1 {
 
 /* Play Again Button */
 .play-again-button {
-    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-    border: none;
-    border-radius: 25px;
-    color: white;
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
     padding: 10px 25px;
     font-size: 14px;
+    font-weight: bold;
+    border-radius: 25px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-    font-family: 'Press Start 2P', cursive;
+    transition: all 0.3s;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     width: 100%;
     max-width: 180px;
     min-height: 50px;
+    touch-action: manipulation;
+    box-shadow: 0 0 15px rgb(234, 246, 6),
+                inset 0 0 10px rgb(216, 234, 13);
+    animation: neonGlow 4s infinite;
+    z-index: 1;
 }
 
 .play-again-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 0 20px rgb(234, 246, 6),
+                inset 0 0 10px rgb(216, 234, 13);
+}
+
+.play-again-button:hover .button-glow {
+    left: 100%;
+}
+
+.play-again-button:active {
+    transform: translateY(1px);
+}
+
+.play-again-button .button-text {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+.play-again-button .button-glow {
+    background: linear-gradient(90deg, transparent, var(--glow-color), transparent);
 }
 
 /* Footer */
@@ -976,12 +1001,12 @@ footer:active {
                 inset 0 0 15px rgba(0, 255, 0, 0.2);
     text-shadow: 0 0 8px rgba(0, 255, 0, 0.4);
     pointer-events: none;
-    font-family: 'Orbitron', sans-serif;
+    font-family:sans-serif;
     letter-spacing: 1px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     width: fit-content;
-    min-width: 350px;
+    min-width: 320px;
     max-width: 90vw;
     height: fit-content;
     min-height: 45px;
