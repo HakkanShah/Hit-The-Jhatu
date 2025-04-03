@@ -125,7 +125,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Fallback for browsers that don't support Web Share API
                 const shareUrl = encodeURIComponent('https://hakkanshah.github.io/Hit-The-Jhatu/');
                 const shareText = encodeURIComponent('🎮 Check out this awesome game! Hit the Jhatu but be careful not to hit the Gandu! Can you beat my high score?');
-                window.open(`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`, '_blank');
+                
+                // Create a temporary input element
+                const tempInput = document.createElement('input');
+                tempInput.value = `🎮 Check out this awesome game! Hit the Jhatu but be careful not to hit the Gandu! Can you beat my high score?\n\nhttps://hakkanshah.github.io/Hit-The-Jhatu/`;
+                document.body.appendChild(tempInput);
+                
+                // Select and copy the text
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                
+                // Show a message to the user
+                alert('Share link copied to clipboard! You can now paste it anywhere.');
             }
         } catch (err) {
             console.log('Error sharing:', err);
