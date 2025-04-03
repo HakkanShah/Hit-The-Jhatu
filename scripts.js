@@ -37,47 +37,46 @@ document.addEventListener("DOMContentLoaded", function () {
     // Progress messages with their trigger scores
     const progressMessages = [
         { score: 5, messages: [
-            { message: "Arey yaar, kya baat hai!", emoji: "🔥" },
-            { message: "Bhai tu toh mast hai!", emoji: "💪" },
-            { message: "Kya baat hai bhai!", emoji: "🚀" }
+            { message: "Beta, tumse na ho payega!", emoji: "😆" },
+            { message: "Jaldi kar, sabka badla lega re tera bhai!", emoji: "💪" },
+            { message: "Arrey bhai bhai bhai! Mazaa aa gaya!", emoji: "🚀" }
         ]},
         { score: 10, messages: [
-            { message: "Sigma male spotted!", emoji: "💪" },
-            { message: "Bhai tu toh pro nikla!", emoji: "🚀" },
-            { message: "Kya baat hai bhai!", emoji: "💯" }
+            { message: "Aap chronology samajhiye... tu OP ho raha hai! 🤯", emoji: "💯" },
+            { message: "Oye hoye! Koi toh roko isko!", emoji: "🚀" },
+            { message: "Aag laga di bhai!", emoji: "🔥" }
         ]},
         { score: 15, messages: [
-            { message: "Bhai tu toh pro nikla!", emoji: "🚀" },
-            { message: "Gigachad energy!", emoji: "💯" },
-           
+            { message: "Baap re baap, ekdum turbo mode me! ", emoji: "⚡" },
+            { message: "Tumse zyada expectations hai humko! ", emoji: "💪" }
         ]},
         { score: 20, messages: [
-            { message: "Gigachad energy!", emoji: "💯" },
-            { message: "Bhai tu toh legend hai!", emoji: "👑" },
-            { message: "Kya baat hai bhai!", emoji: "⚡" }
+            { message: "Arey! Ye toh bahut tez jaa raha hai!", emoji: "💯" },
+            { message: "Moye moye!", emoji: "🎭" },
+            { message: "Abey yaar, yeh toh Ultra Pro Max level hai! ", emoji: "👑" }
         ]},
         { score: 25, messages: [
-            { message: "Bhai tu toh legend hai!", emoji: "👑" },
-            { message: "God mode activated!", emoji: "⚡" },
-            { message: "Kya baat hai bhai!", emoji: "🦁" }
+            { message: "Lagta hai tu game ka baap ban gaya!", emoji: "👑" },
+            { message: "Beta, tumse na ho payega! (Oh wait... tu kar raha hai!)", emoji: "🔥" },
+            { message: "Tu toh Sachin ka bhi baap nikla! ", emoji: "🏏" }
         ]},
         { score: 30, messages: [
-            { message: "God mode activated!", emoji: "⚡" },
-            { message: "Bhai tu toh beast hai!", emoji: "🦁" },
-            { message: "Kya baat hai bhai!", emoji: "🗿" }
+            { message: "Ultra instinct activate!", emoji: "🦁" },
+            { message: "Arrey bhai, ek aur round maar lo!", emoji: "⚡" },
+            { message: "Aaja beta, seekh le humse!", emoji: "🗿" }
         ]},
         { score: 40, messages: [
-            { message: "Bhai tu toh beast hai!", emoji: "🦁" },
-            { message: "Hacker hai bhai Hacker!", emoji: "🗿" },
-            { message: "Kya baat hai bhai!", emoji: "👑" }
+            { message: "Bhai tu full god mode me hai!", emoji: "🦁" },
+            { message: "Chalo bhai, aaj ka MVP mil gaya!", emoji: "🔥" },
+            { message: "Abey yaar! Developers bhi shock ho gaye honge!", emoji: "👑" }
         ]},
         { score: 50, messages: [
-            { message: "Hacker hai bhai Hacker!", emoji: "🗿" },
-            { message: "Bhai tu toh god hai!", emoji: "👑" },
-            { message: "Kya baat hai bhai!", emoji: "⚡" }
+            { message: "Kya baat hai bhai, mod menu use kar raha hai kya?", emoji: "🗿" },
+            { message: "Arey! Ab yeh game tujhse hi seekhega!", emoji: "👑" },
+            { message: "Hacker spotted!", emoji: "⚡" }
         ]}
     ];
-
+    
     const explosionEmojis = ["😂","🤣","🤯","😵‍💫","💥", "🔥", "😭", "💨"];
 
     // Initialize high score
@@ -122,8 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function startGame() {
-        // Hide instruction modal
+        // Hide instruction modal and game over modal
         instructionModal.style.display = "none";
+        gameOverModal.style.display = "none";
         
         // Stop game over sound when starting new game
         gameOverSound.pause();
@@ -132,15 +132,17 @@ document.addEventListener("DOMContentLoaded", function () {
         gameActive = true;
         score = 0;
         difficulty = 1;
-        ganduChance = 0.1;
+        ganduChance = 0.2; // Increased initial Gandu chance
         scoreDisplay.textContent = score;
         gameControlButton.textContent = "PAUSE";
-        gameOverModal.style.display = "none";
         
-        // Only start the round if we're not already in a game
-        if (!gameInterval) {
-            startRound();
+        // Clear any existing interval
+        if (gameInterval) {
+            clearTimeout(gameInterval);
+            gameInterval = null;
         }
+        
+        startRound();
     }
 
     function pauseGame() {
@@ -221,9 +223,8 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
 
-        // Calculate time based on difficulty and score
-        const timeReduction = Math.min(score * 25, baseTime - minTime); // Increased from 20 to 25
-        const randomTime = (baseTime - timeReduction - (difficulty * 150)) * (0.8 + Math.random() * 0.4); // Increased from 100 to 150
+        // Keep base time constant
+        const randomTime = baseTime * (0.8 + Math.random() * 0.4);
         
         setTimeout(() => {
             if (gameActive) {
@@ -278,10 +279,9 @@ document.addEventListener("DOMContentLoaded", function () {
             // Check for progress messages
             checkProgressMessages(score);
 
-            // Increase difficulty and Gandu chance based on score
+            // Only increase Gandu chance based on score
             if (score % 3 === 0) {
-                difficulty += 0.5;
-                ganduChance = Math.min(ganduChance + 0.03, maxGanduChance);
+                ganduChance = Math.min(ganduChance + 0.05, maxGanduChance); // Increased from 0.03 to 0.05
             }
         }
     }
