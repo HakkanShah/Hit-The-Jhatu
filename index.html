@@ -41,7 +41,7 @@
                             <p>Don't Hit ❌<br> (Mara jayega 🤙)</p>
                         </div>
                     </div>
-                    <button id="instruction-start-game" class="game-button">
+                    <button id="instruction-start-game" class="play-now-button">
                         <span class="button-text">PLAY NOW</span>
                         <div class="button-glow"></div>
                     </button>
@@ -92,14 +92,21 @@
                         <img class="gandu" src="images/Gandu.webp" alt="Gandu">
                     </div>
                 </div>
-
-                <div class="controls">
-                    <button id="game-control-button" class="game-button">
-                        <span class="button-text">START GAME</span>
-                        <div class="button-glow"></div>
-                    </button>
-                </div>
             </main>
+
+            <div class="controls">
+                <button id="mute-button" class="sound-toggle-button">
+                    <span class="button-text">🔊</span>
+                    <div class="button-glow"></div>
+                </button>
+                <button id="share-button" class="share-button">
+                    <span class="button-text">
+                        <img src="images/share.png" alt="Share" class="share-icon">
+                        Share
+                    </span>
+                    <div class="button-glow"></div>
+                </button>
+            </div>
 
             <footer>
                 <a href="https://www.github.com/HakkanShah" target="_blank" class="github-link">
@@ -138,7 +145,7 @@
         <div class="modal-content">
             <h2>Bro, you hit the Gandu 😣<br>Game Over!</h2>
             <p>Your Score: <span id="final-score">0</span></p>
-            <button id="restart-game" class="game-button">
+            <button id="restart-game" class="play-again-button">
                 <span class="button-text">PLAY AGAIN</span>
                 <div class="button-glow"></div>
             </button>

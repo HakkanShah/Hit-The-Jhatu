@@ -326,11 +326,37 @@ h1 {
 .controls {
     display: flex;
     justify-content: center;
-    margin-top: 40px;
-    padding: 0 10px;
+    align-items: center;
+    gap: 15px;
+    margin: 30px 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    flex-wrap: nowrap;
 }
 
-.game-button {
+/* Base Button Styles */
+.button-text {
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+.button-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--glow-color), transparent);
+    transition: 0.5s;
+    opacity: 0.5;
+}
+
+/* Play Now Button */
+.play-now-button {
     background: linear-gradient(45deg, #000000, #1a1a1a);
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
@@ -355,63 +381,156 @@ h1 {
     z-index: 1;
 }
 
-.game-button::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, var(--neon-red), var(--neon-green), var(--neon-blue));
-    border-radius: 27px;
-    z-index: -1;
-    animation: borderGlow 3s linear infinite;
-    opacity: 0.5;
-}
-
-.button-glow {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, var(--glow-color), transparent);
-    transition: 0.5s;
-    opacity: 0.5;
-}
-
-.game-button:active {
-    transform: scale(0.95);
-    box-shadow: 0 0 5px rgb(234, 246, 6),
-                inset 0 0 10px rgb(216, 234, 13);
-}
-
-.game-button:hover {
+.play-now-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 20px rgb(234, 246, 6),
                 inset 0 0 10px rgb(216, 234, 13);
 }
 
-.game-button:hover .button-glow {
+.play-now-button:hover .button-glow {
     left: 100%;
 }
 
-.button-text {
+/* Sound Toggle Button */
+.sound-toggle-button {
+    background: transparent;
+    border: none;
+    color: var(--primary-color);
+    padding: 8px;
+    font-size: 24px;
+    cursor: pointer;
     position: relative;
+    transition: all 0.3s;
+    width: 40px;
+    height: 40px;
+    touch-action: manipulation;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+.sound-toggle-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+.sound-toggle-button:active {
+    transform: scale(0.95);
+}
+
+.sound-toggle-button .button-text {
+    font-size: 24px;
+    margin: 0;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--glow-color);
+    transition: transform 0.3s ease;
+}
+
+.sound-toggle-button.muted .button-text {
+    transform: scale(0.8);
+    opacity: 0.7;
+}
+
+/* Share Button */
+.share-button {
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 10px 25px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 100%;
+    max-width: 180px;
+    min-height: 50px;
+    touch-action: manipulation;
+    box-shadow: 0 0 15px rgb(234, 246, 6),
+                inset 0 0 10px rgb(216, 234, 13);
+    animation: neonGlow 4s infinite;
     z-index: 1;
-    text-shadow: 0 0 5px var(--glow-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.share-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgb(234, 246, 6),
+                inset 0 0 10px rgb(216, 234, 13);
+}
+
+.share-button:hover .button-glow {
+    left: 100%;
+}
+
+.share-button:active {
+    transform: translateY(1px);
+}
+
+.share-button .button-text {
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--glow-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.share-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.share-button:hover .share-icon {
+    transform: scale(1.1);
+}
+
+/* Play Again Button */
+.play-again-button {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    padding: 10px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    font-family: 'Press Start 2P', cursive;
+    width: 100%;
+    max-width: 180px;
+    min-height: 50px;
+}
+
+.play-again-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
 }
 
 /* Footer */
 footer {
-    margin-top: 40px;
+    margin-top: 20px;
     text-align: center;
     font-family: sans-serif;
-    padding: 10px;
-    background: transparent;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
 footer:hover {

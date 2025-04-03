@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const scoreDisplay = document.getElementById("score");
     const highScoreDisplay = document.getElementById("high-score");
     const instructionStartButton = document.getElementById("instruction-start-game");
-    const gameControlButton = document.getElementById("game-control-button");
+    const muteButton = document.getElementById("mute-button");
+    const shareButton = document.getElementById("share-button");
     const hitSound = document.getElementById("hit-sound");
     const clickSound = document.getElementById("click-sound");
     const gameOverSound = document.getElementById("game-over-sound");
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let maxGanduChance = 0.4;
     let audioContext = null;
     let clickBuffer = null;
+    let isMuted = false;
 
     // Progress messages with their trigger scores
     const progressMessages = [
@@ -82,6 +84,135 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initialize high score
     highScoreDisplay.textContent = highScore;
 
+    // Mute/Unmute functionality
+    function toggleMute() {
+        isMuted = !isMuted;
+        muteButton.querySelector('.button-text').textContent = isMuted ? '🔇' : '🔊';
+        
+        // Update volume for all sounds
+        hitSound.volume = isMuted ? 0 : 1;
+        clickSound.volume = isMuted ? 0 : 1;
+        gameOverSound.volume = isMuted ? 0 : 1;
+        
+        // Update audio context volume if it exists
+        if (audioContext) {
+            audioContext.gainNode.gain.value = isMuted ? 0 : 1;
+        } else {
+            initAudio();
+        }
+    }
+
+    // Share functionality
+    async function shareGame() {
+        const shareData = {
+            title: 'Hit The Jhatu',
+            text: '🎮 Check out this awesome game! Hit the Jhatu but be careful not to hit the Gandu! Can you beat my high score?',
+            url: 'https://hakkanshah.github.io/Hit-The-Jhatu/'
+        };
+
+        try {
+            if (navigator.share) {
+                await navigator.share(shareData);
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const shareUrl = encodeURIComponent('https://hakkanshah.github.io/Hit-The-Jhatu/');
+                const shareText = encodeURIComponent('🎮 Check out this awesome game! Hit the Jhatu but be careful not to hit the Gandu! Can you beat my high score?');
+                window.open(`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`, '_blank');
+            }
+        } catch (err) {
+            console.log('Error sharing:', err);
+        }
+    }
+
+    // Add event listeners for new buttons
+    muteButton.addEventListener("click", function(event) {
+        event.stopPropagation();
+        toggleMute();
+    });
+    muteButton.addEventListener("touchstart", function(event) {
+        event.stopPropagation();
+        toggleMute();
+    }, { passive: false });
+    shareButton.addEventListener("click", function(event) {
+        event.stopPropagation();
+        shareGame();
+    });
+    shareButton.addEventListener("touchstart", function(event) {
+        event.stopPropagation();
+        shareGame();
+    }, { passive: false });
+
+    // Update audio context initialization
+    function initAudio() {
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const gainNode = audioContext.createGain();
+            gainNode.gain.value = isMuted ? 0 : 1;
+            gainNode.connect(audioContext.destination);
+            
+            fetch('sounds/Click.mp3')
+                .then(response => response.arrayBuffer())
+                .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+                .then(audioBuffer => {
+                    clickBuffer = audioBuffer;
+                })
+                .catch(error => console.log("Audio loading failed:", error));
+        }
+    }
+
+    // Update sound playing functions to respect mute state
+    function playRandomHitSound() {
+        if (isMuted) return;
+        const sources = hitSound.getElementsByTagName('source');
+        const randomIndex = Math.floor(Math.random() * sources.length);
+        const selectedSource = sources[randomIndex].src;
+
+        hitSound.src = selectedSource;
+        hitSound.currentTime = 0;
+        hitSound.volume = isMuted ? 0 : 1;
+        hitSound.play().catch(error => {
+            console.log("Audio play failed:", error);
+        });
+    }
+
+    function playClickSound() {
+        if (isMuted) return;
+        
+        // Initialize audio context if not already done
+        if (!audioContext) {
+            initAudio();
+        }
+
+        if (audioContext && clickBuffer) {
+            const source = audioContext.createBufferSource();
+            source.buffer = clickBuffer;
+            const gainNode = audioContext.createGain();
+            gainNode.gain.value = isMuted ? 0 : 1;
+            source.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            source.start(0);
+        } else {
+            const sources = clickSound.getElementsByTagName('source');
+            const selectedSource = sources[0].src;
+            
+            clickSound.src = selectedSource;
+            clickSound.currentTime = 0;
+            clickSound.volume = isMuted ? 0 : 1;
+            clickSound.play().catch(error => {
+                console.log("Click sound failed:", error);
+            });
+        }
+    }
+
+    function playGameOverSound() {
+        if (isMuted) return;
+        gameOverSound.currentTime = 0;
+        gameOverSound.volume = isMuted ? 0 : 1;
+        gameOverSound.play().catch(error => {
+            console.log("Game over sound failed:", error);
+        });
+    }
+
     // Function to show progress message
     function showProgressMessage(message, emoji) {
         const messageElement = document.createElement('div');
@@ -109,17 +240,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    function toggleGame(event) {
-        event.preventDefault();
-        playClickSound();
-
-        if (gameActive) {
-            pauseGame();
-        } else {
-            resumeGame();
-        }
-    }
-
     function startGame() {
         // Hide instruction modal and game over modal
         instructionModal.style.display = "none";
@@ -134,7 +254,6 @@ document.addEventListener("DOMContentLoaded", function () {
         difficulty = 1;
         ganduChance = 0.2; // Increased initial Gandu chance
         scoreDisplay.textContent = score;
-        gameControlButton.textContent = "PAUSE";
         
         // Clear any existing interval
         if (gameInterval) {
@@ -145,23 +264,8 @@ document.addEventListener("DOMContentLoaded", function () {
         startRound();
     }
 
-    function pauseGame() {
-        gameActive = false;
-        gameControlButton.textContent = "RESUME";
-        clearTimeout(gameInterval);
-        hideJhatu();
-        hideGandu();
-    }
-
-    function resumeGame() {
-        gameActive = true;
-        gameControlButton.textContent = "PAUSE";
-        startRound();
-    }
-
     function gameOver() {
         gameActive = false;
-        gameControlButton.textContent = "START GAME";
         clearTimeout(gameInterval);
         hideJhatu();
         hideGandu();
@@ -170,22 +274,24 @@ document.addEventListener("DOMContentLoaded", function () {
         gameOverModal.style.display = "flex";
     }
 
+    // Event listeners for Play Now and Play Again buttons
     instructionStartButton.addEventListener("click", function(event) {
         event.stopPropagation();
         playClickSound();
         startGame();
     });
+
     instructionStartButton.addEventListener("touchstart", function(event) {
         event.stopPropagation();
         playClickSound();
         startGame();
     }, { passive: false });
-    gameControlButton.addEventListener("click", toggleGame);
-    gameControlButton.addEventListener("touchstart", toggleGame, { passive: false });
+
     restartButton.addEventListener("click", function(event) {
         playClickSound();
         startGame();
     });
+
     restartButton.addEventListener("touchstart", function(event) {
         playClickSound();
         startGame();
@@ -312,66 +418,6 @@ document.addEventListener("DOMContentLoaded", function () {
         hole.addEventListener("click", hitGandu);
         hole.addEventListener("touchstart", hitGandu, { passive: false });
     });
-
-    function playRandomHitSound() {
-        const sources = hitSound.getElementsByTagName('source');
-        const randomIndex = Math.floor(Math.random() * sources.length);
-        const selectedSource = sources[randomIndex].src;
-
-        hitSound.src = selectedSource;
-        hitSound.currentTime = 0;
-        hitSound.play().catch(error => {
-            console.log("Audio play failed:", error);
-        });
-    }
-
-    // Initialize audio context on first user interaction
-    function initAudio() {
-        if (!audioContext) {
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            fetch('sounds/Click.mp3')
-                .then(response => response.arrayBuffer())
-                .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
-                .then(audioBuffer => {
-                    clickBuffer = audioBuffer;
-                })
-                .catch(error => console.log("Audio loading failed:", error));
-        }
-    }
-
-    function playClickSound() {
-        // Initialize audio on first interaction
-        initAudio();
-
-        if (audioContext && clickBuffer) {
-            const source = audioContext.createBufferSource();
-            source.buffer = clickBuffer;
-            source.connect(audioContext.destination);
-            source.start(0);
-        } else {
-            // Fallback to regular audio element
-            const sources = clickSound.getElementsByTagName('source');
-            const selectedSource = sources[0].src;
-            
-            clickSound.src = selectedSource;
-            clickSound.currentTime = 0;
-            clickSound.volume = 1;
-            clickSound.play().catch(error => {
-                console.log("Click sound failed:", error);
-            });
-        }
-    }
-
-    // Add click/touch listeners to initialize audio
-    document.addEventListener('click', initAudio, { once: true });
-    document.addEventListener('touchstart', initAudio, { once: true });
-
-    function playGameOverSound() {
-        gameOverSound.currentTime = 0;
-        gameOverSound.play().catch(error => {
-            console.log("Game over sound failed:", error);
-        });
-    }
 
     function showHitEffect(element) {
         const explosion = document.createElement("span");
