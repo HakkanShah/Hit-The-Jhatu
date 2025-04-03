@@ -297,6 +297,19 @@ document.addEventListener("DOMContentLoaded", function () {
         startGame();
     }, { passive: false });
 
+    // Add click sound to all buttons
+    const allButtons = document.querySelectorAll('button');
+    allButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.stopPropagation();
+            playClickSound();
+        });
+        button.addEventListener('touchstart', function(event) {
+            event.stopPropagation();
+            playClickSound();
+        }, { passive: false });
+    });
+
     function startRound() {
         if (!gameActive) return;
 
