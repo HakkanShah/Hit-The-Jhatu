@@ -62,7 +62,7 @@ Contributions are welcome! Feel free to:
 This project is open source and available under the [MIT License](LICENSE).
 
 ## 👨‍💻 Author
-**Hakkan**
+**Hakkan Parbej Shah**
 - GitHub: [@HakkanShah](https://github.com/HakkanShah)
 
 ## 🙏 Acknowledgments
