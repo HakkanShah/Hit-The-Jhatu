@@ -1212,7 +1212,7 @@ footer:active {
 }
 
 .quit-content h2 {
-    color: #ffffff;
+    color: #0bfb1b;
     font-size: 24px;
     margin-bottom: 15px;
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
@@ -1236,7 +1236,7 @@ footer:active {
 }
 
 .quit-button {
-    background: black;
+    background: linear-gradient(145deg, #1a1a1a, #000000);
     border: 2px solid #ff4444;
     color: #ffffff;
     padding: 4px 10px;
@@ -1246,49 +1246,60 @@ footer:active {
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s;
+    transition: all 0.2s;
     font-family: 'Orbitron', sans-serif;
     letter-spacing: 1px;
     width: 100%;
     max-width: 300px;
     min-height: 50px;
     touch-action: manipulation;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    box-shadow: 0 5px 0 #cc0000,
+                0 8px 15px rgba(255, 0, 0, 0.3);
     z-index: 1;
+    transform: translateY(-2px);
 }
 
 .quit-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-}
-
-.quit-button:hover .button-glow {
-    left: 100%;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 #cc0000,
+                0 12px 20px rgba(255, 0, 0, 0.4);
 }
 
 .quit-button:active {
-    transform: translateY(1px);
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #cc0000,
+                0 4px 10px rgba(255, 0, 0, 0.2);
+    transition: all 0.1s;
 }
 
 .quit-button .button-text {
-    color: #000000;
-    text-shadow: -1px -1px 0 #fff,
-                 1px -1px 0 #fff,
-                 -1px 1px 0 #fff,
-                 1px 1px 0 #fff;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     font-size: 15px;
     font-weight: bolder;
     line-height: 1.4;
 }
 
 #quit-yes {
-    background: linear-gradient(45deg, #ff0000, #ff6666);
-    animation: neonBorder 4s infinite;
+    background: linear-gradient(145deg, #ff3333, #cc0000);
+    border-color: #ff0000;
 }
 
 #quit-no {
-    background: linear-gradient(45deg, #00ff00, #66ff66);
-    animation: neonBorder 4s infinite;
+    background: linear-gradient(145deg, #33ff33, #00cc00);
+    border-color: #00ff00;
+    box-shadow: 0 5px 0 #009900,
+                0 8px 15px rgba(0, 255, 0, 0.3);
+}
+
+#quit-no:hover {
+    box-shadow: 0 8px 0 #009900,
+                0 12px 20px rgba(0, 255, 0, 0.4);
+}
+
+#quit-no:active {
+    box-shadow: 0 2px 0 #009900,
+                0 4px 10px rgba(0, 255, 0, 0.2);
 }
 
 
