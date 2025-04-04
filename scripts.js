@@ -482,7 +482,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const quitYesButton = document.getElementById('quit-yes');
     const quitNoButton = document.getElementById('quit-no');
 
-    // Show quit modal when trying to close the game
+    // Handle back button press
+    window.onpopstate = function(event) {
+        if (gameActive) {
+            event.preventDefault();
+            quitModal.style.display = 'flex';
+            history.pushState(null, null, window.location.href);
+        }
+    };
+
+    // Handle tab switch
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden && gameActive) {
+            quitModal.style.display = 'flex';
+        }
+    });
+
+    // Handle page close
     window.addEventListener('beforeunload', function(e) {
         if (gameActive) {
             e.preventDefault();
@@ -522,4 +538,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event.stopPropagation();
         playClickSound();
     }, { passive: false });
+
+    // Initialize history state
+    history.pushState(null, null, window.location.href);
 });
