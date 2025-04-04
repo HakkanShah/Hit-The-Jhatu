@@ -1116,7 +1116,7 @@ footer:active {
     font-size: 24px;
     margin-bottom: 15px;
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-    font-family: 'Press Start 2P', cursive;
+    font-family: sans-serif;
     line-height: 1.4;
 }
 
@@ -1125,7 +1125,7 @@ footer:active {
     font-size: 18px;
     margin-bottom: 25px;
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-    font-family: 'Orbitron', sans-serif;
+    font-family: sans-serif;
 }
 
 .quit-buttons {
@@ -1139,7 +1139,7 @@ footer:active {
     background: linear-gradient(45deg, #2a2a2a, #1a1a1a);
     border: 2px solid #ff4444;
     color: #ffffff;
-    padding: 12px 20px;
+    padding: 4px 10px;
     font-size: 14px;
     font-weight: bold;
     border-radius: 25px;
@@ -1148,7 +1148,6 @@ footer:active {
     overflow: hidden;
     transition: all 0.3s;
     font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
     letter-spacing: 1px;
     width: 100%;
     max-width: 300px;
@@ -1172,9 +1171,10 @@ footer:active {
 }
 
 .quit-button .button-text {
-    color: #ffffff;
+    color: #000000;
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
     font-size: 12px;
+    font-weight: bold;
     line-height: 1.4;
 }
 
