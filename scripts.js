@@ -83,6 +83,42 @@ document.addEventListener("DOMContentLoaded", function () {
     
     const explosionEmojis = ["😂","🤣","🤯","😵‍💫","💥", "🔥", "😭", "💨"];
 
+    // Add this after the progressMessages array
+    const quitMessages = [
+        {
+            title: "Arey Bhai! Game Chhod ke Ja Rahe Ho?😱",
+            subtitle: "(Bhai, Tum Toh Bade Heavy Driver Ho! Lekin Yeh Game Tumhare Bas Ki Baat Nahi Hai!😏)"
+        },
+        {
+            title: "Kya Bhai? Game Se Darr Gaya?😨",
+            subtitle: "(Beta, Real Gamers Kabhi Quit Nahi Karte! Lekin Tum Toh Special Ho!😏)"
+        },
+        {
+            title: "Oho! Game Se Bhaag Rahe Ho?🏃‍♂️",
+            subtitle: "(Bhai, Jhatu ko hit karne se darr lag raha hai kya?😅)"
+        },
+        {
+            title: "Game Chhod ke Kahan Ja Rahe Ho?🤔",
+            subtitle: "(Beta, Gandu se darr gaye? Ya Jhatu hit karne mein problem aa rahi hai?😏)"
+        },
+        {
+            title: "Kya Hua? Game Se Mann Bhar Gaya?😴",
+            subtitle: "(Bhai, Thoda aur try karo na! Jhatu ko hit karne ka mazaa alag hai!😎)"
+        },
+        {
+            title: "Game Se Bhaag Rahe Ho Ya Kuch Aur?🤣",
+            subtitle: "(Beta, Real challenge toh abhi aana baaki hai!😈)"
+        },
+        {
+            title: "Kya Bhai? Game Se Pareshan Ho Gaye?😅",
+            subtitle: "(Bhai, Jhatu ko hit karne ka mazaa alag hai! Thoda aur try karo!😏)"
+        },
+        {
+            title: "Game Chhod ke Kahan Ja Rahe Ho?😱",
+            subtitle: "(Beta, Gandu se darr gaye? Ya Jhatu hit karne mein problem aa rahi hai?😏)"
+        }
+    ];
+
     // Initialize high score
     highScoreDisplay.textContent = highScore;
 
@@ -262,6 +298,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 showProgressMessage(randomMessage.message, randomMessage.emoji);
             }
         });
+    }
+
+    // Add this function after the checkProgressMessages function
+    function updateQuitModalText() {
+        const randomMessage = quitMessages[Math.floor(Math.random() * quitMessages.length)];
+        const quitModalTitle = document.querySelector('#quit-modal h2');
+        const quitModalSubtitle = document.querySelector('#quit-modal p');
+        
+        if (quitModalTitle && quitModalSubtitle) {
+            quitModalTitle.textContent = randomMessage.title;
+            quitModalSubtitle.textContent = randomMessage.subtitle;
+        }
     }
 
     function startGame() {
@@ -486,6 +534,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.onpopstate = function(event) {
         if (gameActive) {
             event.preventDefault();
+            updateQuitModalText(); // Update text before showing modal
             quitModal.style.display = 'flex';
             history.pushState(null, null, window.location.href);
         }
@@ -508,7 +557,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Handle quit button clicks
+    // Update the quit button click handlers
     quitYesButton.addEventListener('click', function() {
         quitModal.style.display = 'none';
         gameActive = false;
@@ -518,10 +567,12 @@ document.addEventListener("DOMContentLoaded", function () {
         score = 0;
         scoreDisplay.textContent = score;
         instructionModal.style.display = "flex";
+        updateQuitModalText(); // Update text for next time
     });
 
     quitNoButton.addEventListener('click', function() {
         quitModal.style.display = 'none';
+        updateQuitModalText(); // Update text for next time
     });
 
     // Add click sound to quit buttons
