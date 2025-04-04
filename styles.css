@@ -147,6 +147,7 @@ header {
 .title-container {
     position: relative;
     text-align: center;
+    padding: 10px;
 }
 
 h1 {
@@ -176,6 +177,7 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .score-box, .high-score-box {
@@ -611,6 +613,99 @@ footer:active {
     filter: invert(1) brightness(1.5);
 }
 
+/* Responsive Styles */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .game-container {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    header {
+        margin-bottom: 15px;
+    }
+
+    .title-container {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: clamp(16px, 4vw, 20px);
+    }
+
+    .score-container {
+        gap: 10px;
+    }
+
+    .score-box, .high-score-box {
+        min-width: 70px;
+        padding: 4px 8px;
+    }
+
+    #game-board {
+        gap: 10px;
+        padding: 5px;
+    }
+
+    footer {
+        margin-top: 15px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+
+    .game-container {
+        padding: 8px;
+        margin-bottom: 8px;
+    }
+
+    header {
+        margin-bottom: 10px;
+    }
+
+    .title-container {
+        padding: 3px;
+    }
+
+    h1 {
+        font-size: clamp(14px, 3.5vw, 18px);
+    }
+
+    .score-container {
+        gap: 8px;
+    }
+
+    .score-box, .high-score-box {
+        min-width: 60px;
+        padding: 3px 6px;
+    }
+
+    .score-label {
+        font-size: 7px;
+    }
+
+    .score-value {
+        font-size: 14px;
+    }
+
+    #game-board {
+        gap: 8px;
+        padding: 3px;
+    }
+
+    footer {
+        margin-top: 10px;
+        padding: 8px;
+    }
+}
+
 /* Landscape Mode */
 @media (max-height: 500px) and (orientation: landscape) {
     body {
@@ -624,6 +719,21 @@ footer:active {
 
     header {
         margin-bottom: 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .title-container {
+        flex: 1;
+        text-align: left;
+        padding-left: 15px;
+    }
+
+    .score-container {
+        flex: 1;
+        justify-content: flex-end;
+        padding-right: 15px;
     }
 
     #game-board {
@@ -633,19 +743,9 @@ footer:active {
         padding: 5px;
     }
 
-    .game-button {
-        padding: 8px 20px;
-        font-size: 14px;
-    }
-
-    .hole {
-        width: 90%;
-        padding-bottom: 90%;
-        margin: 0 auto;
-    }
-
-    .jhatu, .gandu {
-        width: 80%;
+    footer {
+        margin-top: 10px;
+        padding: 8px;
     }
 }
 
