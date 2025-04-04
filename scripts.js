@@ -476,4 +476,50 @@ document.addEventListener("DOMContentLoaded", function () {
             stopGame();
         }
     });
+
+    // Quit Confirmation Modal
+    const quitModal = document.getElementById('quit-modal');
+    const quitYesButton = document.getElementById('quit-yes');
+    const quitNoButton = document.getElementById('quit-no');
+
+    // Show quit modal when trying to close the game
+    window.addEventListener('beforeunload', function(e) {
+        if (gameActive) {
+            e.preventDefault();
+            e.returnValue = '';
+            quitModal.style.display = 'flex';
+            return '';
+        }
+    });
+
+    // Handle quit button clicks
+    quitYesButton.addEventListener('click', function() {
+        quitModal.style.display = 'none';
+        window.location.href = 'about:blank';
+    });
+
+    quitNoButton.addEventListener('click', function() {
+        quitModal.style.display = 'none';
+    });
+
+    // Add click sound to quit buttons
+    quitYesButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        playClickSound();
+    });
+
+    quitNoButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        playClickSound();
+    });
+
+    quitYesButton.addEventListener('touchstart', function(event) {
+        event.stopPropagation();
+        playClickSound();
+    }, { passive: false });
+
+    quitNoButton.addEventListener('touchstart', function(event) {
+        event.stopPropagation();
+        playClickSound();
+    }, { passive: false });
 });

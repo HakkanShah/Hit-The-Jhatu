@@ -1100,3 +1100,92 @@ footer:active {
     margin-top: 40px;
 }
 
+/* Quit Modal Styles */
+.quit-content {
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+    animation: neonBorder 4s infinite;
+    max-width: 90%;
+    width: 350px;
+    padding: 25px;
+}
+
+.quit-content h2 {
+    color: #ff0000;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    font-family: 'Press Start 2P', cursive;
+}
+
+.quit-content p {
+    color: var(--primary-color);
+    font-size: 18px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+.quit-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.quit-button {
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    max-width: 300px;
+    min-height: 50px;
+    touch-action: manipulation;
+    box-shadow: 0 0 15px rgb(234, 246, 6),
+                inset 0 0 10px rgb(216, 234, 13);
+    animation: neonGlow 4s infinite;
+    z-index: 1;
+}
+
+.quit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgb(234, 246, 6),
+                inset 0 0 10px rgb(216, 234, 13);
+}
+
+.quit-button:hover .button-glow {
+    left: 100%;
+}
+
+.quit-button:active {
+    transform: translateY(1px);
+}
+
+.quit-button .button-text {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--glow-color);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+#quit-yes {
+    background: linear-gradient(45deg, #ff0000, #ff3333);
+    border-color: #ff0000;
+}
+
+#quit-no {
+    background: linear-gradient(45deg, #00ff00, #33ff33);
+    border-color: #00ff00;
+}
+
