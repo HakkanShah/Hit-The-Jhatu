@@ -327,16 +327,16 @@ h1 {
 /* Controls */
 .controls {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    gap: 60px;
+    gap: 110px;
     margin: 30px 0;
-    padding: 8px;
-    background: rgba(0, 0, 0, 0.3);
+    padding: 1px;
+    background: transparent;
     border-radius: 15px;
     backdrop-filter: blur(5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     flex-wrap: nowrap;
+    padding-right: 15px;
 }
 
 /* Base Button Styles */
@@ -552,7 +552,7 @@ footer {
     margin-top: 20px;
     text-align: center;
     font-family: sans-serif;
-    padding: 15px;
+    padding: 1px;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     cursor: pointer;
@@ -1202,7 +1202,7 @@ footer:active {
 
 /* Quit Modal Styles */
 .quit-content {
-    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+    background: black;
     border: 2px solid #ff4444;
     box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
     animation: neonBorder 4s infinite;
@@ -1236,7 +1236,7 @@ footer:active {
 }
 
 .quit-button {
-    background: linear-gradient(45deg, #2a2a2a, #1a1a1a);
+    background: black;
     border: 2px solid #ff4444;
     color: #ffffff;
     padding: 4px 10px;
@@ -1274,7 +1274,7 @@ footer:active {
     color: #000000;
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
     font-size: 12px;
-    font-weight: bold;
+    font-weight: bolder;
     line-height: 1.4;
 }
 
@@ -1287,4 +1287,5 @@ footer:active {
     background: linear-gradient(45deg, #44ff44, #66ff66);
     border-color: #00ff00;
 }
+
 
