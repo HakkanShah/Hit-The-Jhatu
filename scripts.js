@@ -511,7 +511,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handle quit button clicks
     quitYesButton.addEventListener('click', function() {
         quitModal.style.display = 'none';
-        window.location.href = 'about:blank';
+        gameActive = false;
+        clearTimeout(gameInterval);
+        hideJhatu();
+        hideGandu();
+        score = 0;
+        scoreDisplay.textContent = score;
+        instructionModal.style.display = "flex";
     });
 
     quitNoButton.addEventListener('click', function() {

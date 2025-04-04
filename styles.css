@@ -1272,20 +1272,23 @@ footer:active {
 
 .quit-button .button-text {
     color: #000000;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-    font-size: 12px;
+    text-shadow: -1px -1px 0 #fff,
+                 1px -1px 0 #fff,
+                 -1px 1px 0 #fff,
+                 1px 1px 0 #fff;
+    font-size: 15px;
     font-weight: bolder;
     line-height: 1.4;
 }
 
 #quit-yes {
-    background: linear-gradient(45deg, #ff4444, #ff6666);
-    border-color: #ff0000;
+    background: linear-gradient(45deg, #ff0000, #ff6666);
+    animation: neonBorder 4s infinite;
 }
 
 #quit-no {
-    background: linear-gradient(45deg, #44ff44, #66ff66);
-    border-color: #00ff00;
+    background: linear-gradient(45deg, #00ff00, #66ff66);
+    animation: neonBorder 4s infinite;
 }
 
 
