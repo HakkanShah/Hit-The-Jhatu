@@ -564,9 +564,14 @@ document.addEventListener("DOMContentLoaded", function () {
         clearTimeout(gameInterval);
         hideJhatu();
         hideGandu();
-        // Instead of showing instruction modal, redirect to a different page or close the window
-        window.location.href = "about:blank";
-        // Alternative: window.close(); // This might not work in all browsers due to security restrictions
+        
+        // Try to close the window
+        try {
+            window.close();
+        } catch (e) {
+            // If window.close() fails, try to redirect to a blank page
+            window.location.href = "about:blank";
+        }
     });
 
     quitNoButton.addEventListener('click', function() {
