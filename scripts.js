@@ -565,11 +565,22 @@ document.addEventListener("DOMContentLoaded", function () {
         hideJhatu();
         hideGandu();
         
-        // Try to close the window
+        // Try multiple methods to close/exit
         try {
+            // Method 1: Try window.close()
             window.close();
+            
+            // Method 2: If window.close() fails, try to redirect to blank page
+            setTimeout(() => {
+                window.location.href = "about:blank";
+            }, 100);
+            
+            // Method 3: If both fail, try to go back in history
+            setTimeout(() => {
+                window.history.back();
+            }, 200);
         } catch (e) {
-            // If window.close() fails, try to redirect to a blank page
+            // If all methods fail, redirect to blank page
             window.location.href = "about:blank";
         }
     });
