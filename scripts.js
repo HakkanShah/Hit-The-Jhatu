@@ -564,10 +564,9 @@ document.addEventListener("DOMContentLoaded", function () {
         clearTimeout(gameInterval);
         hideJhatu();
         hideGandu();
-        score = 0;
-        scoreDisplay.textContent = score;
-        instructionModal.style.display = "flex";
-        updateQuitModalText(); // Update text for next time
+        // Instead of showing instruction modal, redirect to a different page or close the window
+        window.location.href = "about:blank";
+        // Alternative: window.close(); // This might not work in all browsers due to security restrictions
     });
 
     quitNoButton.addEventListener('click', function() {
