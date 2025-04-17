@@ -880,12 +880,13 @@ footer:active {
 
 .instruction-content h2 {
     color: var(--primary-color);
-    font-size: larger;
-    margin-bottom: 15px;
+    font-size: 24px;
+    margin-bottom: 20px;
     text-shadow: 0 0 10px var(--glow-color);
-    font-family: Arial, sans-serif;
+    font-family: 'Press Start 2P', cursive;
     animation: gamingText 2s ease-in-out infinite;
     position: relative;
+    text-align: center;
 }
 
 @keyframes gamingText {
@@ -955,14 +956,15 @@ footer:active {
 }
 
 .instruction-text p {
-    margin: 10px 0;
-    font-size:larger;
+    margin: 12px 0;
+    font-size: 16px;
     color: var(--text-color);
     display: flex;
     align-items: center;
-    justify-content:center;
-    gap: 8px;
+    justify-content: center;
+    gap: 10px;
     font-family: Arial, sans-serif;
+    text-shadow: 0 0 5px var(--glow-color);
 }
 
 .character-showcase {
@@ -1310,62 +1312,79 @@ footer:active {
 
 .upload-button {
     display: inline-block;
-    background: linear-gradient(145deg, #1a1a1a, #000000);
+    background: transparent;
     border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    padding: 5px 10px;
+    color:white;
+    padding: 8px 10px;
     font-size: 12px;
     font-weight: bold;
-    border-radius: 15px;
+    border-radius: 8px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
     transition: all 0.3s;
-    font-family: 'Orbitron', sans-serif;
+    font-family: sans-serif;
     letter-spacing: 1px;
     width: 100%;
     text-align: center;
-    box-shadow: 0 3px 0 #00cc00,
-                0 5px 10px rgba(0, 255, 0, 0.2);
-    transform: translateY(-1px);
+    box-shadow: 0 4px 0 #00cc00,
+                0 6px 10px rgba(0, 255, 0, 0.2);
+    transform: translateY(-2px);
 }
 
 .upload-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 0 #00cc00,
+    transform: translateY(-3px);
+    box-shadow: 0 6px 0 #00cc00,
                 0 8px 15px rgba(0, 255, 0, 0.3);
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
 }
 
 .upload-button:active {
     transform: translateY(1px);
-    box-shadow: 0 1px 0 #00cc00,
-                0 2px 5px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 2px 0 #00cc00,
+                0 3px 5px rgba(0, 255, 0, 0.2);
 }
 
-.file-input {
-    display: none;
+.upload-button::before {
+    content: '📁';
+    margin-right: 5px;
+    font-size: 14px;
 }
 
 .jhatu-card .upload-button {
     border-color: #00ff00;
-    box-shadow: 0 3px 0 #00cc00,
-                0 5px 10px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 4px 0 #00cc00,
+                0 6px 10px rgba(0, 255, 0, 0.2);
+}
+
+.jhatu-card .upload-button:hover {
+    box-shadow: 0 6px 0 #00cc00,
+                0 8px 15px rgba(0, 255, 0, 0.3);
+}
+
+.jhatu-card .upload-button:active {
+    box-shadow: 0 2px 0 #00cc00,
+                0 3px 5px rgba(0, 255, 0, 0.2);
 }
 
 .gandu-card .upload-button {
     border-color: #ff0000;
-    box-shadow: 0 3px 0 #cc0000,
-                0 5px 10px rgba(255, 0, 0, 0.2);
+    box-shadow: 0 4px 0 #cc0000,
+                0 6px 10px rgba(255, 0, 0, 0.2);
 }
 
 .gandu-card .upload-button:hover {
-    box-shadow: 0 5px 0 #cc0000,
+    box-shadow: 0 6px 0 #cc0000,
                 0 8px 15px rgba(255, 0, 0, 0.3);
 }
 
 .gandu-card .upload-button:active {
-    box-shadow: 0 1px 0 #cc0000,
-                0 2px 5px rgba(255, 0, 0, 0.2);
+    box-shadow: 0 2px 0 #cc0000,
+                0 3px 5px rgba(255, 0, 0, 0.2);
+}
+
+.file-input {
+    display: none;
 }
 
 
