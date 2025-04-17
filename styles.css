@@ -46,17 +46,17 @@
 @keyframes jhatuPulse {
     0% {
         transform: translateX(-50%) scale(0.85);
-        bottom: -15%;
+        bottom: 0;
         opacity: 0.8;
     }
     50% {
         transform: translateX(-50%) scale(0.95);
-        bottom: -10%;
+        bottom: 5%;
         opacity: 1;
     }
     100% {
         transform: translateX(-50%) scale(0.85);
-        bottom: -20%;
+        bottom: 0;
         opacity: 0.8;
     }
 }
@@ -292,11 +292,12 @@ h1 {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     opacity: 0;
+    transform-origin: center bottom;
 }
 
 .hole.active .jhatu {
     transform: translateX(-50%) scale(0.9);
-    bottom: -15%;
+    bottom: 0;
     opacity: 1;
     animation: jhatuPulse 1.5s infinite;
 }
@@ -763,12 +764,13 @@ footer:active {
     -webkit-backface-visibility: hidden;
     opacity: 0;
     display: none;
+    transform-origin: center bottom;
 }
 
 .hole.active .gandu {
     display: block;
     transform: translateX(-50%) scale(0.9);
-    bottom: -15%;
+    bottom: 0;
     opacity: 1;
     animation: ganduPulse 1.5s infinite;
 }
@@ -776,17 +778,17 @@ footer:active {
 @keyframes ganduPulse {
     0% {
         transform: translateX(-50%) scale(0.85);
-        bottom: 5%;
+        bottom: 0;
         opacity: 0.8;
     }
     50% {
         transform: translateX(-50%) scale(0.95);
-        bottom: 10%;
+        bottom: 5%;
         opacity: 1;
     }
     100% {
         transform: translateX(-50%) scale(0.85);
-        bottom: 0%;
+        bottom: 0;
         opacity: 0.8;
     }
 }
