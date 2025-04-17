@@ -38,6 +38,68 @@ document.addEventListener("DOMContentLoaded", function () {
     let lastMuteClickTime = 0;
     const muteClickDelay = 300; // 300ms delay between mute clicks
 
+    // Image upload functionality
+    const jhatuUpload = document.getElementById('jhatu-upload');
+    const ganduUpload = document.getElementById('gandu-upload');
+    const jhatuImage = document.getElementById('jhatu-image');
+    const ganduImage = document.getElementById('gandu-image');
+    
+    // Store custom images
+    let customJhatuImage = null;
+    let customGanduImage = null;
+    
+    // Handle Jhatu image upload
+    jhatuUpload.addEventListener('change', function(e) {
+        if (e.target.files && e.target.files[0]) {
+            const reader = new FileReader();
+            
+            reader.onload = function(event) {
+                // Update the image in the instruction modal
+                jhatuImage.src = event.target.result;
+                
+                // Store the custom image for use in the game
+                customJhatuImage = event.target.result;
+                
+                // Update all Jhatu images in the game board
+                const jhatus = document.querySelectorAll('.jhatu');
+                jhatus.forEach(jhatu => {
+                    jhatu.src = customJhatuImage;
+                });
+                
+                // Play click sound
+                playClickSound();
+            };
+            
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+    
+    // Handle Gandu image upload
+    ganduUpload.addEventListener('change', function(e) {
+        if (e.target.files && e.target.files[0]) {
+            const reader = new FileReader();
+            
+            reader.onload = function(event) {
+                // Update the image in the instruction modal
+                ganduImage.src = event.target.result;
+                
+                // Store the custom image for use in the game
+                customGanduImage = event.target.result;
+                
+                // Update all Gandu images in the game board
+                const gandus = document.querySelectorAll('.gandu');
+                gandus.forEach(gandu => {
+                    gandu.src = customGanduImage;
+                });
+                
+                // Play click sound
+                playClickSound();
+            };
+            
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+
     // Progress messages with their trigger scores
     const progressMessages = [
         { score: 5, messages: [
@@ -312,7 +374,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function startGame() {
+    // Store the original startGame function
+    const originalStartGame = function() {
         // Hide instruction modal and game over modal
         instructionModal.style.display = "none";
         gameOverModal.style.display = "none";
@@ -334,6 +397,27 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         
         startRound();
+    };
+
+    // Override the startGame function
+    function startGame() {
+        // If custom images are set, update all game board images
+        if (customJhatuImage) {
+            const jhatus = document.querySelectorAll('.jhatu');
+            jhatus.forEach(jhatu => {
+                jhatu.src = customJhatuImage;
+            });
+        }
+        
+        if (customGanduImage) {
+            const gandus = document.querySelectorAll('.gandu');
+            gandus.forEach(gandu => {
+                gandu.src = customGanduImage;
+            });
+        }
+        
+        // Call the original startGame function
+        originalStartGame();
     }
 
     function gameOver() {

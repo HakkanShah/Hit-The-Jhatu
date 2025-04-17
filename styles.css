@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 
@@ -1300,6 +1299,71 @@ footer:active {
 #quit-no:active {
     box-shadow: 0 2px 0 #009900,
                 0 4px 10px rgba(0, 255, 0, 0.2);
+}
+
+.image-upload {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.upload-button {
+    display: inline-block;
+    background: linear-gradient(145deg, #1a1a1a, #000000);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 3px 0 #00cc00,
+                0 5px 10px rgba(0, 255, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+.upload-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 #00cc00,
+                0 8px 15px rgba(0, 255, 0, 0.3);
+}
+
+.upload-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 #00cc00,
+                0 2px 5px rgba(0, 255, 0, 0.2);
+}
+
+.file-input {
+    display: none;
+}
+
+.jhatu-card .upload-button {
+    border-color: #00ff00;
+    box-shadow: 0 3px 0 #00cc00,
+                0 5px 10px rgba(0, 255, 0, 0.2);
+}
+
+.gandu-card .upload-button {
+    border-color: #ff0000;
+    box-shadow: 0 3px 0 #cc0000,
+                0 5px 10px rgba(255, 0, 0, 0.2);
+}
+
+.gandu-card .upload-button:hover {
+    box-shadow: 0 5px 0 #cc0000,
+                0 8px 15px rgba(255, 0, 0, 0.3);
+}
+
+.gandu-card .upload-button:active {
+    box-shadow: 0 1px 0 #cc0000,
+                0 2px 5px rgba(255, 0, 0, 0.2);
 }
 
 
