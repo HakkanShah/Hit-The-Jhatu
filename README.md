@@ -30,11 +30,6 @@ A fun and addictive whack-a-mole style browser game featuring my friends as Jhat
 - CSS
 - JavaScript
 
-## 📱 Device Support
-- Desktop browsers
-- Mobile browsers
-- Tablets
-- Touch-enabled devices
 
 ## 🚀 Getting Started
 1. Clone the repository
