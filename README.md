@@ -28,7 +28,7 @@ A fun and addictive whack-a-mole style browser game featuring my friends as Jhat
 ## 🛠️ Built With
 - HTML
 - CSS
-- JavaScript (Vanilla)
+- JavaScript
 
 ## 📱 Device Support
 - Desktop browsers
