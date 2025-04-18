@@ -26,7 +26,7 @@ A fun and addictive whack-a-mole style browser game featuring my friends as Jhat
 5. Try to beat your high score!
 
 ## 🛠️ Built With
-- HTML5
+- HTML
 - CSS3
 - JavaScript (Vanilla)
 
