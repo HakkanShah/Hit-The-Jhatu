@@ -570,8 +570,6 @@ document.addEventListener("DOMContentLoaded", function () {
             lastHitTime = currentTime;
             updateMood(10); // Increase mood when hitting Jhatu
 
-            checkProgressMessages(score);
-
             if (score % 3 === 0) {
                 ganduChance = Math.min(ganduChance + 0.05, maxGanduChance);
             }
@@ -733,31 +731,41 @@ document.addEventListener("DOMContentLoaded", function () {
             "is super angry! 😡",
             "ko gussa aa raha hai! 😤",
             "is ready to fight! 👊",
-            "is in full rage mode! 💢"
+            "is in full rage mode! 💢",
+            "Beta, tumse na ho payega! 😤",
+            "Jaldi kar, sabka badla lega re tera bhai! 💢"
         ],
         sad: [
             "is feeling sad 😢",
             "ko dard ho raha hai 😔",
             "is heartbroken 💔",
-            "needs some love ❤️"
+            "needs some love ❤️",
+            "Aap chronology samajhiye... tu OP ho raha hai! 🤯",
+            "Oye hoye! Koi toh roko isko! 😭"
         ],
         neutral: [
             "is waiting to play! 😊",
             "is ready to start! 🎮",
             "is in the zone! 🎯",
-            "is feeling good! 👍"
+            "is feeling good! 👍",
+            "Baap re baap, ekdum turbo mode me! ⚡",
+            "Tumse zyada expectations hai humko! 💪"
         ],
         happy: [
             "is super happy! 😄",
             "is loving this! ❤️",
             "is on fire! 🔥",
-            "is unstoppable! 💪"
+            "is unstoppable! 💪",
+            "Arey! Ye toh bahut tez jaa raha hai! 💯",
+            "Moye moye! 🎭"
         ],
         excited: [
             "is going crazy! 🤪",
             "is in turbo mode! ⚡",
             "is the king! 👑",
-            "is the ultimate champion! 🏆"
+            "is the ultimate champion! 🏆",
+            "Abey yaar, yeh toh Ultra Pro Max level hai! 👑",
+            "Lagta hai tu game ka baap ban gaya! 🏆"
         ]
     };
 
