@@ -1456,4 +1456,93 @@ footer:active {
     100% { transform: scale(1); }
 }
 
+/* Registration Modal Styles */
+.registration-content {
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    animation: neonBorder 4s infinite;
+    max-width: 90%;
+    width: 350px;
+}
+
+.registration-content h2 {
+    color: var(--primary-color);
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px var(--glow-color);
+    font-family: 'Press Start 2P', cursive;
+}
+
+.registration-content p {
+    color: var(--text-color);
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+#player-name {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--text-color);
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    transition: all 0.3s;
+}
+
+#player-name:focus {
+    outline: none;
+    box-shadow: 0 0 15px var(--glow-color);
+    transform: scale(1.02);
+}
+
+.register-button {
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 100%;
+    max-width: 200px;
+    min-height: 50px;
+    touch-action: manipulation;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
+.register-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.register-button:active {
+    transform: translateY(1px);
+}
+
+.register-button .button-text {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
 

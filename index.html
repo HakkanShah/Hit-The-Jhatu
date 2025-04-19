@@ -20,6 +20,21 @@
 <body>
     <div class="game-wrapper">
         <div class="game-container">
+            <!-- Player Registration Modal -->
+            <div id="registration-modal" class="modal">
+                <div class="modal-content registration-content">
+                    <h2>Welcome to Hit The Jhatu! 🎮</h2>
+                    <p>Enter your name to start playing:</p>
+                    <div class="input-container">
+                        <input type="text" id="player-name" placeholder="Your name here..." maxlength="20">
+                        <button id="register-button" class="register-button">
+                            <span class="button-text">Let's Play!</span>
+                            <div class="button-glow"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Instruction Modal -->
             <div id="instruction-modal" class="modal">
                 <div class="modal-content instruction-content">
@@ -76,7 +91,9 @@
                     <div class="mood-meter">
                         <div class="mood-progress" id="mood-progress"></div>
                     </div>
-                    <div class="mood-message" id="mood-message">Jhatu is waiting for you! 😊</div>
+                    <div class="mood-message" id="mood-message">
+                        <span id="player-name-display"></span>'s mood: Ready to play! 😊
+                    </div>
                 </div>
             </header>
 
