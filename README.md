@@ -13,10 +13,14 @@ A fun and addictive whack-a-mole style browser game featuring my friends as Jhat
 - Fast-paced whack-a-mole gameplay
 - Increasing difficulty as you score more
 - High score tracking
-- Fun sound effects(Indian meme sound effects) and animations
+- Fun sound effects (Indian meme sound effects) and animations
 - Responsive design for all devices
 - Share functionality to challenge friends
 - Mute/unmute sound option
+- Custom character image upload
+- Realistic button designs and animations
+- Quit confirmation with funny messages
+- Modern UI with neon effects
 
 ## 🎲 How to Play
 1. Click "PLAY NOW" to start the game
@@ -24,11 +28,15 @@ A fun and addictive whack-a-mole style browser game featuring my friends as Jhat
 3. Avoid hitting the Gandu (or game over!)
 4. Game gets faster as you score more
 5. Try to beat your high score!
+6. Upload your own images for Jhatu and Gandu
+7. Share your score with friends
 
 ## 🛠️ Built With
 - HTML5
 - CSS3
 - JavaScript (Vanilla)
+- Web Share API
+- Modern CSS Animations
 
 ## 📱 Device Support
 - Desktop browsers
@@ -50,6 +58,8 @@ Feel free to customize:
 - Sound effects
 - Character images
 - UI colors and styles
+- Button designs
+- Animations
 
 ## 🤝 Contributing
 Contributions are welcome! Feel free to:
