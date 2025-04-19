@@ -417,7 +417,8 @@ document.addEventListener("DOMContentLoaded", function () {
             playerName = name;
             playerNameDisplay.textContent = name;
             registrationModal.style.display = "none";
-            instructionModal.style.display = "flex";
+            // Start game directly instead of showing instruction modal
+            startGame();
             playClickSound();
         }
     });

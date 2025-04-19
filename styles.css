@@ -2,15 +2,18 @@
 
 
 :root {
-    --primary-color: #00ff00;
-    --secondary-color: #ff00ff;
+    --primary-color: #ff6b6b;
+    --secondary-color: #4ecdc4;
     --accent-color: #00ffff;
-    --background-color: #000000;
+    --background-color: #1a1a1a;
     --text-color: #ffffff;
     --glow-color: rgba(0, 255, 0, 0.5);
     --button-bg: #1a1a1a;
     --hole-bg: #2a2a2a;
     --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+    --neon-glow: 0 0 10px rgba(255, 107, 107, 0.8);
+    --font-heading: 'Righteous', cursive;
+    --font-body: 'Montserrat', sans-serif;
 }
 
 /* Animations */
@@ -94,7 +97,7 @@ html {
 }
 
 body {
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-body);
     background-color: var(--background-color);
     color: var(--text-color);
     min-height: 100vh;
@@ -168,10 +171,10 @@ header {
 }
 
 h1 {
-    font-family: 'Press Start 2P', cursive;
+    font-family: var(--font-heading);
     font-size: clamp(18px, 5vw, 24px);
     color: var(--primary-color);
-    text-shadow: 0 0 10px var(--glow-color);
+    text-shadow: var(--neon-glow);
     letter-spacing: 1px;
     position: relative;
     z-index: 1;
@@ -1438,7 +1441,7 @@ footer:active {
     font-size: 14px;
     color: var(--primary-color);
     text-shadow: 0 0 5px var(--glow-color);
-    font-family: 'Press Start 2P', cursive;
+    font-family: var(--font-heading);
     min-height: 40px;
     display: flex;
     align-items: center;
