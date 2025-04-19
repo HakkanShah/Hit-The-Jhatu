@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const instructionModal = document.getElementById("instruction-modal");
     const finalScoreDisplay = document.getElementById("final-score");
     const restartButton = document.getElementById("restart-game");
+    const moodProgress = document.getElementById('mood-progress');
+    const moodMessage = document.getElementById('mood-message');
 
     // Show instruction modal on page load
     instructionModal.style.display = "flex";
@@ -37,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isMuted = false;
     let lastMuteClickTime = 0;
     const muteClickDelay = 300; // 300ms delay between mute clicks
+    let moodLevel = 50; // Starting mood level (0-100)
 
     // Image upload functionality
     const jhatuUpload = document.getElementById('jhatu-upload');
@@ -401,7 +404,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Override the startGame function
     function startGame() {
-        // If custom images are set, update all game board images
         if (customJhatuImage) {
             const jhatus = document.querySelectorAll('.jhatu');
             jhatus.forEach(jhatu => {
@@ -416,7 +418,9 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
         
-        // Call the original startGame function
+        moodLevel = 50; // Reset mood level
+        moodProgress.style.width = '50%';
+        updateMoodMessage();
         originalStartGame();
     }
 
@@ -523,7 +527,6 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         const currentTime = Date.now();
 
-        // Reduced cooldown based on difficulty
         const currentCooldown = Math.max(50, hitCooldown - (difficulty * 10));
         if (currentTime - lastHitTime < currentCooldown) {
             return;
@@ -537,13 +540,12 @@ document.addEventListener("DOMContentLoaded", function () {
             showHitEffect(activeJhatu);
             hideJhatu();
             lastHitTime = currentTime;
+            updateMood(10); // Increase mood when hitting Jhatu
 
-            // Check for progress messages
             checkProgressMessages(score);
 
-            // Only increase Gandu chance based on score
             if (score % 3 === 0) {
-                ganduChance = Math.min(ganduChance + 0.05, maxGanduChance); // Increased from 0.03 to 0.05
+                ganduChance = Math.min(ganduChance + 0.05, maxGanduChance);
             }
         }
     }
@@ -552,7 +554,6 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         const currentTime = Date.now();
 
-        // Reduced cooldown based on difficulty
         const currentCooldown = Math.max(50, hitCooldown - (difficulty * 10));
         if (currentTime - lastHitTime < currentCooldown) {
             return;
@@ -563,6 +564,7 @@ document.addEventListener("DOMContentLoaded", function () {
             showHitEffect(activeGandu);
             hideGandu();
             lastHitTime = currentTime;
+            updateMood(-30); // Decrease mood when hitting Gandu
             playGameOverSound();
             gameOver();
         }
@@ -697,4 +699,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Initialize history state
     history.pushState(null, null, window.location.href);
+
+    const moodMessages = {
+        angry: [
+            "Jhatu is super angry! 😡",
+            "Jhatu ko gussa aa raha hai! 😤",
+            "Jhatu is ready to fight! 👊",
+            "Jhatu is in full rage mode! 💢"
+        ],
+        sad: [
+            "Jhatu is feeling sad 😢",
+            "Jhatu ko dard ho raha hai 😔",
+            "Jhatu is heartbroken 💔",
+            "Jhatu needs some love ❤️"
+        ],
+        neutral: [
+            "Jhatu is waiting for you! 😊",
+            "Jhatu is ready to play! 🎮",
+            "Jhatu is in the zone! 🎯",
+            "Jhatu is feeling good! 👍"
+        ],
+        happy: [
+            "Jhatu is super happy! 😄",
+            "Jhatu is loving this! ❤️",
+            "Jhatu is on fire! 🔥",
+            "Jhatu is unstoppable! 💪"
+        ],
+        excited: [
+            "Jhatu is going crazy! 🤪",
+            "Jhatu is in turbo mode! ⚡",
+            "Jhatu is the king! 👑",
+            "Jhatu is the ultimate champion! 🏆"
+        ]
+    };
+
+    function updateMood(change) {
+        moodLevel = Math.max(0, Math.min(100, moodLevel + change));
+        moodProgress.style.width = `${moodLevel}%`;
+        updateMoodMessage();
+    }
+
+    function updateMoodMessage() {
+        let messages;
+        if (moodLevel < 20) {
+            messages = moodMessages.angry;
+        } else if (moodLevel < 40) {
+            messages = moodMessages.sad;
+        } else if (moodLevel < 60) {
+            messages = moodMessages.neutral;
+        } else if (moodLevel < 80) {
+            messages = moodMessages.happy;
+        } else {
+            messages = moodMessages.excited;
+        }
+        moodMessage.textContent = messages[Math.floor(Math.random() * messages.length)];
+    }
 });
