@@ -35,8 +35,6 @@ A fun and addictive whack-a-mole style browser game featuring my friends as Jhat
 - HTML5
 - CSS3
 - JavaScript (Vanilla)
-- Web Share API
-- Modern CSS Animations
 
 ## 📱 Device Support
 - Desktop browsers
