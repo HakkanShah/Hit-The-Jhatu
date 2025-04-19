@@ -16,9 +16,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const restartButton = document.getElementById("restart-game");
     const moodProgress = document.getElementById('mood-progress');
     const moodMessage = document.getElementById('mood-message');
+    const playerNameDisplay = document.getElementById('player-name-display');
+    const registrationModal = document.getElementById('registration-modal');
+    const playerNameInput = document.getElementById('player-name');
+    const registerButton = document.getElementById('register-button');
+    let playerName = '';
+    let moodLevel = 50; // Starting mood level (0-100)
 
     // Show instruction modal on page load
     instructionModal.style.display = "flex";
+
+    // Show registration modal on page load
+    registrationModal.style.display = "flex";
 
     let score = 0;
     let highScore = localStorage.getItem("highScore") || 0;
@@ -39,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let isMuted = false;
     let lastMuteClickTime = 0;
     const muteClickDelay = 300; // 300ms delay between mute clicks
-    let moodLevel = 50; // Starting mood level (0-100)
 
     // Image upload functionality
     const jhatuUpload = document.getElementById('jhatu-upload');
@@ -402,7 +410,26 @@ document.addEventListener("DOMContentLoaded", function () {
         startRound();
     };
 
-    // Override the startGame function
+    // Handle player registration
+    registerButton.addEventListener('click', function() {
+        const name = playerNameInput.value.trim();
+        if (name) {
+            playerName = name;
+            playerNameDisplay.textContent = name;
+            registrationModal.style.display = "none";
+            instructionModal.style.display = "flex";
+            playClickSound();
+        }
+    });
+
+    // Allow Enter key to submit registration
+    playerNameInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            registerButton.click();
+        }
+    });
+
+    // Update startGame function
     function startGame() {
         if (customJhatuImage) {
             const jhatus = document.querySelectorAll('.jhatu');
@@ -702,34 +729,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const moodMessages = {
         angry: [
-            "Jhatu is super angry! 😡",
-            "Jhatu ko gussa aa raha hai! 😤",
-            "Jhatu is ready to fight! 👊",
-            "Jhatu is in full rage mode! 💢"
+            "is super angry! 😡",
+            "ko gussa aa raha hai! 😤",
+            "is ready to fight! 👊",
+            "is in full rage mode! 💢"
         ],
         sad: [
-            "Jhatu is feeling sad 😢",
-            "Jhatu ko dard ho raha hai 😔",
-            "Jhatu is heartbroken 💔",
-            "Jhatu needs some love ❤️"
+            "is feeling sad 😢",
+            "ko dard ho raha hai 😔",
+            "is heartbroken 💔",
+            "needs some love ❤️"
         ],
         neutral: [
-            "Jhatu is waiting for you! 😊",
-            "Jhatu is ready to play! 🎮",
-            "Jhatu is in the zone! 🎯",
-            "Jhatu is feeling good! 👍"
+            "is waiting to play! 😊",
+            "is ready to start! 🎮",
+            "is in the zone! 🎯",
+            "is feeling good! 👍"
         ],
         happy: [
-            "Jhatu is super happy! 😄",
-            "Jhatu is loving this! ❤️",
-            "Jhatu is on fire! 🔥",
-            "Jhatu is unstoppable! 💪"
+            "is super happy! 😄",
+            "is loving this! ❤️",
+            "is on fire! 🔥",
+            "is unstoppable! 💪"
         ],
         excited: [
-            "Jhatu is going crazy! 🤪",
-            "Jhatu is in turbo mode! ⚡",
-            "Jhatu is the king! 👑",
-            "Jhatu is the ultimate champion! 🏆"
+            "is going crazy! 🤪",
+            "is in turbo mode! ⚡",
+            "is the king! 👑",
+            "is the ultimate champion! 🏆"
         ]
     };
 
@@ -752,6 +779,6 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             messages = moodMessages.excited;
         }
-        moodMessage.textContent = messages[Math.floor(Math.random() * messages.length)];
+        moodMessage.innerHTML = `<span id="player-name-display">${playerName}</span> ${messages[Math.floor(Math.random() * messages.length)]}`;
     }
 });
