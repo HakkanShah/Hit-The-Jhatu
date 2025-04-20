@@ -268,7 +268,7 @@ h1 {
 .hole {
     position: relative;
     width: 100%;
-    padding-bottom: 80%;
+    padding-bottom: 90%;
     background: url('images/ClosedHole.webp') no-repeat center center;
     background-size: contain;
     border-radius: 50%;
