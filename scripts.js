@@ -37,11 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Show instruction modal on page load
-    instructionModal.style.display = "flex";
-
     // Show registration modal on page load
     registrationModal.style.display = "flex";
+    instructionModal.style.display = "none"; // Hide instruction modal initially
 
     // Game state variables
     let gameActive = false;
@@ -351,8 +349,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (name) {
             playerName = name;
             registrationModal.style.display = "none";
-            // Start game directly instead of showing instruction modal
-            startGame();
+            instructionModal.style.display = "flex"; // Show instruction modal after registration
             playClickSound();
         }
     });

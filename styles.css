@@ -1324,91 +1324,155 @@ footer:active {
 
 /* Registration Modal Styles */
 .registration-content {
-    background: linear-gradient(45deg, #000000, #1a1a1a);
-    padding: 25px;
-    border-radius: 20px;
+    background: linear-gradient(135deg, #1a1a1a, #2c3e50);
+    padding: 30px;
+    border-radius: 15px;
     text-align: center;
-    border: 2px solid var(--primary-color);
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
-    animation: neonBorder 4s infinite;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     max-width: 90%;
-    width: 350px;
+    width: 400px;
+    backdrop-filter: blur(10px);
+    animation: slideIn 0.3s ease;
 }
 
 .registration-content h2 {
-    color: var(--primary-color);
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px var(--glow-color);
-    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.registration-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    border-radius: 3px;
 }
 
 .registration-content p {
-    color: var(--text-color);
-    font-size: 18px;
-    margin-bottom: 20px;
+    color: #aaa;
+    font-size: 16px;
+    margin-bottom: 25px;
 }
 
 .input-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     align-items: center;
+    margin-bottom: 25px;
 }
 
 #player-name {
     width: 100%;
-    padding: 12px;
+    padding: 15px;
     font-size: 16px;
-    border: 2px solid var(--primary-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    background: rgba(0, 0, 0, 0.5);
-    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
     text-align: center;
-    font-family: 'Orbitron', sans-serif;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 #player-name:focus {
     outline: none;
-    box-shadow: 0 0 15px var(--glow-color);
+    border-color: #4CAF50;
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.2);
     transform: scale(1.02);
 }
 
+#player-name::placeholder {
+    color: #666;
+}
+
 .register-button {
-    background: linear-gradient(45deg, #000000, #1a1a1a);
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    padding: 10px 25px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    border: none;
+    color: #fff;
+    padding: 15px 30px;
     font-size: 16px;
-    font-weight: bold;
-    border-radius: 25px;
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    transition: all 0.3s ease;
     width: 100%;
-    max-width: 200px;
-    min-height: 50px;
-    touch-action: manipulation;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
 .register-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
 }
 
 .register-button:active {
-    transform: translateY(1px);
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
 }
 
-.register-button .button-text {
-    color: var(--primary-color);
-    text-shadow: 0 0 10px var(--glow-color);
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .registration-content {
+        padding: 25px;
+        width: 90%;
+    }
+
+    .registration-content h2 {
+        font-size: 24px;
+    }
+
+    #player-name {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .register-button {
+        padding: 12px 25px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .registration-content {
+        padding: 20px;
+    }
+
+    .registration-content h2 {
+        font-size: 22px;
+    }
+
+    #player-name {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .register-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
 }
 
 /* Leaderboard Styles */
