@@ -88,14 +88,6 @@
                         <span id="high-score" class="score-value">0</span>
                     </div>
                 </div>
-                <div class="mood-meter-container">
-                    <div class="mood-meter">
-                        <div class="mood-progress" id="mood-progress"></div>
-                    </div>
-                    <div class="mood-message" id="mood-message">
-                        <span id="player-name-display"></span>'s mood: Ready to play! 😊
-                    </div>
-                </div>
             </header>
 
             <main>
@@ -139,6 +131,28 @@
                     </span>
                     <div class="button-glow"></div>
                 </button>
+                <button id="leaderboard-button" class="leaderboard-button">
+                    <span class="button-text">🏆 Leaderboard</span>
+                    <div class="button-glow"></div>
+                </button>
+            </div>
+
+            <div id="leaderboard-modal" class="modal">
+                <div class="modal-content leaderboard-content">
+                    <h2>🏆 Top Players</h2>
+                    <div class="leaderboard-list">
+                        <div class="leaderboard-header">
+                            <span>Rank</span>
+                            <span>Name</span>
+                            <span>Score</span>
+                        </div>
+                        <div id="leaderboard-entries"></div>
+                    </div>
+                    <button id="close-leaderboard" class="close-leaderboard-button">
+                        <span class="button-text">Close</span>
+                        <div class="button-glow"></div>
+                    </button>
+                </div>
             </div>
 
             <footer>

@@ -14,14 +14,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const instructionModal = document.getElementById("instruction-modal");
     const finalScoreDisplay = document.getElementById("final-score");
     const restartButton = document.getElementById("restart-game");
-    const moodProgress = document.getElementById('mood-progress');
-    const moodMessage = document.getElementById('mood-message');
-    const playerNameDisplay = document.getElementById('player-name-display');
     const registrationModal = document.getElementById('registration-modal');
     const playerNameInput = document.getElementById('player-name');
     const registerButton = document.getElementById('register-button');
+    const leaderboardButton = document.getElementById('leaderboard-button');
+    const leaderboardModal = document.getElementById('leaderboard-modal');
+    const closeLeaderboardButton = document.getElementById('close-leaderboard');
+    const leaderboardEntries = document.getElementById('leaderboard-entries');
+    const MAX_LEADERBOARD_ENTRIES = 10;
     let playerName = '';
-    let moodLevel = 50; // Starting mood level (0-100)
 
     // Show instruction modal on page load
     instructionModal.style.display = "flex";
@@ -111,49 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Progress messages with their trigger scores
-    const progressMessages = [
-        { score: 5, messages: [
-            { message: "Beta, tumse na ho payega!", emoji: "😆" },
-            { message: "Jaldi kar, sabka badla lega re tera bhai!", emoji: "💪" },
-            { message: "Arrey bhai bhai bhai! Mazaa aa gaya!", emoji: "🚀" }
-        ]},
-        { score: 10, messages: [
-            { message: "Aap chronology samajhiye... tu OP ho raha hai! 🤯", emoji: "💯" },
-            { message: "Oye hoye! Koi toh roko isko!", emoji: "🚀" },
-            { message: "Aag laga di bhai!", emoji: "🔥" }
-        ]},
-        { score: 15, messages: [
-            { message: "Baap re baap, ekdum turbo mode me! ", emoji: "⚡" },
-            { message: "Tumse zyada expectations hai humko! ", emoji: "💪" }
-        ]},
-        { score: 20, messages: [
-            { message: "Arey! Ye toh bahut tez jaa raha hai!", emoji: "💯" },
-            { message: "Moye moye!", emoji: "🎭" },
-            { message: "Abey yaar, yeh toh Ultra Pro Max level hai! ", emoji: "👑" }
-        ]},
-        { score: 25, messages: [
-            { message: "Lagta hai tu game ka baap ban gaya!", emoji: "👑" },
-            { message: "Beta, tumse na ho payega! (Oh wait... tu kar raha hai!)", emoji: "🔥" },
-            { message: "Tu toh Sachin ka bhi baap nikla! ", emoji: "🏏" }
-        ]},
-        { score: 30, messages: [
-            { message: "Ultra instinct activate!", emoji: "🦁" },
-            { message: "Arrey bhai, ek aur round maar lo!", emoji: "⚡" },
-            { message: "Aaja beta, seekh le humse!", emoji: "🗿" }
-        ]},
-        { score: 40, messages: [
-            { message: "Bhai tu full god mode me hai!", emoji: "🦁" },
-            { message: "Chalo bhai, aaj ka MVP mil gaya!", emoji: "🔥" },
-            { message: "Abey yaar! Developers bhi shock ho gaye honge!", emoji: "👑" }
-        ]},
-        { score: 50, messages: [
-            { message: "Kya baat hai bhai, mod menu use kar raha hai kya?", emoji: "🗿" },
-            { message: "Arey! Ab yeh game tujhse hi seekhega!", emoji: "👑" },
-            { message: "Hacker spotted!", emoji: "⚡" }
-        ]}
-    ];
-    
     const explosionEmojis = ["😂","🤣","🤯","😵‍💫","💥", "🔥", "😭", "💨"];
 
     // Add this after the progressMessages array
@@ -346,45 +304,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Function to show progress message
-    function showProgressMessage(message, emoji) {
-        const messageElement = document.createElement('div');
-        messageElement.className = 'progress-message';
-        messageElement.innerHTML = `<span class="emoji">${emoji}</span>${message}`;
-        document.body.appendChild(messageElement);
-
-        // Show message immediately
-        messageElement.classList.add('show');
-
-        // Hide and remove message after 2.5 seconds
-        setTimeout(() => {
-            messageElement.classList.add('hide');
-            setTimeout(() => messageElement.remove(), 400);
-        }, 2500);
-    }
-
-    // Check for progress messages
-    function checkProgressMessages(newScore) {
-        progressMessages.forEach(msg => {
-            if (newScore === msg.score) {
-                const randomMessage = msg.messages[Math.floor(Math.random() * msg.messages.length)];
-                showProgressMessage(randomMessage.message, randomMessage.emoji);
-            }
-        });
-    }
-
-    // Add this function after the checkProgressMessages function
-    function updateQuitModalText() {
-        const randomMessage = quitMessages[Math.floor(Math.random() * quitMessages.length)];
-        const quitModalTitle = document.querySelector('#quit-modal h2');
-        const quitModalSubtitle = document.querySelector('#quit-modal p');
-        
-        if (quitModalTitle && quitModalSubtitle) {
-            quitModalTitle.textContent = randomMessage.title;
-            quitModalSubtitle.textContent = randomMessage.subtitle;
-        }
-    }
-
     // Store the original startGame function
     const originalStartGame = function() {
         // Hide instruction modal and game over modal
@@ -415,7 +334,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const name = playerNameInput.value.trim();
         if (name) {
             playerName = name;
-            playerNameDisplay.textContent = name;
             registrationModal.style.display = "none";
             // Start game directly instead of showing instruction modal
             startGame();
@@ -446,11 +364,68 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
         
-        moodLevel = 50; // Reset mood level
-        moodProgress.style.width = '50%';
-        updateMoodMessage();
         originalStartGame();
     }
+
+    // Leaderboard functionality
+    let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+
+    // Show leaderboard modal
+    leaderboardButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        playClickSound();
+        updateLeaderboardDisplay();
+        leaderboardModal.style.display = 'flex';
+    });
+
+    // Close leaderboard modal
+    closeLeaderboardButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        playClickSound();
+        leaderboardModal.style.display = 'none';
+    });
+
+    // Update leaderboard display
+    function updateLeaderboardDisplay() {
+        leaderboardEntries.innerHTML = '';
+        const sortedLeaderboard = [...leaderboard].sort((a, b) => b.score - a.score);
+        
+        sortedLeaderboard.slice(0, MAX_LEADERBOARD_ENTRIES).forEach((entry, index) => {
+            const entryElement = document.createElement('div');
+            entryElement.className = `leaderboard-entry rank-${index + 1}`;
+            entryElement.innerHTML = `
+                <span>${index + 1}</span>
+                <span>${entry.name}</span>
+                <span>${entry.score}</span>
+            `;
+            leaderboardEntries.appendChild(entryElement);
+        });
+    }
+
+    // Update leaderboard when game ends
+    function updateLeaderboard() {
+        if (playerName && score > 0) {
+            leaderboard.push({
+                name: playerName,
+                score: score,
+                date: new Date().toISOString()
+            });
+            
+            // Sort by score and keep only top entries
+            leaderboard.sort((a, b) => b.score - a.score);
+            leaderboard = leaderboard.slice(0, MAX_LEADERBOARD_ENTRIES);
+            
+            // Save to localStorage
+            localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+        }
+    }
+
+    // Update gameOver function to include leaderboard update
+    const originalGameOver = gameOver;
+    gameOver = function() {
+        originalGameOver();
+        updateLeaderboard();
+    };
 
     function gameOver() {
         gameActive = false;
@@ -568,7 +543,6 @@ document.addEventListener("DOMContentLoaded", function () {
             showHitEffect(activeJhatu);
             hideJhatu();
             lastHitTime = currentTime;
-            updateMood(10); // Increase mood when hitting Jhatu
 
             if (score % 3 === 0) {
                 ganduChance = Math.min(ganduChance + 0.05, maxGanduChance);
@@ -590,7 +564,6 @@ document.addEventListener("DOMContentLoaded", function () {
             showHitEffect(activeGandu);
             hideGandu();
             lastHitTime = currentTime;
-            updateMood(-30); // Decrease mood when hitting Gandu
             playGameOverSound();
             gameOver();
         }
@@ -725,69 +698,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Initialize history state
     history.pushState(null, null, window.location.href);
-
-    const moodMessages = {
-        angry: [
-            "is super angry! 😡",
-            "ko gussa aa raha hai! 😤",
-            "is ready to fight! 👊",
-            "is in full rage mode! 💢",
-            "Beta, tumse na ho payega! 😤",
-            "Jaldi kar, sabka badla lega re tera bhai! 💢"
-        ],
-        sad: [
-            "is feeling sad 😢",
-            "ko dard ho raha hai 😔",
-            "is heartbroken 💔",
-            "needs some love ❤️",
-            "Aap chronology samajhiye... tu OP ho raha hai! 🤯",
-            "Oye hoye! Koi toh roko isko! 😭"
-        ],
-        neutral: [
-            "is waiting to play! 😊",
-            "is ready to start! 🎮",
-            "is in the zone! 🎯",
-            "is feeling good! 👍",
-            "Baap re baap, ekdum turbo mode me! ⚡",
-            "Tumse zyada expectations hai humko! 💪"
-        ],
-        happy: [
-            "is super happy! 😄",
-            "is loving this! ❤️",
-            "is on fire! 🔥",
-            "is unstoppable! 💪",
-            "Arey! Ye toh bahut tez jaa raha hai! 💯",
-            "Moye moye! 🎭"
-        ],
-        excited: [
-            "is going crazy! 🤪",
-            "is in turbo mode! ⚡",
-            "is the king! 👑",
-            "is the ultimate champion! 🏆",
-            "Abey yaar, yeh toh Ultra Pro Max level hai! 👑",
-            "Lagta hai tu game ka baap ban gaya! 🏆"
-        ]
-    };
-
-    function updateMood(change) {
-        moodLevel = Math.max(0, Math.min(100, moodLevel + change));
-        moodProgress.style.width = `${moodLevel}%`;
-        updateMoodMessage();
-    }
-
-    function updateMoodMessage() {
-        let messages;
-        if (moodLevel < 20) {
-            messages = moodMessages.angry;
-        } else if (moodLevel < 40) {
-            messages = moodMessages.sad;
-        } else if (moodLevel < 60) {
-            messages = moodMessages.neutral;
-        } else if (moodLevel < 80) {
-            messages = moodMessages.happy;
-        } else {
-            messages = moodMessages.excited;
-        }
-        moodMessage.innerHTML = `<span id="player-name-display">${playerName}</span> ${messages[Math.floor(Math.random() * messages.length)]}`;
-    }
 });
