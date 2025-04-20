@@ -131,6 +131,10 @@
                     </span>
                     <div class="button-glow"></div>
                 </button>
+                <button id="statistics-button" class="statistics-button">
+                    <span class="button-text">📊 Stats</span>
+                    <div class="button-glow"></div>
+                </button>
                 <button id="leaderboard-button" class="leaderboard-button">
                     <span class="button-text">🏆 Leaderboard</span>
                     <div class="button-glow"></div>
@@ -220,6 +224,39 @@
     <audio id="background-music" preload="auto" loop>
         <source src="sounds/BackgroundSound.mp3" type="audio/mpeg">
     </audio>
+
+    <!-- Statistics Modal -->
+    <div id="statistics-modal" class="modal">
+        <div class="modal-content statistics-content">
+            <h2>📊 Game Statistics</h2>
+            <div class="statistics-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Total Games</span>
+                    <span id="total-games" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Average Score</span>
+                    <span id="average-score" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Best Streak</span>
+                    <span id="best-streak" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Gandu Hits</span>
+                    <span id="gandu-hits" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Time</span>
+                    <span id="total-time" class="stat-value">0m</span>
+                </div>
+            </div>
+            <button id="close-statistics" class="close-statistics-button">
+                <span class="button-text">Close</span>
+                <div class="button-glow"></div>
+            </button>
+        </div>
+    </div>
 
     <script src="scripts.js"></script>
 </body>

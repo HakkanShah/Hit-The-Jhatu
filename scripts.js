@@ -43,17 +43,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // Show registration modal on page load
     registrationModal.style.display = "flex";
 
+    // Game state variables
+    let gameActive = false;
     let score = 0;
     let highScore = localStorage.getItem("highScore") || 0;
-    let gameActive = false;
+    let difficulty = 1;
+    let ganduChance = 0.2;
+    let gameInterval = null;
+    let gameStartTime = 0;
     let activeHole = null;
     let activeJhatu = null;
     let activeGandu = null;
-    let gameInterval;
     let lastHitTime = 0;
     let hitCooldown = 150;
-    let difficulty = 1;
-    let ganduChance = 0.2;
     let baseTime = 1500;
     let minTime = 1000;
     let maxGanduChance = 0.4;
@@ -319,7 +321,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Store the original startGame function
-    const originalStartGame = function() {
+    let originalStartGame = function() {
         // Hide instruction modal and game over modal
         instructionModal.style.display = "none";
         gameOverModal.style.display = "none";
@@ -362,24 +364,28 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Update startGame function
-    function startGame() {
-        if (customJhatuImage) {
-            const jhatus = document.querySelectorAll('.jhatu');
-            jhatus.forEach(jhatu => {
-                jhatu.src = customJhatuImage;
-            });
-        }
-        
-        if (customGanduImage) {
-            const gandus = document.querySelectorAll('.gandu');
-            gandus.forEach(gandu => {
-                gandu.src = customGanduImage;
-            });
-        }
-        
+    // Store the original gameOver function
+    let originalGameOver = function() {
+        gameActive = false;
+        clearTimeout(gameInterval);
+        hideJhatu();
+        hideGandu();
+        updateHighScore();
+        finalScoreDisplay.textContent = score;
+        gameOverModal.style.display = "flex";
+    };
+
+    // Override gameOver function to include leaderboard update
+    gameOver = function() {
+        originalGameOver();
+        updateLeaderboard();
+    };
+
+    // Update startGame function with statistics
+    startGame = function() {
+        gameStartTime = Date.now();
         originalStartGame();
-    }
+    };
 
     // Leaderboard functionality
     let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
@@ -432,23 +438,6 @@ document.addEventListener("DOMContentLoaded", function () {
             // Save to localStorage
             localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
         }
-    }
-
-    // Update gameOver function to include leaderboard update
-    const originalGameOver = gameOver;
-    gameOver = function() {
-        originalGameOver();
-        updateLeaderboard();
-    };
-
-    function gameOver() {
-        gameActive = false;
-        clearTimeout(gameInterval);
-        hideJhatu();
-        hideGandu();
-        updateHighScore();
-        finalScoreDisplay.textContent = score;
-        gameOverModal.style.display = "flex";
     }
 
     // Event listeners for Play Now and Play Again buttons
@@ -712,4 +701,106 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Initialize history state
     history.pushState(null, null, window.location.href);
+
+    // Statistics variables
+    let totalGames = 0;
+    let totalScore = 0;
+    let bestStreak = 0;
+    let currentStreak = 0;
+    let ganduHits = 0;
+    let totalTimePlayed = 0;
+
+    // Statistics elements
+    const statisticsModal = document.getElementById('statistics-modal');
+    const statisticsButton = document.getElementById('statistics-button');
+    const closeStatisticsButton = document.getElementById('close-statistics');
+    const totalGamesDisplay = document.getElementById('total-games');
+    const averageScoreDisplay = document.getElementById('average-score');
+    const bestStreakDisplay = document.getElementById('best-streak');
+    const ganduHitsDisplay = document.getElementById('gandu-hits');
+    const totalTimeDisplay = document.getElementById('total-time');
+
+    // Load statistics from localStorage
+    function loadStatistics() {
+        const stats = JSON.parse(localStorage.getItem('gameStatistics')) || {
+            totalGames: 0,
+            totalScore: 0,
+            bestStreak: 0,
+            ganduHits: 0,
+            totalTimePlayed: 0
+        };
+        
+        totalGames = stats.totalGames;
+        totalScore = stats.totalScore;
+        bestStreak = stats.bestStreak;
+        ganduHits = stats.ganduHits;
+        totalTimePlayed = stats.totalTimePlayed;
+        
+        updateStatisticsDisplay();
+    }
+
+    // Save statistics to localStorage
+    function saveStatistics() {
+        const stats = {
+            totalGames,
+            totalScore,
+            bestStreak,
+            ganduHits,
+            totalTimePlayed
+        };
+        localStorage.setItem('gameStatistics', JSON.stringify(stats));
+    }
+
+    // Update statistics display
+    function updateStatisticsDisplay() {
+        totalGamesDisplay.textContent = totalGames;
+        averageScoreDisplay.textContent = totalGames > 0 ? Math.round(totalScore / totalGames) : 0;
+        bestStreakDisplay.textContent = bestStreak;
+        ganduHitsDisplay.textContent = ganduHits;
+        
+        // Format total time played
+        const hours = Math.floor(totalTimePlayed / 3600);
+        const minutes = Math.floor((totalTimePlayed % 3600) / 60);
+        const seconds = totalTimePlayed % 60;
+        
+        if (hours > 0) {
+            totalTimeDisplay.textContent = `${hours}h ${minutes}m`;
+        } else if (minutes > 0) {
+            totalTimeDisplay.textContent = `${minutes}m ${seconds}s`;
+        } else {
+            totalTimeDisplay.textContent = `${seconds}s`;
+        }
+    }
+
+    // Update game statistics
+    function updateGameStatistics() {
+        totalGames++;
+        totalScore += score;
+        currentStreak = score;
+        
+        if (currentStreak > bestStreak) {
+            bestStreak = currentStreak;
+        }
+        
+        const gameDuration = Math.floor((Date.now() - gameStartTime) / 1000);
+        totalTimePlayed += gameDuration;
+        
+        saveStatistics();
+        updateStatisticsDisplay();
+    }
+
+    // Event listeners for statistics
+    statisticsButton.addEventListener('click', function() {
+        playClickSound();
+        statisticsModal.style.display = 'flex';
+        updateStatisticsDisplay();
+    });
+
+    closeStatisticsButton.addEventListener('click', function() {
+        playClickSound();
+        statisticsModal.style.display = 'none';
+    });
+
+    // Initialize statistics
+    loadStatistics();
 });
