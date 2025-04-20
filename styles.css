@@ -348,16 +348,14 @@ h1 {
 /* Controls */
 .controls {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 10px;
-    margin: 30px 0;
-    padding: 1px;
+    margin: 10px;
+    padding: 5px;
     background: transparent;
-    border-radius: 15px;
-    backdrop-filter: blur(5px);
-    flex-wrap: wrap;
-    padding-right: 15px;
+    position: relative;
+    z-index: 1000;
 }
 
 /* Base Button Styles */
@@ -418,105 +416,73 @@ h1 {
 .sound-toggle-button {
     background: transparent;
     border: none;
-    color: var(--primary-color);
+    color: #666;
     padding: 8px;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
-    position: relative;
-    transition: all 0.3s;
+    position: fixed;
+    top: 20px;
+    right: 20px;
     width: 40px;
     height: 40px;
-    touch-action: manipulation;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
 }
 
 .sound-toggle-button:hover {
+    background: rgba(0, 0, 0, 0.05);
     transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
 }
 
 .sound-toggle-button:active {
     transform: scale(0.95);
 }
 
-.sound-toggle-button .button-text {
-    font-size: 24px;
-    margin: 0;
-    color: var(--primary-color);
-    text-shadow: 0 0 10px var(--glow-color);
-    transition: transform 0.3s ease;
-}
-
-.sound-toggle-button.muted .button-text {
-    transform: scale(0.8);
-    opacity: 0.7;
-}
-
 /* Share Button */
 .share-button {
-    background: linear-gradient(45deg, #000000, #1a1a1a);
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    padding: 8px 15px;
+    background: transparent;
+    border: none;
+    color: #666;
+    padding: 8px 12px;
     font-size: 14px;
-    font-weight: bold;
-    border-radius: 25px;
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    width: auto;
-    min-width: 120px;
-    min-height: 40px;
-    touch-action: manipulation;
-    box-shadow: 0 0 15px rgb(234, 246, 6),
-                inset 0 0 10px rgb(216, 234, 13);
-    animation: neonGlow 4s infinite;
-    z-index: 1;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    line-height: 1;
+    position: relative;
+}
+
+.share-button span {
+    position: relative;
+    top: 1px;
 }
 
 .share-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px rgb(234, 246, 6),
-                inset 0 0 10px rgb(216, 234, 13);
-}
-
-.share-button:hover .button-glow {
-    left: 100%;
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .share-button:active {
-    transform: translateY(1px);
-}
-
-.share-button .button-text {
-    font-size: 14px;
-    letter-spacing: 2px;
-    color: var(--primary-color);
-    text-shadow: 0 0 10px var(--glow-color);
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    transform: scale(0.98);
 }
 
 .share-icon {
-    width: 20px;
-    height: 20px;
-    transition: transform 0.3s ease;
-}
-
-.share-button:hover .share-icon {
-    transform: scale(1.1);
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 1px;
 }
 
 /* Play Again Button */
@@ -684,26 +650,26 @@ footer:active {
     }
 
     .sound-toggle-button {
-        width: 45px;
-        height: 45px;
-        font-size: 20px;
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
     }
 
     .share-button {
-        padding: 8px 12px;
+        padding: 6px 10px;
         font-size: 12px;
-        min-width: 100px;
     }
 
-    .leaderboard-button {
-        padding: 8px 12px;
-        font-size: 12px;
-        min-width: 120px;
+    .share-button span {
+        top: 0.5px;
     }
 
     .share-icon {
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
+        top: 0.5px;
     }
 }
 
@@ -762,20 +728,26 @@ footer:active {
     }
 
     .sound-toggle-button {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
     }
 
-    .share-button, .leaderboard-button {
-        padding: 6px 10px;
+    .share-button {
+        padding: 5px 8px;
         font-size: 11px;
-        min-width: 90px;
+    }
+
+    .share-button span {
+        top: 0.5px;
     }
 
     .share-icon {
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
+        top: 0.5px;
     }
 }
 
@@ -826,20 +798,26 @@ footer:active {
     }
 
     .sound-toggle-button {
-        width: 35px;
-        height: 35px;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
         font-size: 16px;
     }
 
-    .share-button, .leaderboard-button {
-        padding: 5px 8px;
+    .share-button {
+        padding: 4px 6px;
         font-size: 10px;
-        min-width: 80px;
+    }
+
+    .share-button span {
+        top: 0.5px;
     }
 
     .share-icon {
         width: 12px;
         height: 12px;
+        top: 0.5px;
     }
 }
 
@@ -1435,37 +1413,25 @@ footer:active {
 
 /* Leaderboard Styles */
 .leaderboard-button {
-    background: linear-gradient(45deg, #000000, #1a1a1a);
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    padding: 8px 15px;
+    background: transparent;
+    border: none;
+    color: #666;
+    padding: 8px 12px;
     font-size: 14px;
-    font-weight: bold;
-    border-radius: 25px;
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    width: auto;
-    min-width: 120px;
-    min-height: 40px;
-    touch-action: manipulation;
-    box-shadow: 0 0 15px rgb(234, 246, 6),
-                inset 0 0 10px rgb(216, 234, 13);
-    animation: neonGlow 4s infinite;
-    z-index: 1;
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 6px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
 }
 
 .leaderboard-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px rgb(234, 246, 6),
-                inset 0 0 10px rgb(216, 234, 13);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.leaderboard-button:active {
+    transform: scale(0.98);
 }
 
 .leaderboard-content {
