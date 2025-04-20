@@ -375,12 +375,6 @@ document.addEventListener("DOMContentLoaded", function () {
         gameOverModal.style.display = "flex";
     };
 
-    // Override gameOver function to include leaderboard update
-    gameOver = function() {
-        originalGameOver();
-        updateLeaderboard();
-    };
-
     // Update startGame function with statistics
     startGame = function() {
         gameStartTime = Date.now();
@@ -803,4 +797,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Initialize statistics
     loadStatistics();
+
+    // Update gameOver function to include statistics
+    gameOver = function() {
+        originalGameOver();
+        updateLeaderboard();
+        updateGameStatistics();
+    };
 });
