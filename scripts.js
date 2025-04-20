@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const hitSound = document.getElementById("hit-sound");
     const clickSound = document.getElementById("click-sound");
     const gameOverSound = document.getElementById("game-over-sound");
+    const backgroundMusic = document.getElementById("background-music");
     const gameOverModal = document.getElementById("game-over-modal");
     const instructionModal = document.getElementById("instruction-modal");
     const finalScoreDisplay = document.getElementById("final-score");
@@ -23,6 +24,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const leaderboardEntries = document.getElementById('leaderboard-entries');
     const MAX_LEADERBOARD_ENTRIES = 10;
     let playerName = '';
+
+    // Initialize background music
+    backgroundMusic.volume = 0.3; // Set volume to 30%
+    backgroundMusic.loop = true; // Ensure music loops
+    backgroundMusic.play().catch(error => {
+        console.log("Background music autoplay failed:", error);
+        // Try to play again when user interacts
+        document.addEventListener('click', function playMusic() {
+            backgroundMusic.play();
+            document.removeEventListener('click', playMusic);
+        });
+    });
 
     // Show instruction modal on page load
     instructionModal.style.display = "flex";
@@ -168,6 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
         hitSound.volume = isMuted ? 0 : 1;
         clickSound.volume = isMuted ? 0 : 1;
         gameOverSound.volume = isMuted ? 0 : 1;
+        backgroundMusic.volume = isMuted ? 0 : 0.3;
         
         // Update audio context volume if it exists
         if (audioContext) {
