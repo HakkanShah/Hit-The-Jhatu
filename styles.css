@@ -541,6 +541,7 @@ footer {
     text-align: center;
     font-family: sans-serif;
     padding: 1px;
+    padding-bottom: 2px;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     cursor: pointer;
