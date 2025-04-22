@@ -537,10 +537,10 @@ h1 {
 
 /* Footer */
 footer {
-    margin-top: 20px;
+    margin-top: 10px;
     text-align: center;
     font-family: sans-serif;
-    padding: 0;
+    padding: 1px;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     cursor: pointer;
