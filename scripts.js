@@ -763,7 +763,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Update game statistics
+    // Update Game statistics
     function updateGameStatistics() {
         totalGames++;
         totalScore += score;
