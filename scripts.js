@@ -25,6 +25,41 @@ document.addEventListener("DOMContentLoaded", function () {
     const MAX_LEADERBOARD_ENTRIES = 10;
     let playerName = '';
 
+    // Add progress messages
+    const progressMessages = [
+        { score: 0, message: "is Ready to Play!" },
+        { score: 5, message: "is Getting Started!" },
+        { score: 10, message: "is on Fire! 🔥" },
+        { score: 20, message: "is Unstoppable! 💪" },
+        { score: 30, message: "is a Pro Gamer! 🎮" },
+        { score: 40, message: "is Legendary! 🌟" },
+        { score: 50, message: "is a Gaming God! 👑" }
+    ];
+
+    // Function to update player header
+    function updatePlayerHeader() {
+        let message = "is Playing";
+        for (let i = progressMessages.length - 1; i >= 0; i--) {
+            if (score >= progressMessages[i].score) {
+                message = progressMessages[i].message;
+                break;
+            }
+        }
+        document.getElementById('player-header').textContent = `${playerName} ${message}`;
+    }
+
+    // Update score function
+    function updateScore() {
+        score++;
+        scoreDisplay.textContent = score;
+        updatePlayerHeader(); // Update header when score changes
+        if (score > highScore) {
+            highScore = score;
+            highScoreDisplay.textContent = highScore;
+            localStorage.setItem("highScore", highScore);
+        }
+    }
+
     // Initialize background music
     backgroundMusic.volume = 0.3; // Set volume to 30%
     backgroundMusic.loop = true; // Ensure music loops
@@ -348,9 +383,27 @@ document.addEventListener("DOMContentLoaded", function () {
         const name = playerNameInput.value.trim();
         if (name) {
             playerName = name;
+            // Save player name to localStorage
+            localStorage.setItem('playerName', name);
             registrationModal.style.display = "none";
             instructionModal.style.display = "flex"; // Show instruction modal after registration
+            document.getElementById('player-header').textContent = `${name} is Playing`;
             playClickSound();
+        }
+    });
+
+    // Load saved player name on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if player name exists in localStorage
+        const savedName = localStorage.getItem('playerName');
+        if (savedName) {
+            playerName = savedName;
+            registrationModal.style.display = "none";
+            instructionModal.style.display = "flex";
+            document.getElementById('player-header').textContent = `${savedName} is Playing`;
+        } else {
+            registrationModal.style.display = "flex";
+            instructionModal.style.display = "none";
         }
     });
 
@@ -533,6 +586,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (gameActive && hole === activeHole && activeJhatu) {
             score++;
             scoreDisplay.textContent = score;
+            updatePlayerHeader(); // Update header when score changes
             playRandomHitSound();
             showHitEffect(activeJhatu);
             hideJhatu();
@@ -613,7 +667,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.onpopstate = function(event) {
         if (gameActive) {
             event.preventDefault();
-            updateQuitModalText(); // Update text before showing modal
             quitModal.style.display = 'flex';
             history.pushState(null, null, window.location.href);
         }
@@ -636,37 +689,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Update the quit button click handlers
+    // Update quit button click handlers
     quitYesButton.addEventListener('click', function() {
         quitModal.style.display = 'none';
         gameActive = false;
         clearTimeout(gameInterval);
         hideJhatu();
         hideGandu();
-        
-        // Try multiple methods to close/exit
-        try {
-            // Method 1: Try window.close()
-            window.close();
-            
-            // Method 2: If window.close() fails, try to redirect to blank page
-            setTimeout(() => {
-                window.location.href = "about:blank";
-            }, 100);
-            
-            // Method 3: If both fail, try to go back in history
-            setTimeout(() => {
-                window.history.back();
-            }, 200);
-        } catch (e) {
-            // If all methods fail, redirect to blank page
-            window.location.href = "about:blank";
-        }
+        window.location.href = "about:blank";
     });
 
     quitNoButton.addEventListener('click', function() {
         quitModal.style.display = 'none';
-        updateQuitModalText(); // Update text for next time
     });
 
     // Add click sound to quit buttons
@@ -800,5 +834,8 @@ document.addEventListener("DOMContentLoaded", function () {
         originalGameOver();
         updateLeaderboard();
         updateGameStatistics();
+        ganduHits++; // Increment gandu hits counter
+        saveStatistics();
+        updateStatisticsDisplay();
     };
 });
