@@ -84,8 +84,8 @@
 
 /* Base Styles */
 * {
+    padding:0;
     margin: 0;
-    padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
@@ -116,14 +116,15 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    padding-bottom: 20px;
+    padding-bottom: 8px;
 }
 
 .game-container {
+   
+    padding: 15px;
     flex: 1;
     background: linear-gradient(45deg, #000000, #1a1a1a);
     border-radius: 20px;
-    padding: 15px;
     box-shadow: 0 0 30px rgba(0, 255, 0, 0.2),
                 inset 0 0 20px rgba(0, 255, 0, 0.1);
     border: 2px solid var(--primary-color);
@@ -131,7 +132,7 @@ body {
     display: flex;
     flex-direction: column;
     animation: neonBorder 4s infinite;
-    margin-bottom: 20px;
+  
 }
 
 .game-container::before {
@@ -268,7 +269,7 @@ h1 {
 .hole {
     position: relative;
     width: 100%;
-    padding-bottom: 100%;
+    padding-bottom: 90%;
     background: url('images/ClosedHole.webp') no-repeat center center;
     background-size: contain;
     border-radius: 50%;
