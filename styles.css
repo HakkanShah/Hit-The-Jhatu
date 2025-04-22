@@ -116,7 +116,7 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 0;
 }
 
 .game-container {
