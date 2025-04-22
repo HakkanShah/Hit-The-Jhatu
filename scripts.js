@@ -52,11 +52,18 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateScore() {
         score++;
         scoreDisplay.textContent = score;
-        updatePlayerHeader(); // Update header when score changes
+        updatePlayerHeader();
+        
         if (score > highScore) {
             highScore = score;
             highScoreDisplay.textContent = highScore;
             localStorage.setItem("highScore", highScore);
+            
+            // Show celebration message
+            highScoreCelebration.style.display = 'block';
+            setTimeout(() => {
+                highScoreCelebration.style.display = 'none';
+            }, 3000);
         }
     }
 
