@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
             highScoreDisplay.textContent = highScore;
             localStorage.setItem("highScore", highScore);
             
-            // Show celebration message
+            
             highScoreCelebration.style.display = 'block';
             setTimeout(() => {
                 highScoreCelebration.style.display = 'none';
