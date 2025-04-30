@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { score: 50, message: "is a Gaming God! 👑" }
     ];
 
-    // Function to update player header
+    
     function updatePlayerHeader() {
         let message = "is Playing";
         for (let i = progressMessages.length - 1; i >= 0; i--) {
