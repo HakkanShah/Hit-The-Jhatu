@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ];
 
-    // Initialize high score
+    
     highScoreDisplay.textContent = highScore;
 
     // Mute/Unmute functionality
