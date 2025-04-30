@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('player-header').textContent = `${playerName} ${message}`;
     }
 
-    // Update score function
+
     function updateScore() {
         score++;
         scoreDisplay.textContent = score;
