@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Show registration modal on page load
+    
     registrationModal.style.display = "flex";
     instructionModal.style.display = "none"; // Hide instruction modal initially
 
