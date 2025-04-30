@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Initialize background music
+    
     backgroundMusic.volume = 0.3; // Set volume to 30%
     backgroundMusic.loop = true; // Ensure music loops
     backgroundMusic.play().catch(error => {
