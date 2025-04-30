@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const MAX_LEADERBOARD_ENTRIES = 10;
     let playerName = '';
 
-    // Add progress messages
+    
     const progressMessages = [
         { score: 0, message: "is Ready to Play!" },
         { score: 5, message: "is Getting Started!" },
