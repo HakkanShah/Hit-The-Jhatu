@@ -152,7 +152,6 @@ body {
     100% { background-position: 30px 30px; }
 }
 
-/* Header Styles */
 header {
     display: flex;
     flex-direction: column;
