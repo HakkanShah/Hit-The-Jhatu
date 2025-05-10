@@ -350,7 +350,6 @@ header {
     animation: jhatuPulse 1.5s infinite;
 }
 
-/* Hole Effects */
 
 .hole:active {
     transform: scale(0.95) rotate(-5deg);
