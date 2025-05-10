@@ -277,7 +277,6 @@ header {
     100% { transform: scale(1); }
 }
 
-/* Game Board */
 #game-board {
     flex: 1;
     display: grid;
