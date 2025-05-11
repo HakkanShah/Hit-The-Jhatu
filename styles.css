@@ -370,7 +370,6 @@ header {
     z-index: 3;
 }
 
-/* Controls */
 .controls {
     display: flex;
     justify-content: center;
