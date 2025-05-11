@@ -1102,7 +1102,6 @@ footer {
     border: 2px solid #ff0000;
 }
 
-/* Landscape Mode */
 @media (max-height: 500px) and (orientation: landscape) {
     .character-card {
         width: 120px;
