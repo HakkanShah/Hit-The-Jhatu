@@ -409,7 +409,6 @@ header {
     opacity: 0.5;
 }
 
-/* Play Now Button */
 .play-now-button {
     background: linear-gradient(45deg, #000000, #1a1a1a);
     border: 2px solid var(--primary-color);
