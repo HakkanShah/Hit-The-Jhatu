@@ -855,7 +855,6 @@ footer {
     animation: ganduPulse 1.5s infinite;
 }
 
-/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
