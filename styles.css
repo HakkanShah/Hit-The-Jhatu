@@ -564,7 +564,6 @@ header {
     background: linear-gradient(90deg, transparent, var(--glow-color), transparent);
 }
 
-/* Footer */
 footer {
     margin-top: 10px;
     text-align: center;
