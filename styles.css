@@ -359,7 +359,6 @@ header {
     animation: pulse 1.5s infinite;
 }
 
-/* Explosion Effect */
 .explosion-effect {
     position: absolute;
     top: 50%;
