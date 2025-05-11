@@ -382,7 +382,6 @@ header {
     z-index: 1000;
 }
 
-/* Hide controls when modals are visible */
 #registration-modal:not([style*="display: none"]) ~ .game-container .controls,
 #instruction-modal:not([style*="display: none"]) ~ .game-container .controls {
     display: none !important;
