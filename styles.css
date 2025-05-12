@@ -514,7 +514,6 @@ header {
     top: 1px;
 }
 
-/* Play Again Button */
 .play-again-button {
     background: linear-gradient(45deg, #000000, #1a1a1a);
     border: 2px solid var(--primary-color);
