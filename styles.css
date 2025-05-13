@@ -10,7 +10,7 @@
     --button-bg: #1a1a1a;
     --hole-bg: #2a2a2a;
     --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
-    --neon-glow: 0 0 10px rgba(76, 170, 80, 0.8);
+    --neon-glow: 0 0 10px rgba(76, 175, 80, 0.8);
     --font-heading: 'Righteous', cursive;
     --font-body: 'Montserrat', sans-serif;
 }
