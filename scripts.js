@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
     registrationModal.style.display = "flex";
-    instructionModal.style.display = "none"; // Hide instruction modal initially
+    instructionModal.style.display = "none"; 
 
     // Game state variables
     let gameActive = false;
