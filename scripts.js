@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
     backgroundMusic.loop = true; // Ensure music loops
     backgroundMusic.play().catch(error => {
         console.log("Background music autoplay failed:", error);
-        // Try to play again when user interacts
+        
         document.addEventListener('click', function playMusic() {
             backgroundMusic.play();
             document.removeEventListener('click', playMusic);
