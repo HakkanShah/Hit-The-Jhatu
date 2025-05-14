@@ -83,7 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
     registrationModal.style.display = "flex";
     instructionModal.style.display = "none"; 
 
-    // Game state variables
     let gameActive = false;
     let score = 0;
     let highScore = localStorage.getItem("highScore") || 0;
