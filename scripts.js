@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     
-    backgroundMusic.volume = 0.3; // Set volume to 30%
+    backgroundMusic.volume = 0.3; 
     backgroundMusic.loop = true; // Ensure music loops
     backgroundMusic.play().catch(error => {
         console.log("Background music autoplay failed:", error);
