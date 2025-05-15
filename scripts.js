@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const reader = new FileReader();
             
             reader.onload = function(event) {
-                // Update the image in the instruction modal
+                
                 ganduImage.src = event.target.result;
                 
                 // Store the custom image for use in the game
