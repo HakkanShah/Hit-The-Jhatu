@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 jhatuImage.src = event.target.result;
                 
-                // Store the custom image for use in the game
+              
                 customJhatuImage = event.target.result;
                 
                 // Update all Jhatu images in the game board
