@@ -109,7 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const jhatuImage = document.getElementById('jhatu-image');
     const ganduImage = document.getElementById('gandu-image');
     
-    // Store custom images
     let customJhatuImage = null;
     let customGanduImage = null;
     
