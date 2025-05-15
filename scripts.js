@@ -102,8 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let clickBuffer = null;
     let isMuted = false;
     let lastMuteClickTime = 0;
-    const muteClickDelay = 300; // 300ms delay between mute clicks
-
+    const muteClickDelay = 300; 
     const jhatuUpload = document.getElementById('jhatu-upload');
     const ganduUpload = document.getElementById('gandu-upload');
     const jhatuImage = document.getElementById('jhatu-image');
