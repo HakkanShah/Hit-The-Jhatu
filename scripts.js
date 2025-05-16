@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 ganduImage.src = event.target.result;
                 
-                // Store the custom image for use in the game
+               
                 customGanduImage = event.target.result;
                 
                 // Update all Gandu images in the game board
