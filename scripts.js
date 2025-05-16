@@ -122,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function () {
               
                 customJhatuImage = event.target.result;
                 
-                // Update all Jhatu images in the game board
                 const jhatus = document.querySelectorAll('.jhatu');
                 jhatus.forEach(jhatu => {
                     jhatu.src = customJhatuImage;
