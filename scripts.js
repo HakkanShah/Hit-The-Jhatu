@@ -163,7 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const explosionEmojis = ["😂","🤣","🤯","😵‍💫","💥", "🔥", "😭", "💨"];
 
-    // Add this after the progressMessages array
     const quitMessages = [
         {
             title: "Arey Bhai! Game Chhod ke Ja Rahe Ho?😱",
