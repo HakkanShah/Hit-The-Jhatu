@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     jhatu.src = customJhatuImage;
                 });
                 
-                // Play click sound
+                
                 playClickSound();
             };
             
