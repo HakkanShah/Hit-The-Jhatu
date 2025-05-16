@@ -153,7 +153,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     gandu.src = customGanduImage;
                 });
                 
-                // Play click sound
                 playClickSound();
             };
             
