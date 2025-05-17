@@ -276,8 +276,6 @@ document.addEventListener("DOMContentLoaded", function () {
         playClickSound();
         shareGame();
     }, { passive: false });
-
-    // Update audio context initialization
     function initAudio() {
         if (!audioContext) {
             audioContext = new (window.AudioContext || window.webkitAudioContext)();
