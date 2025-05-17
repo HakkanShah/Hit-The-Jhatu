@@ -248,7 +248,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.execCommand('copy');
                 document.body.removeChild(tempInput);
                 
-                // Show a message to the user
                 alert('Share link copied to clipboard! You can now paste it anywhere.');
             }
         } catch (err) {
