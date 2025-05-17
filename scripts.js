@@ -224,7 +224,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Share functionality
     async function shareGame() {
         const shareData = {
             title: 'Hit The Jhatu',
