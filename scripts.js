@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
         gameOverSound.volume = isMuted ? 0 : 1;
         backgroundMusic.volume = isMuted ? 0 : 0.3;
         
-        // Update audio context volume if it exists
+       
         if (audioContext) {
             audioContext.gainNode.gain.value = isMuted ? 0 : 1;
         } else {
