@@ -235,7 +235,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (navigator.share) {
                 await navigator.share(shareData);
             } else {
-                // Fallback for browsers that don't support Web Share API
                 const shareUrl = encodeURIComponent('https://hakkanshah.github.io/Hit-The-Jhatu/');
                 const shareText = encodeURIComponent('🎮 Check out this awesome game! Hit the Jhatu but be careful not to hit the Gandu! Can you beat my high score?');
                 
