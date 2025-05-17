@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Add event listeners for new buttons
+    
     muteButton.addEventListener("click", function(event) {
         event.stopPropagation();
         playClickSound();
