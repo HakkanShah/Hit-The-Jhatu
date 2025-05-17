@@ -472,7 +472,6 @@ document.addEventListener("DOMContentLoaded", function () {
             leaderboard.sort((a, b) => b.score - a.score);
             leaderboard = leaderboard.slice(0, MAX_LEADERBOARD_ENTRIES);
             
-            // Save to localStorage
             localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
         }
     }
