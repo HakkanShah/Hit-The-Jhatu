@@ -146,8 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                
                 customGanduImage = event.target.result;
-                
-                // Update all Gandu images in the game board
+   
                 const gandus = document.querySelectorAll('.gandu');
                 gandus.forEach(gandu => {
                     gandu.src = customGanduImage;
