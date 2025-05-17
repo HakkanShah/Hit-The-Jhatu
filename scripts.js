@@ -242,8 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const tempInput = document.createElement('input');
                 tempInput.value = `🎮 Check out this awesome game! Hit the Jhatu but be careful not to hit the Gandu! Can you beat my high score?\n\nhttps://hakkanshah.github.io/Hit-The-Jhatu/`;
                 document.body.appendChild(tempInput);
-                
-                // Select and copy the text
+ 
                 tempInput.select();
                 document.execCommand('copy');
                 document.body.removeChild(tempInput);
