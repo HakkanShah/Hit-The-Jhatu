@@ -372,7 +372,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const name = playerNameInput.value.trim();
         if (name) {
             playerName = name;
-            // Save player name to localStorage
+            
             localStorage.setItem('playerName', name);
             registrationModal.style.display = "none";
             instructionModal.style.display = "flex"; 
