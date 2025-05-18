@@ -368,8 +368,7 @@ document.addEventListener("DOMContentLoaded", function () {
         startRound();
     };
 
-    // Handle player registration
-    registerButton.addEventListener('click', function() {
+   registerButton.addEventListener('click', function() {
         const name = playerNameInput.value.trim();
         if (name) {
             playerName = name;
