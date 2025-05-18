@@ -375,7 +375,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Save player name to localStorage
             localStorage.setItem('playerName', name);
             registrationModal.style.display = "none";
-            instructionModal.style.display = "flex"; // Show instruction modal after registration
+            instructionModal.style.display = "flex"; 
             document.getElementById('player-header').textContent = `${name} is Playing`;
             playClickSound();
         }
