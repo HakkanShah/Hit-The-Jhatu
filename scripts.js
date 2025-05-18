@@ -292,7 +292,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Update sound playing functions to respect mute state
     function playRandomHitSound() {
         if (isMuted) return;
         const sources = hitSound.getElementsByTagName('source');
