@@ -344,7 +344,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Store the original startGame function
     let originalStartGame = function() {
         // Hide instruction modal and game over modal
         instructionModal.style.display = "none";
