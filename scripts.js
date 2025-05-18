@@ -403,7 +403,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Store the original gameOver function
     let originalGameOver = function() {
         gameActive = false;
         clearTimeout(gameInterval);
