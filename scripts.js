@@ -349,7 +349,7 @@ document.addEventListener("DOMContentLoaded", function () {
         instructionModal.style.display = "none";
         gameOverModal.style.display = "none";
         
-        // Stop game over sound when starting new game
+        
         gameOverSound.pause();
         gameOverSound.currentTime = 0;
         
