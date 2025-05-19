@@ -394,9 +394,7 @@ document.addEventListener("DOMContentLoaded", function () {
             instructionModal.style.display = "none";
         }
     });
-
-    // Allow Enter key to submit registration
-    playerNameInput.addEventListener('keypress', function(e) {
+ playerNameInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             registerButton.click();
         }
