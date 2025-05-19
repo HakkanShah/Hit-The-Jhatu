@@ -499,7 +499,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const randomHoleIndex = Math.floor(Math.random() * holes.length);
         activeHole = holes[randomHoleIndex];
         
-        // Hide both characters first
+        
         const jhatu = activeHole.querySelector('.jhatu');
         const gandu = activeHole.querySelector('.gandu');
         if (jhatu) jhatu.style.display = "none";
