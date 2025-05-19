@@ -383,7 +383,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Load saved player name on page load
     document.addEventListener('DOMContentLoaded', function() {
-        // Check if player name exists in localStorage
+        
         const savedName = localStorage.getItem('playerName');
         if (savedName) {
             playerName = savedName;
