@@ -434,7 +434,6 @@ document.addEventListener("DOMContentLoaded", function () {
         leaderboardModal.style.display = 'none';
     });
 
-    // Update leaderboard display
     function updateLeaderboardDisplay() {
         leaderboardEntries.innerHTML = '';
         const sortedLeaderboard = [...leaderboard].sort((a, b) => b.score - a.score);
