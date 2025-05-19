@@ -359,7 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ganduChance = 0.2; // Increased initial Gandu chance
         scoreDisplay.textContent = score;
         
-        // Clear any existing interval
+        
         if (gameInterval) {
             clearTimeout(gameInterval);
             gameInterval = null;
