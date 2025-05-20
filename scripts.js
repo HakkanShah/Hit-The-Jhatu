@@ -661,8 +661,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Handle page close
-    window.addEventListener('beforeunload', function(e) {
+     window.addEventListener('beforeunload', function(e) {
         if (gameActive) {
             e.preventDefault();
             e.returnValue = '';
