@@ -410,7 +410,6 @@ document.addEventListener("DOMContentLoaded", function () {
         gameOverModal.style.display = "flex";
     };
 
-    // Update startGame function with statistics
     startGame = function() {
         gameStartTime = Date.now();
         originalStartGame();
