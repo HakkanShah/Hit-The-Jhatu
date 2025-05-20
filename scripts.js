@@ -419,8 +419,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Leaderboard functionality
     let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 
-    // Show leaderboard modal
-    leaderboardButton.addEventListener('click', function(event) {
+     leaderboardButton.addEventListener('click', function(event) {
         event.stopPropagation();
         playClickSound();
         updateLeaderboardDisplay();
