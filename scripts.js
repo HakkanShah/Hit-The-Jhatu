@@ -671,8 +671,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Update quit button click handlers
-    quitYesButton.addEventListener('click', function() {
+     quitYesButton.addEventListener('click', function() {
         quitModal.style.display = 'none';
         gameActive = false;
         clearTimeout(gameInterval);
