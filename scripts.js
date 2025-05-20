@@ -467,8 +467,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Event listeners for Play Now and Play Again buttons
-    instructionStartButton.addEventListener("click", function(event) {
+     instructionStartButton.addEventListener("click", function(event) {
         event.stopPropagation();
         playClickSound();
         startGame();
