@@ -448,7 +448,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Update leaderboard when game ends
+    
     function updateLeaderboard() {
         if (playerName && score > 0) {
             leaderboard.push({
