@@ -704,7 +704,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initialize history state
     history.pushState(null, null, window.location.href);
 
-    // Statistics variables
+    
     let totalGames = 0;
     let totalScore = 0;
     let bestStreak = 0;
