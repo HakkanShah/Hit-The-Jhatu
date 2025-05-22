@@ -624,8 +624,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Handle visibility change
-    document.addEventListener("visibilitychange", function() {
+     document.addEventListener("visibilitychange", function() {
         if (document.hidden && gameActive) {
             stopGame();
         }
