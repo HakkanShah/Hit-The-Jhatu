@@ -805,7 +805,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initialize statistics
     loadStatistics();
 
-    // Update gameOver function to include statistics
+    
     gameOver = function() {
         originalGameOver();
         updateLeaderboard();
