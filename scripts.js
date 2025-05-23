@@ -738,7 +738,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateStatisticsDisplay();
     }
 
-    // Save statistics to localStorage
+    
     function saveStatistics() {
         const stats = {
             totalGames,
