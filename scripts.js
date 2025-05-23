@@ -751,7 +751,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem('gameStatistics', JSON.stringify(stats));
     }
 
-    // Update statistics display
+    
     function updateStatisticsDisplay() {
         totalGamesDisplay.textContent = totalGames;
         averageScoreDisplay.textContent = totalGames > 0 ? Math.round(totalScore / totalGames) : 0;
