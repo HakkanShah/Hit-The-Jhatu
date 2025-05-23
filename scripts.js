@@ -425,8 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
         leaderboardModal.style.display = 'flex';
     });
 
-    // Close leaderboard modal
-    closeLeaderboardButton.addEventListener('click', function(event) {
+     closeLeaderboardButton.addEventListener('click', function(event) {
         event.stopPropagation();
         playClickSound();
         leaderboardModal.style.display = 'none';
