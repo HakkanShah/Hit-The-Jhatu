@@ -759,7 +759,7 @@ document.addEventListener("DOMContentLoaded", function () {
         bestStreakDisplay.textContent = bestStreak;
         ganduHitsDisplay.textContent = ganduHits;
         
-        // Format total time played
+        
         const hours = Math.floor(totalTimePlayed / 3600);
         const minutes = Math.floor((totalTimePlayed % 3600) / 60);
         const seconds = totalTimePlayed % 60;
