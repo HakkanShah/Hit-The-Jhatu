@@ -650,8 +650,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    // Handle tab switch
-    document.addEventListener('visibilitychange', function() {
+     document.addEventListener('visibilitychange', function() {
         if (document.hidden && gameActive) {
             quitModal.style.display = 'flex';
         }
