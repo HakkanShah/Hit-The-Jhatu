@@ -719,7 +719,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const ganduHitsDisplay = document.getElementById('gandu-hits');
     const totalTimeDisplay = document.getElementById('total-time');
 
-    // Load statistics from localStorage
+    
     function loadStatistics() {
         const stats = JSON.parse(localStorage.getItem('gameStatistics')) || {
             totalGames: 0,
