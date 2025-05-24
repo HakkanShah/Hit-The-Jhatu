@@ -635,7 +635,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Quit Confirmation Modal
+    
     const quitModal = document.getElementById('quit-modal');
     const quitYesButton = document.getElementById('quit-yes');
     const quitNoButton = document.getElementById('quit-no');
