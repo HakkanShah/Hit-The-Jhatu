@@ -788,8 +788,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateStatisticsDisplay();
     }
 
-    // Event listeners for statistics
-    statisticsButton.addEventListener('click', function() {
+     statisticsButton.addEventListener('click', function() {
         playClickSound();
         statisticsModal.style.display = 'flex';
         updateStatisticsDisplay();
