@@ -800,7 +800,7 @@ document.addEventListener("DOMContentLoaded", function () {
         statisticsModal.style.display = 'none';
     });
 
-    // Initialize statistics
+    
     loadStatistics();
 
     
