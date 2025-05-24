@@ -501,7 +501,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (jhatu) jhatu.style.display = "none";
         if (gandu) gandu.style.display = "none";
         
-        // Decide if Gandu should appear as surprise
+        
         if (Math.random() < ganduChance) {
             activeGandu = gandu;
             requestAnimationFrame(() => {
