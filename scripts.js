@@ -640,7 +640,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const quitYesButton = document.getElementById('quit-yes');
     const quitNoButton = document.getElementById('quit-no');
 
-    // Handle back button press
+    
     window.onpopstate = function(event) {
         if (gameActive) {
             event.preventDefault();
