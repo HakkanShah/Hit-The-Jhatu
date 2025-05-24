@@ -309,7 +309,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function playClickSound() {
         if (isMuted) return;
         
-        // Initialize audio context if not already done
+        
         if (!audioContext) {
             initAudio();
         }
