@@ -698,7 +698,7 @@ document.addEventListener("DOMContentLoaded", function () {
         playClickSound();
     }, { passive: false });
 
-    // Initialize history state
+    
     history.pushState(null, null, window.location.href);
 
     
