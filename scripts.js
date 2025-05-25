@@ -677,8 +677,7 @@ document.addEventListener("DOMContentLoaded", function () {
         quitModal.style.display = 'none';
     });
 
-    // Add click sound to quit buttons
-    quitYesButton.addEventListener('click', function(event) {
+     quitYesButton.addEventListener('click', function(event) {
         event.stopPropagation();
         playClickSound();
     });
