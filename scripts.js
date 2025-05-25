@@ -415,7 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
         originalStartGame();
     };
 
-    // Leaderboard functionality
+    
     let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 
      leaderboardButton.addEventListener('click', function(event) {
