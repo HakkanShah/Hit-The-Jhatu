@@ -530,7 +530,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         gameInterval = setTimeout(startRound, randomTime + 500);
     }
-
     function hideJhatu() {
         if (activeHole && activeJhatu) {
             activeHole.classList.remove('active');
