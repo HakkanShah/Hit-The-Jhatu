@@ -709,7 +709,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let ganduHits = 0;
     let totalTimePlayed = 0;
 
-    // Statistics elements
+    
     const statisticsModal = document.getElementById('statistics-modal');
     const statisticsButton = document.getElementById('statistics-button');
     const closeStatisticsButton = document.getElementById('close-statistics');
