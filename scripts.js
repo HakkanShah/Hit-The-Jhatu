@@ -356,7 +356,7 @@ document.addEventListener("DOMContentLoaded", function () {
         gameActive = true;
         score = 0;
         difficulty = 1;
-        ganduChance = 0.2; // Increased initial Gandu chance
+        ganduChance = 0.2; 
         scoreDisplay.textContent = score;
         
         
