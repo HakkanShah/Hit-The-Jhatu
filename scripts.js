@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 jhatus.forEach(jhatu => {
                     jhatu.src = customJhatuImage;
                 });
-                
+               
                
                 playClickSound();
             };
