@@ -514,7 +514,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
 
-       
+      
         const randomTime = baseTime * (0.8 + Math.random() * 0.4);
         
         setTimeout(() => {
