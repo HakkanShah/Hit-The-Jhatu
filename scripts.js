@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    
+   
     muteButton.addEventListener("click", function(event) {
         event.stopPropagation();
         playClickSound();
