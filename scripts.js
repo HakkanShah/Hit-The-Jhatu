@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ];
 
-    
+   
     highScoreDisplay.textContent = highScore;
 
     
