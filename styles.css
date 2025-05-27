@@ -467,7 +467,6 @@ header {
 .sound-toggle-button:active {
     transform: scale(0.95);
 }
-
 .share-button {
     background: transparent;
     border: none;
