@@ -535,7 +535,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     }
-
     function hideGandu() {
         if (activeHole && activeGandu) {
             activeHole.classList.remove('active');
