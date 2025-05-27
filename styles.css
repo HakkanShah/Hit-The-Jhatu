@@ -458,7 +458,6 @@ header {
     transition: all 0.3s ease;
     z-index: 1000;
 }
-
 .sound-toggle-button:hover {
     background: rgba(0, 0, 0, 0.05);
     transform: scale(1.1);
