@@ -227,7 +227,6 @@ header {
     overflow: hidden;
     transition: all 0.3s ease;
 }
-
 .score-box:hover, .high-score-box:hover {
     transform: translateY(-3px);
     box-shadow: 0 0 30px rgba(70, 130, 180, 0.3);
