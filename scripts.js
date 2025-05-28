@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
         { score: 40, message: "is Legendary! 🌟" },
         { score: 50, message: "is a Gaming God! 👑" }
     ];
-
     
     function updatePlayerHeader() {
         let message = "is Playing";
