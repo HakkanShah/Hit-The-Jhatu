@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
         isMuted = !isMuted;
         muteButton.querySelector('.button-text').textContent = isMuted ? '🔇' : '🔊';
         
-        
+      
         hitSound.volume = isMuted ? 0 : 1;
         clickSound.volume = isMuted ? 0 : 1;
         gameOverSound.volume = isMuted ? 0 : 1;
