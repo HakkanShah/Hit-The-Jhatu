@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
  
     highScoreDisplay.textContent = highScore;
 
-    
+   
     function toggleMute() {
         const currentTime = Date.now();
         if (currentTime - lastMuteClickTime < muteClickDelay) {
