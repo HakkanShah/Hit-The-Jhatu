@@ -789,8 +789,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
     loadStatistics();
-
-    
+   
     gameOver = function() {
         originalGameOver();
         updateLeaderboard();
