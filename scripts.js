@@ -217,7 +217,6 @@ document.addEventListener("DOMContentLoaded", function () {
             initAudio();
         }
     }
-
     async function shareGame() {
         const shareData = {
             title: 'Hit The Jhatu',
