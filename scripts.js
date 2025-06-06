@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     jhatu.src = customJhatuImage;
                 });
               
-              
+             
                 playClickSound();
             };
                   reader.readAsDataURL(e.target.files[0]);
