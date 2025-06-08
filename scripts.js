@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.removeEventListener('click', playMusic);
         });
     });
-   
+  
     registrationModal.style.display = "flex";
     instructionModal.style.display = "none"; 
 
