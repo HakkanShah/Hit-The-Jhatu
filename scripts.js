@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 message = progressMessages[i].message;
                 break;
             }
-        }
+       }
         document.getElementById('player-header').textContent = `${playerName} ${message}`;
     }
 
