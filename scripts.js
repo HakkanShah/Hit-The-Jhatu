@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 break;
             }
        }
-        document.getElementById('player-header').textContent = `${playerName} ${message}`;
+       document.getElementById('player-header').textContent = `${playerName} ${message}`;
     }
 
     function updateScore() {
