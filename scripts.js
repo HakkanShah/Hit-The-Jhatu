@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
             reader.onload = function(event) {
                 
                 ganduImage.src = event.target.result;
-               
+              
               
                 customGanduImage = event.target.result;
    
