@@ -338,7 +338,7 @@ document.addEventListener("DOMContentLoaded", function () {
         instructionModal.style.display = "none";
         gameOverModal.style.display = "none";
         
-       
+      
         gameOverSound.pause();
         gameOverSound.currentTime = 0;
         
