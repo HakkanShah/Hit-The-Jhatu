@@ -271,7 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
             gainNode.gain.value = isMuted ? 0 : 1;
             gainNode.connect(audioContext.destination);
             
-            fetch('sounds/Click.mp3')
+           fetch('sounds/Click.mp3')
                 .then(response => response.arrayBuffer())
                 .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
                 .then(audioBuffer => {
