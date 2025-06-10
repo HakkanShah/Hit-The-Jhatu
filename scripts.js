@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const reader = new FileReader();
             
             reader.onload = function(event) {
-                
+               
                 ganduImage.src = event.target.result;
              
            
