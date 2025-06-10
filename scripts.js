@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     let customJhatuImage = null;
     let customGanduImage = null;
-    
+   
     jhatuUpload.addEventListener('change', function(e) {
         if (e.target.files && e.target.files[0]) {
             const reader = new FileReader();
