@@ -292,7 +292,6 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("Audio play failed:", error);
         });
     }
-
     function playClickSound() {
         if (isMuted) return;
         
