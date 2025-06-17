@@ -366,7 +366,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-     document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         
         const savedName = localStorage.getItem('playerName');
         if (savedName) {
