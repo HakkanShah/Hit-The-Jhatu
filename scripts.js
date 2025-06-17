@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 3000);
         }
     }
-
     backgroundMusic.volume = 0.3; 
     backgroundMusic.loop = true; 
     backgroundMusic.play().catch(error => {
