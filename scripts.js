@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 gandus.forEach(gandu => {
                     gandu.src = customGanduImage;
                 });
-                
+               
                 playClickSound();
             };
             reader.readAsDataURL(e.target.files[0]);
