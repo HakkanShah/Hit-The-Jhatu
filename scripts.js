@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
             reader.onload = function(event) {
                 
                 jhatuImage.src = event.target.result;
-              
+             
         
                 customJhatuImage = event.target.result;
                 
