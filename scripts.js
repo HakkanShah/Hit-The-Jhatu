@@ -400,7 +400,7 @@ document.addEventListener("DOMContentLoaded", function () {
         originalStartGame();
     };
 
-    
+   
     let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 
      leaderboardButton.addEventListener('click', function(event) {
