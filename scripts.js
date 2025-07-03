@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
                
                 ganduImage.src = event.target.result;
           
-    
+   
                 customGanduImage = event.target.result;
    
                 const gandus = document.querySelectorAll('.gandu');
