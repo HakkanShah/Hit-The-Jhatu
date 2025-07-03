@@ -185,7 +185,6 @@ document.addEventListener("DOMContentLoaded", function () {
             subtitle: "(Beta, Gandu se darr gaye? Ya Jhatu hit karne mein problem aa rahi hai?😏)"
         }
     ];
-
     highScoreDisplay.textContent = highScore;
    
     function toggleMute() {
