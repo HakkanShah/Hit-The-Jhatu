@@ -409,7 +409,7 @@ document.addEventListener("DOMContentLoaded", function () {
         leaderboardModal.style.display = 'flex';
     });
 
-     closeLeaderboardButton.addEventListener('click', function(event) {
+    closeLeaderboardButton.addEventListener('click', function(event) {
         event.stopPropagation();
         playClickSound();
         leaderboardModal.style.display = 'none';
