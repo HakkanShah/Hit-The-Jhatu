@@ -292,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function playClickSound() {
         if (isMuted) return;
-        
+       
         
         if (!audioContext) {
             initAudio();
