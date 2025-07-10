@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log('Error sharing:', err);
         }
     }
- 
+
     muteButton.addEventListener("click", function(event) {
         event.stopPropagation();
         playClickSound();
