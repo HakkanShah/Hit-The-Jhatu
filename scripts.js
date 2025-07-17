@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     jhatuUpload.addEventListener('change', function(e) {
         if (e.target.files && e.target.files[0]) {
             const reader = new FileReader();
-            
+           
             reader.onload = function(event) {
                 
                 jhatuImage.src = event.target.result;
