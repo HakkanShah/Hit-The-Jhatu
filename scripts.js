@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
         clickSound.volume = isMuted ? 0 : 1;
         gameOverSound.volume = isMuted ? 0 : 1;
         backgroundMusic.volume = isMuted ? 0 : 0.3;
-     
+    
  
         if (audioContext) {
             audioContext.gainNode.gain.value = isMuted ? 0 : 1;
