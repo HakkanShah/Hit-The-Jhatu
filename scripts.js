@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
             clearTimeout(gameInterval);
             gameInterval = null;
         }
-        
+       
         startRound();
     };
 
