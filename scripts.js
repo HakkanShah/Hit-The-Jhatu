@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const shareUrl = encodeURIComponent('https://hakkanshah.github.io/Hit-The-Jhatu/');
                 const shareText = encodeURIComponent('🎮 Check out this awesome game! Hit the Jhatu but be careful not to hit the Gandu! Can you beat my high score?');
         
-           
+          
                 const tempInput = document.createElement('input');
                 tempInput.value = `🎮 Check out this awesome game! Hit the Jhatu but be careful not to hit the Gandu! Can you beat my high score?\n\nhttps://hakkanshah.github.io/Hit-The-Jhatu/`;
                 document.body.appendChild(tempInput);
