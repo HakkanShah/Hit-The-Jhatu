@@ -354,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (name) {
             playerName = name;
             
-            localStorage.setItem('playerName', name);
+           localStorage.setItem('playerName', name);
             registrationModal.style.display = "none";
             instructionModal.style.display = "flex"; 
             document.getElementById('player-header').textContent = `${name} is Playing`;
