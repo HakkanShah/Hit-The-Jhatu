@@ -451,7 +451,7 @@ document.addEventListener("DOMContentLoaded", function () {
         startGame();
     });
 
-    instructionStartButton.addEventListener("touchstart", function(event) {
+   instructionStartButton.addEventListener("touchstart", function(event) {
         event.stopPropagation();
         playClickSound();
         startGame();
