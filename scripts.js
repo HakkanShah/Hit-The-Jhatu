@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 jhatuImage.src = event.target.result;
          
- 
+
                 customJhatuImage = event.target.result;
                 
                 const jhatus = document.querySelectorAll('.jhatu');
