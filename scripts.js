@@ -360,7 +360,6 @@ document.addEventListener("DOMContentLoaded", function () {
             playClickSound();
         }
     });
-
     document.addEventListener('DOMContentLoaded', function() {
         
         const savedName = localStorage.getItem('playerName');
