@@ -605,7 +605,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-     window.addEventListener("orientationchange", function() {
+    window.addEventListener("orientationchange", function() {
         if (gameActive) {
             stopGame();
         }
