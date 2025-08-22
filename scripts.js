@@ -338,7 +338,7 @@ document.addEventListener("DOMContentLoaded", function () {
         difficulty = 1;
         ganduChance = 0.2; 
         scoreDisplay.textContent = score;
-        
+       
        
         if (gameInterval) {
             clearTimeout(gameInterval);
