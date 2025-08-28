@@ -339,7 +339,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ganduChance = 0.2; 
         scoreDisplay.textContent = score;
        
-       
+      
         if (gameInterval) {
             clearTimeout(gameInterval);
             gameInterval = null;
