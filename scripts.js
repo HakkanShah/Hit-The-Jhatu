@@ -434,7 +434,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 date: new Date().toISOString()
             });
             
-            
+           
             leaderboard.sort((a, b) => b.score - a.score);
             leaderboard = leaderboard.slice(0, MAX_LEADERBOARD_ENTRIES);
             
