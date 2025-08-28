@@ -495,7 +495,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 activeJhatu.style.transform = "translate(-50%, 50%) scale(0.9)";
             });
         }
-      
+     
         const randomTime = baseTime * (0.8 + Math.random() * 0.4);
         
         setTimeout(() => {
