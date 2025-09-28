@@ -392,7 +392,6 @@ document.addEventListener("DOMContentLoaded", function () {
         gameStartTime = Date.now();
         originalStartGame();
     };
-
    
     let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 
