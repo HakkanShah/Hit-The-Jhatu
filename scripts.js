@@ -440,7 +440,6 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
         }
     }
-
      instructionStartButton.addEventListener("click", function(event) {
         event.stopPropagation();
         playClickSound();
