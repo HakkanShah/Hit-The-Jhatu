@@ -347,18 +347,16 @@ document.addEventListener("DOMContentLoaded", function () {
         startRound();
     };
 
-  registerButton.addEventListener('click', function() {
-        const name = playerNameInput.value.trim();
-        if (name) {
-            playerName = name;
-            
-          localStorage.setItem('playerName', name);
-            registrationModal.style.display = "none";
-            instructionModal.style.display = "flex"; 
-            document.getElementById('player-header').textContent = `${name} is Playing`;
-            playClickSound();
-        }
-    });
+  const savedName = localStorage.getItem('playerName');
+if (savedName) {
+    playerName = savedName;
+    registrationModal.style.display = "none";
+    instructionModal.style.display = "flex";
+    document.getElementById('player-header').textContent = `${savedName} is Playing`;
+} else {
+    registrationModal.style.display = "flex";
+    instructionModal.style.display = "none";
+}
     document.addEventListener('DOMContentLoaded', function() {
         
         const savedName = localStorage.getItem('playerName');
