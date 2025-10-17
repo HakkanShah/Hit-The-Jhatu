@@ -1,0 +1,28 @@
+{
+  "name": "hit-the-jhatu",
+  "version": "1.0.0",
+  "description": "[![Hit The Jhatu](https://img.shields.io/badge/Hit%20The%20Jhatu-Game-green)](https://hakkanshah.github.io/Hit-The-Jhatu/)\r [![Made with ❤️](https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F-red)](https://github.com/HakkanShah)\r [![Open Source](https://img.shields.io/badge/Open%20Source-Yes-blue)](https://github.com/HakkanShah/Hit-The-Jhatu)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HakkanShah/Hit-The-Jhatu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HakkanShah/Hit-The-Jhatu/issues"
+  },
+  "homepage": "https://github.com/HakkanShah/Hit-The-Jhatu#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.1",
+    "multer": "^2.0.2",
+    "socket.io": "^4.8.1"
+  }
+}

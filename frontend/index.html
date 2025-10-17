@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Hit The Jhatu - A fun and addictive whack-a-mole style game. Hit the Jhatu to score points but be careful not to hit the Gandu! Play now for free.">
+    <meta name="keywords" content="Hit The Jhatu,jhatu game, Jhatu Game, JJ Jhatu, JJ Geme, Hakkan Game, Hakkan,Jhatu Meme Game, whack a mole game, fun game, online game, free game, arcade game, Jhatu game, Gandu game">
+    <meta name="author" content="Hakkan">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Hit The Jhatu - Fun Whack-a-Mole Game">
+    <meta property="og:description" content="Hit The Jhatu - A fun and addictive whack-a-mole style game. Hit the Jhatu to score points but be careful not to hit the Gandu!">
+    <meta property="og:image" content="images/Jahtu.webp">
+    <meta property="og:url" content="https://hakkanshah.github.io/Hit-The-Jhatu/">
+    <meta property="og:type" content="website">
+    <title>Hit The Jhatu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Righteous&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="game-container">
+            <div id="registration-modal" class="modal">
+                <div class="modal-content registration-content">
+                    <h2>Hit The Jhatu! 🎮</h2>
+                    <p>Enter your name to start playing:</p>
+                    <div class="input-container">
+                        <input type="text" id="player-name" placeholder="Your name here..." maxlength="20">
+                        <button id="register-button" class="register-button">
+                            <span class="button-text">Let's Play!</span>
+                            <div class="button-glow"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="instruction-modal" class="modal">
+                <div class="modal-content instruction-content">
+                    <h2>Hit The Jhatu</h2>
+                    <div class="instruction-text">    
+                        <p>🎯 Hit the Jhatu to score points</p>
+                        <p>💥 Avoid hitting the Gandu at all costs!</p>
+                        <p>🎲 Challenge your friends to beat your high score</p>
+                        <p>🎨 Customize your game with your own images</p>
+                    </div>
+                    <div class="character-showcase">
+                        <div class="character-card jhatu-card">
+                            <p>Jhatu</p>
+                            <img src="images/Jhatu.webp" alt="Jhatu" id="jhatu-image">
+                            <p>Hit Me ✅</p>
+                            <div class="image-upload">
+                                <label for="jhatu-upload" class="upload-button">Upload Jhatu Image</label>
+                                <input type="file" id="jhatu-upload" accept="image/*" class="file-input">
+                            </div>
+                        </div>
+                        <div class="character-card gandu-card">
+                            <p>Gandu</p>
+                            <img src="images/Gandu.webp" alt="Gandu" id="gandu-image">
+                            <p>Don't Hit ❌</p>
+                            <div class="image-upload">
+                                <label for="gandu-upload" class="upload-button">Upload Gandu Image</label>
+                                <input type="file" id="gandu-upload" accept="image/*" class="file-input">
+                            </div>
+                        </div>
+                    </div>
+                    <button id="instruction-start-game" class="play-now-button">
+                        <span class="button-text">PLAY NOW</span>
+                        <div class="button-glow"></div>
+                    </button>
+                </div>
+            </div>
+            <header>
+                <div class="title-container">
+                    <h1 id="player-header">Hit The Jhatu</h1>
+                    <div class="title-glow"></div>
+                </div>
+                <div class="score-container">
+                    <div class="score-box">
+                        <span class="score-label"> YOUR SCORE</span>
+                        <span id="score" class="score-value">0</span>
+                    </div>
+                    <div class="high-score-box">
+                        <span class="score-label">HIGH SCORE</span>
+                        <span id="high-score" class="score-value">0</span>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div id="game-board">
+                    <div class="hole" id="hole-1">
+                        <img class="jhatu" src="images/Jhatu.webp" alt="Jhatu">
+                        <img class="gandu" src="images/Gandu.webp" alt="Gandu">
+                    </div>
+                    <div class="hole" id="hole-2">
+                        <img class="jhatu" src="images/Jhatu.webp" alt="Jhatu">
+                        <img class="gandu" src="images/Gandu.webp" alt="Gandu">
+                    </div>
+                    <div class="hole" id="hole-3">
+                        <img class="jhatu" src="images/Jhatu.webp" alt="Jhatu">
+                        <img class="gandu" src="images/Gandu.webp" alt="Gandu">
+                    </div>
+                    <div class="hole" id="hole-4">
+                        <img class="jhatu" src="images/Jhatu.webp" alt="Jhatu">
+                        <img class="gandu" src="images/Gandu.webp" alt="Gandu">
+                    </div>
+                    <div class="hole" id="hole-5">
+                        <img class="jhatu" src="images/Jhatu.webp" alt="Jhatu">
+                        <img class="gandu" src="images/Gandu.webp" alt="Gandu">
+                    </div>
+                    <div class="hole" id="hole-6">
+                        <img class="jhatu" src="images/Jhatu.webp" alt="Jhatu">
+                        <img class="gandu" src="images/Gandu.webp" alt="Gandu">
+                    </div>
+                </div>
+            </main>
+            <div class="controls">
+                <button id="mute-button" class="sound-toggle-button">
+                    <span class="button-text">🔊</span>
+                    <div class="button-glow"></div>
+                </button>
+                <button id="share-button" class="share-button">
+                    <span class="button-text">
+                        <img src="images/share.png" alt="Share this game to your Jhatu friends" class="share-icon">
+                        Share
+                    </span>
+                    <div class="button-glow"></div>
+                </button>
+                <button id="statistics-button" class="statistics-button">
+                    <span class="button-text">📊 Stats</span>
+                    <div class="button-glow"></div>
+                </button>
+                <button id="leaderboard-button" class="leaderboard-button">
+                    <span class="button-text">🏆 Leaderboard</span>
+                    <div class="button-glow"></div>
+                </button>
+            </div>
+
+            <div id="leaderboard-modal" class="modal">
+                <div class="modal-content leaderboard-content">
+                    <h2>🏆 Top Players</h2>
+                    <div class="leaderboard-list">
+                        <div class="leaderboard-header">
+                            <span>Rank</span>
+                            <span>Name</span>
+                            <span>Score</span>
+                        </div>
+                        <div id="leaderboard-entries"></div>
+                    </div>
+                    <button id="close-leaderboard" class="close-leaderboard-button">
+                        <span class="button-text">Close</span>
+                        <div class="button-glow"></div>
+                    </button>
+                </div>
+            </div>
+            <footer>
+                <a href="https://www.github.com/HakkanShah" target="_blank" class="github-link">
+                    <span class="made-by">Made for fun by</span>
+                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" class="github-logo">
+                    <span class="author">Hakkan</span>
+                </a>
+            </footer>
+        </div>
+    </div>
+    <audio id="hit-sound" preload="auto">
+        <source src="sounds/sound1.mp3" type="audio/mpeg">
+        <source src="sounds/Sound2.mp3" type="audio/mpeg">
+        <source src="sounds/sound3.mp3" type="audio/mpeg">
+        <source src="sounds/sound4.mp3" type="audio/mpeg">
+        <source src="sounds/sound5.mp3" type="audio/mpeg">
+        <source src="sounds/sound6.mp3" type="audio/mpeg">
+        <source src="sounds/sound7.mp3" type="audio/mpeg">
+        <source src="sounds/sound8.mp3" type="audio/mpeg">
+        <source src="sounds/sound9.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="click-sound" preload="auto">
+        <source src="sounds/Click.mp3" type="audio/mpeg">
+        <source src="sounds/click.ogg" type="audio/ogg">
+        <source src="sounds/click.wav" type="audio/wav">
+    </audio>
+
+    <audio id="game-over-sound" preload="auto">
+        <source src="sounds/GameOver.mp3" type="audio/mpeg">
+    </audio>
+ 
+    <div id="game-over-modal" class="modal">
+        <div class="modal-content">
+            <h2>Bro, you hit the Gandu 😣<br>Game Over!</h2>
+            <p>Your Score: <span id="final-score">0</span></p>
+            <button id="restart-game" class="play-again-button">
+                <span class="button-text">PLAY AGAIN</span>
+                <div class="button-glow"></div>
+            </button>
+        </div>
+    </div>
+    <div id="quit-modal" class="modal">
+        <div class="modal-content quit-content">
+            <h2>Quit Game? 😱</h2>
+            <p>Noob ho kya?<br>Mummy bula rahi hai kya? 🤡</p>
+            <div class="quit-buttons">
+                <button id="quit-yes" class="quit-button">
+                    <span class="button-text">Yes, Quit</span>
+                    <div class="button-glow"></div>
+                </button>
+                <button id="quit-no" class="quit-button">
+                    <span class="button-text">No, Continue Playing</span>
+                    <div class="button-glow"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="background-music" preload="auto" loop>
+        <source src="sounds/BackgroundSound.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="statistics-modal" class="modal">
+        <div class="modal-content statistics-content">
+            <h2>📊 Game Statistics</h2>
+            <div class="statistics-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Total Games:</span>
+                    <span id="total-games" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Average Score:</span>
+                    <span id="average-score" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Best Streak:</span>
+                    <span id="best-streak" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Gandu Hits:</span>
+                    <span id="gandu-hits" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Time:</span>
+                    <span id="total-time" class="stat-value">0m</span>
+                </div>
+            </div>
+            <button id="close-statistics" class="close-statistics-button">
+                <span class="button-text">Close</span>
+                <div class="button-glow"></div>
+            </button>
+        </div>
+    </div>
+    <div id="high-score-celebration" class="high-score-celebration" style="display: none;">
+        <h3>NEW HIGH SCORE! 🎮</h3>
+        <p>You're on fire! 🔥</p>
+    </div>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="scripts.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9172756316775413"
+     crossorigin="anonymous"></script>
+</body>
+</html>
