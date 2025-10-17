@@ -781,7 +781,6 @@ if (savedName) {
         updateStatisticsDisplay();
     };
 });
-<<<<<<< HEAD:frontend/scripts.js
 
 // backend
 // ===== config =====
@@ -940,5 +939,3 @@ gameOver = async function() {
   // PUSH to server and let socket.io update everyone else
   await pushStatsToServerOnGameOver();
 };
-=======
->>>>>>> adb16124290e2c6acc5481a36e2b410ed0efc794:scripts.js
