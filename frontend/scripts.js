@@ -688,6 +688,7 @@ if (savedName) {
     const bestStreakDisplay = document.getElementById('best-streak');
     const ganduHitsDisplay = document.getElementById('gandu-hits');
     const totalTimeDisplay = document.getElementById('total-time');
+    
 
     
     function loadStatistics() {
