@@ -13,35 +13,45 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 const io = new SocketIO(server, {
-  cors: { origin: "*" } // change to your frontend origin in production
+  cors: {
+    origin: "*", // in production, replace * with your Vercel frontend domain
+    methods: ["GET", "POST"]
+  }
 });
 
 app.use(cors());
 app.use(express.json());
-
-// serve static uploads
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
-// make io available to routes via app.locals
+// ✅ make io accessible in routes
 app.locals.io = io;
 
+// ✅ player routes
 app.use("/api/players", playerRoutes);
 
-// Connect to Mongo
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log("✅ MongoDB connected"))
-.catch(err => console.error("❌ MongoDB error:", err));
+// ✅ MongoDB connection
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("❌ MongoDB error:", err.message));
 
-// Socket.IO connection logging (optional)
-io.on("connection", socket => {
-  console.log("Socket connected:", socket.id);
+// ✅ Socket.IO real-time leaderboard updates
+io.on("connection", (socket) => {
+  console.log("⚡ Socket connected:", socket.id);
+
   socket.on("disconnect", () => {
-    console.log("Socket disconnected:", socket.id);
+    console.log("❌ Socket disconnected:", socket.id);
   });
 });
 
+// ✅ Broadcast leaderboard updates
+export const broadcastLeaderboardUpdate = (io, leaderboard) => {
+  io.emit("leaderboard-updated", leaderboard);
+};
+
+// ✅ Start server
 const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => console.log(`🔥 Server running on ${PORT}`));
+server.listen(PORT, () => console.log(`🔥 Server running on port ${PORT}`));

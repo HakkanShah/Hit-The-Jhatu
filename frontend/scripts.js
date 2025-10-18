@@ -931,7 +931,15 @@ async function pushStatsToServerOnGameOver() {
 // call this inside your gameOver function (after updateLeaderboard/updateGameStatistics)
 gameOver = async function() {
   originalGameOver();
-  updateLeaderboard();        // local storage fallback
+  updateLeaderboard();
+  if (socket && socket.connected) {
+    socket.emit("new-score", {
+      name: playerName,
+      score: score,
+    });
+  }
+  
+          // local storage fallback
   updateGameStatistics();
   ganduHits++;
   saveStatistics();
@@ -940,3 +948,40 @@ gameOver = async function() {
   // PUSH to server and let socket.io update everyone else
   await pushStatsToServerOnGameOver();
 };
+// ===== Socket.IO real-time leaderboard =====
+let socket;
+
+function initSocket() {
+  socket = io(API_BASE); // Make sure socket.io client script is included in HTML
+
+  socket.on("connect", () => {
+    console.log("Socket connected:", socket.id);
+  });
+
+  // When server emits updated leaderboard
+  socket.on("leaderboard-updated", (leaderboard) => {
+    renderLeaderboardFromServer(leaderboard);
+  });
+}
+
+// Render leaderboard entries from server data
+function renderLeaderboardFromServer(leaderboard) {
+  const leaderboardEntries = document.getElementById("leaderboard-entries");
+  leaderboardEntries.innerHTML = "";
+
+  leaderboard.slice(0, 10).forEach((entry, index) => {
+    const div = document.createElement("div");
+    div.className = `leaderboard-entry rank-${index + 1}`;
+    div.innerHTML = `
+      <span>${index + 1}</span>
+      <span>${entry.name}</span>
+      <span>${entry.score}</span>
+    `;
+    leaderboardEntries.appendChild(div);
+  });
+}
+
+// After player registers, connect socket
+document.addEventListener("DOMContentLoaded", () => {
+  initSocket();
+});
