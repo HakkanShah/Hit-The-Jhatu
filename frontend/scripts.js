@@ -784,7 +784,7 @@ if (savedName) {
 
 // backend
 // ===== config =====
-const API_BASE = "http://localhost:5000"; // change to your deployed backend URL later
+const API_BASE = "https://hit-the-jhatu.onrender.com"; // change to your deployed backend URL later
 
 // ===== Socket.IO real-time leaderboard =====
 let socket;
