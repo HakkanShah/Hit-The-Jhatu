@@ -1,4 +1,4 @@
-# Hit The Jhatu 🎯
+# Hit The Jhatu 🎯  
 
 [![Hit The Jhatu](https://img.shields.io/badge/Hit%20The%20Jhatu-Game-green)](https://hakkanshah.github.io/Hit-The-Jhatu/)
 [![Made with ❤️](https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F-red)](https://github.com/HakkanShah)
